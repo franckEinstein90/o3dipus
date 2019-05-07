@@ -43,7 +43,8 @@ const timeSpanUtils = (function() {
             return this; 
         },
 
-        Timer: function(settings) {
+        Timer: function(onPeriodBegin, settings) {
+            this.onBegin = onPeriodBegin;
             this.settings = settings;
             this.timer = null;
             this.fps = settings.fps || 30;
@@ -108,7 +109,7 @@ timeSpanUtils.Timer.prototype =
     run: function()
     {
         let $this = this; 
-        this.settings.run();
+        this.onBegin();
         this.timeInit += this.interval; 
         this.timer = setTimeout(
             function(){$this.run()}, 
@@ -137,29 +138,40 @@ timeSpanUtils.Timer.prototype =
 * dateUtils namespace 
 *******************************************************************************/
 const dateUtils = (function() {
-    let theMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+
+    let theMonths = [   "January", "February", "March", 
+                        "April", "May", "June", "July", 
+                        "August", "September", "October", 
+                        "November", "December"],
+
         dateOptions = {
             weekday: 'long',
             year: 'numeric',
             month: 'long',
             day: 'numeric'
         },
+
         separator = "_",
+
         pad0 = function(digit) {
             return digit.toString().padStart(2, '0');
         };
 
     return {
+
         setSeparator: function(sep) {
             separator = sep;
         },
+
         firstDayOfMonth: function(theYear, monthIdx) {
             return new Date(theYear, monthIdx, 1).getDay();
         },
+
         monthLength: function(theYear, theMonth, timeMeasure) {
             let thisMonth = new Date(theYear, theMonth, 1);
             return Math.ceil(timeSpanUtils.month(thisMonth) / timeSpanUtils.day());
         },
+
         monthIdxToStr: function(monthIdx) {
             return theMonths[monthIdx];
         },

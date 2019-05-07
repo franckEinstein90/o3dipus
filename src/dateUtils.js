@@ -26,7 +26,7 @@ const timeSpanUtils = (function() {
          * - TimeSpan
          * - Timer
          *************************************************/
-        TimeSpan: function(beginDate, endDate, timeStep) {
+        TimeSpan : function(beginDate, endDate, timeStep) {
             if (!timeSpanUtils.isValidDate(beginDate)) {
                 timeSpanUtils.invalidDate(beginDate)
             }
