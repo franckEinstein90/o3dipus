@@ -1,4 +1,6 @@
-
+const events = require('./events').events
+const dateUtils = require('./dateUtils').dateUtils
+const timeSpanUtils = require('./dateUtils').timeSpanUtils
 
 /******************************************************************************
  * The page is bordered at the top with a 4 rows widget and 
