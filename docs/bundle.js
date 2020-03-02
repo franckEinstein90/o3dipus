@@ -1,5 +1,192 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 /******************************************************************************
+ * 
+ ******************************************************************************/
+"use strict"
+/******************************************************************************/
+/******************************************************************************/
+
+/******************************************************************************
+ * The page is bordered at the top with a 4 rows widget and 
+ * at the bottom with a  2 rows widget. 
+ * ****************************************************************************/
+const events = require('../common/events').events
+const dateUtils = require('../common/dateUtils').dateUtils
+const timeSpanUtils = require('./../common/dateUtils').timeSpanUtils
+
+const EventChain = function(tag, colsNumber){
+
+    let evRegistrar = new events.Registrar()
+    for(let i=0; i<colsNumber; i++){
+        let ev = new events.Event()
+        if(i % 4 === 0){
+            ev.on()
+        }
+        evRegistrar.register(ev)
+    }
+    return evRegistrar
+}
+
+
+$(document).ready(function() {
+    
+    const app = {}
+    require('../common/features').addFeatureSystem( app )
+    require('./ui/ui.js').addUiFeature( app )
+
+    let pageEventsTop = ['blue'].map( color => EventChain(color, 25))
+    let pageEventsBottom = ['red'].map( color => EventChain(color, 25))
+    let makeTableRow = (color, content) => `<tr style="background-color:${color}">${content}</tr>`
+
+    let printEvents = (eventChain, tableInnerId, backgroundColor) => {
+            let eventTableCells = "",
+                decorateTD = x => x.isOn() ? ` style = "background-color:${backgroundColor}"` : "";
+                eventChain.forEach(ev => eventTableCells += `<td ${decorateTD(ev)}>&nbsp;</td>`);
+                $(tableInnerId).append(makeTableRow("white", eventTableCells));
+        },
+
+        randSwitch = (registrar) => {
+            registrar.forEach(function(ev) {
+                if (Math.floor(Math.random() * 3)) {
+                    ev.off();
+                } else {
+                    ev.on();
+                }
+            })
+        },
+
+        printBanners = function(){
+
+               $("#events").empty()
+               $('#eventsBottom').empty()
+
+                pageEventsTop.forEach(x => {
+                    printEvents(x, "#events", "orange");
+                    randSwitch(x)
+                })
+
+               pageEventsBottom.forEach(x => {
+                    printEvents(x, "#eventsBottom", "orange");
+                    randSwitch(x)
+                })
+
+        },
+
+        timer = new timeSpanUtils.Timer(printBanners, {
+            fps: 1 });
+
+    timer.start();
+})
+
+
+
+
+
+
+},{"../common/dateUtils":3,"../common/events":4,"../common/features":5,"./../common/dateUtils":3,"./ui/ui.js":2}],2:[function(require,module,exports){
+/******************************************************************************
+ * 
+ ******************************************************************************/
+"use strict"
+/******************************************************************************/
+/******************************************************************************/
+const sections = [
+    window , 
+    "#topNav", 
+    "#bottomNav"
+]
+
+const ui = (function(){
+
+    let _sections = sections.map( section => {
+        return {
+            jqHandle : section 
+        }
+    })
+        
+    
+    let _setHeight = (element, height) => {
+        element.height(height)
+    }
+
+    let _configureUIElements = () => {
+
+        let windowHeight = $(window).height()
+        let topNavHeight = $(window).height()/10
+        _setHeight( $('#topNav'), topNavHeight ) 
+
+        let bottomNavHeight = $(window).height() / 15
+        _setHeight( $('#bottomNav'), bottomNavHeight)
+
+           
+        $('#bottomNav').css({
+                    top: `${windowHeight - bottomNavHeight}px`, 
+                    left: '0'
+        })
+
+        let contentHeight = windowHeight - topNavHeight - bottomNavHeight 
+        _setHeight( $('#leftNav'), contentHeight) 
+        $('#leftNav').css({
+                    top: `${topNavHeight}px`, 
+                    left: '0', 
+                    width: `${$(window).width() > 1200 ? 145 : 0}`
+        })
+
+        _setHeight( $('#content'), contentHeight) 
+         $('#content').css({
+            top: `${topNavHeight}px`, 
+            left: $('#leftNav').width(), 
+            width: $(window).width() - $('#leftNav').width()
+                
+        })
+
+        $('#left').css({
+            top: `${topNavHeight}px`, 
+            left    : $('#leftNav').width(), 
+            width   : $( window ).width() > 1200 ? $('#content').width() / 2 : $( window ).width(),
+            height  : $( window ).width() > 1200 ? $('#content').height() : 400
+        })
+
+        $('#right').css({
+            top     : $( window ).width() > 1200 ? `${topNavHeight}px`: $('#left').height(), 
+            left    : $( window ).width() > 1200 ? $('#leftNav').width() + $('#left').width() : $('#leftNav').width(), 
+            width   : $( window ).width() > 1200 ? $('#content').width()/2 : $( window ).width(),  
+            height  : $( window ).width() > 1200 ? $('#content').height() : $('#content').width()/2 
+        })
+
+    }
+
+    return {
+
+        configure : function( ){
+            _configureUIElements()
+            $(window).resize(()=> {
+                _configureUIElements()
+            })
+        }
+
+
+    }
+})()
+
+const addUiFeature = app => {
+
+    ui.configure(app)
+    app.ui = ui
+    app.addFeature({
+        tag: 'ui', 
+        state: 'implemented'
+    })
+    return ui
+
+}
+
+module.exports = {
+    addUiFeature
+}
+
+},{}],3:[function(require,module,exports){
+/******************************************************************************
  * The timeSpanUtils module defines several utilites related to time ranges. 
  * It includes:
  *
@@ -200,7 +387,7 @@ module.exports = {
     dateUtils
 };
 
-},{}],2:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 /*******************************************************************
  * events namespace
  * FranckEinstein90
@@ -219,8 +406,6 @@ module.exports = {
  *  - object events.Register, keeps tracks of all objects and their status
  *
  *  ------------
- *  Unit tests: /test/events.js
- *  Dependent modules: /src/calendarEvents.js
  * 
  * *****************************************************************/
 
@@ -415,72 +600,70 @@ module.exports = {
     events
 };
 
-},{}],3:[function(require,module,exports){
-const events = require('./events').events
-const dateUtils = require('./dateUtils').dateUtils
-const timeSpanUtils = require('./dateUtils').timeSpanUtils
+},{}],5:[function(require,module,exports){
+"use strict"
 
-/******************************************************************************
- * The page is bordered at the top with a 4 rows widget and 
- * at the bottom with a  2 rows widget. 
- * ****************************************************************************/
-const colsNumber = 25, 
+const featureSystem = (function(){
 
-      EventChain = (tag) => {
-            let evRegistrar = new events.Registrar();
-            for (let i = 0; i < colsNumber; i++) {
-                let ev = new events.Event();
-                if (i % 4 === 0) {
-                    ev.on();
-                }
-                evRegistrar.register(ev);
-            }
-            evRegistrar.tag = tag;
-            return evRegistrar;
-        }
+    let _features       = new Map()
+    let _reqMajor       = 0
+    let _requirements   = new Map()
 
-$(document).ready(function() {
-        //pageEventsTop = EventChain(4,25, "#events");
-    let pageEventsTop = ["blue", "blue", "blue", "blue"].map(
-            x => EventChain(x)),
+    return {
 
-        pageEventsBottom = ["red", "white", "brown"].map(
-            x => EventChain(x)),
-
-        makeTableRow = (color, x) => `<tr style="background-color:${color}">${x}</tr>`,
-
-
-        printEvents = (eventChain, tableInnerId, backgroundColor) => {
-            let eventTableCells = "",
-                decorateTD = x => x.isOn() ? ` style = "background-color:${backgroundColor}"` : "";
-                eventChain.forEach(ev => eventTableCells += `<td ${decorateTD(ev)}>&nbsp;</td>`);
-                $(tableInnerId).append(makeTableRow("white", eventTableCells));
-        },
-
-        randSwitch = (registrar) => {
-            registrar.forEach(function(ev) {
-                if (Math.floor(Math.random() * 3)) {
-                    ev.off();
-                } else {
-                    ev.on();
-                }
+        get featureList()  {
+            let list = {} 
+            _features.forEach((value, key)=>{
+                list[key] = value
             })
+            return list
         },
 
-        printBanners = function(){
-               $("#events").empty();
-               pageEventsTop.forEach(x => {
-                    printEvents(x, "#events", "orange");
-                    randSwitch(x)
-                })
+        implements  : function(featureLabel){
+            if(!_features.has(featureLabel)) return false
+            return(_features.get(featureLabel).state === 'implemented')
+        }, 
+
+        addRequirement  : function({
+            req, 
+            parentReq
+        }) {
+            if( parentReq === undefined || parentReq === null){
+                _reqMajor += 1
+                _requirements.set(  _reqMajor, req)
+            }
         },
 
-        timer = new timeSpanUtils.Timer(printBanners, {
-            fps: 1 });
+        includes: featureName => {
+            if(_features.has(featureName)) return _features.get(featureName)
+            return false
+        },
 
-    timer.start();
+        addFeature : function({
+            label, 
+            description, 
+            state
+        }){
+            if(featureSystem.includes(label)){
+                throw "feature already exists"
+            }
+            if(description === undefined || description === null){
+                description = "no description"
+            }
+            _features.set(label, {state, description})
+        }
+    }
 
+})()
 
-});
+const addFeatureSystem = function( app ){
+    app.features = featureSystem
+    app.addFeature = feature => featureSystem.addFeature( feature )
+    app.implements = featureLabel => featureSystem.implements(featureLabel)
+}
 
-},{"./dateUtils":1,"./events":2}]},{},[3]);
+module.exports = {
+    addFeatureSystem
+}
+
+},{}]},{},[1]);

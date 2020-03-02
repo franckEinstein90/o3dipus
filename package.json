@@ -3,14 +3,30 @@
   "version": "1.0.0",
   "description": "A simple color changing visual effect for web pages.",
   "main": "index.js",
-  "directories": {
-    "doc": "docs",
-    "example": "examples"
+
+    "scripts":{
+        "dev" : "next"
+    }, 
+
+    "directories": {
+        "doc": "docs",
+        "example": "examples"
+    },
+
+  "_moduleAliases": {
+    "@clientServerCommon": "src/clientServerCommon",
+    "@server": "src/server"
   },
+
   "dependencies": {
     "browserify": "^16.5.0",
     "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "module-alias": "^2.2.2",
     "mongodb": "^3.3.2",
+    "next": "^9.2.2",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
     "unirest": "^0.6.0",
     "urlencode": "^1.1.0"
   },

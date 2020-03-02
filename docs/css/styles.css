@@ -1,0 +1,15 @@
+@import 'colors.css'; 
+@import 'ui.css';    
+
+
+#eventContainer {
+    height:15%;
+}
+#eventContainer TR {
+            width:100%;}
+#eventContainer TD {
+        }
+.cover{
+            adding: 0 1.5rem;
+        }
+

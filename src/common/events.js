@@ -16,8 +16,6 @@
  *  - object events.Register, keeps tracks of all objects and their status
  *
  *  ------------
- *  Unit tests: /test/events.js
- *  Dependent modules: /src/calendarEvents.js
  * 
  * *****************************************************************/
 
