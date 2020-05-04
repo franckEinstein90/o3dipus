@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "A simple color changing visual effect for web pages.",
   "main": "index.js",
-
-    "scripts":{
-        "dev" : "next"
+  "scripts":{
+        "buildClient" :  "browserify src/client/main.js -o docs/bundle.js"
     }, 
 
     "directories": {
@@ -31,9 +30,6 @@
     "urlencode": "^1.1.0"
   },
   "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/franckEinstein90/color-matrix-javascript.git"

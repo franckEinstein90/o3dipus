@@ -2,13 +2,51 @@
 @import 'ui.css';    
 
 
+.gutter {
+    position: absolute; 
+    background-color:white;
+    z-index:15; 
+}
+
+.oedipusCaption, .oracleCaption {
+    position: absolute; 
+    padding-left: 10px; 
+    padding-right: 10px; 
+}
+
+.oracleCaption {
+    background-color: black; 
+    font-family: 'Frijole', cursive;
+    font-size: 2.5em;
+    text-align: center;
+    border: 1px inset red;  
+    color: white; 
+}
+
+.oedipusCaption {
+    position: absolute; 
+    padding-left: 10px; 
+    padding-right: 10px; 
+    background-color: red; 
+    font-family: 'Indie Flower', cursive;
+    font-size: 3em;
+    text-align: center;
+    border: 1px inset black;  
+    box-shadow: 2px 2px; 
+    color: white; 
+}
+
 #eventContainer {
     height:15%;
 }
+
 #eventContainer TR {
-            width:100%;}
+            width:100%;
+}
+
 #eventContainer TD {
-        }
+}
+
 .cover{
             adding: 0 1.5rem;
         }
