@@ -5,27 +5,17 @@
 "use strict"
 /*****************************************************************************/
 const express = require('express')
-/*****************************************************************************/
 
-const routingSystem = (function( ){
-
-    let _router = express.Router()
-
-    return{
-        configure   : function( app ){
-            app.express.use(_router)
-        }
-    }
-})()
-
-const addRouterFeature = function( app ){
-    routingSystem.configure( app )
-    
-    return app
+const mountRoutingSystem = function( app ){
+    return new Promise((resolve, reject)=>{
+        app.routers = [];
+        return resolve( app );
+    })
 }
 
+
 module.exports = {
-    addRouterFeature
+    mountRoutingSystem
 }
 
 

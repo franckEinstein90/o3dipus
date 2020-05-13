@@ -7,35 +7,36 @@
 "use strict"
 
 /*****************************************************************************/
-const expressPackage	= require('express')
+const express = require('express')
+const cookieParser = require('cookie-parser')
+const favicon = require('express-favicon')
+const path = require('path')
 /*****************************************************************************/
-const express = (function( app ){
 
-    let _app = require('express')()
-    _app.use(expressPackage.json())
-    _app.use(expressPackage.urlencoded({
+const configExpress = function( app ) {
+    
+
+    app.express =  express()
+
+    require('@server/viewSystem').viewSystem({
+        app     : app.express,  
+        root    : app.root,
+        layoutsDir:  path.join(app.metadata.root,'views','layouts/'),
+        partialsDir: path.join(app.metadata.root,'views','partials/')
+    })
+
+    app.express.use(cookieParser());
+    app.express.use(express.json())
+    app.express.use(express.urlencoded({
         extended: false
     }))
 
-    return {
+    app.express.use(express.static(app.metadata.staticFolder))
+    app.express.use(favicon(app.metadata.faviconPath))
 
-        use: x => _app.use(x)
-
-    }
-
-})()
-
-const addExpressStackFeature =  app => {
-
-    app.express = express 
-    app.addFeature({
-        label: 'expressStack',
-        state: 'implemented'
-    })
     return app
-
 }
 
 module.exports = {
-   addExpressStackFeature
+   configExpress 
 }

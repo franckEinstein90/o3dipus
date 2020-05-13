@@ -3,23 +3,22 @@
   "version": "1.0.0",
   "description": "A simple color changing visual effect for web pages.",
   "main": "index.js",
-  "scripts":{
-        "buildClient" :  "browserify src/client/main.js -o docs/bundle.js"
-    }, 
-
-    "directories": {
-        "doc": "docs",
-        "example": "examples"
-    },
-
+  "scripts": {
+    "buildClient": "browserify src/client/main.js -o docs/bundle.js"
+  },
+  "directories": {
+    "doc": "docs",
+    "example": "examples"
+  },
   "_moduleAliases": {
-    "@clientServerCommon": "src/clientServerCommon",
+    "@common": "src/common",
     "@server": "src/server"
   },
-
   "dependencies": {
     "browserify": "^16.5.0",
+    "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
+    "express-favicon": "^2.0.1",
     "express-handlebars": "^3.1.0",
     "module-alias": "^2.2.2",
     "mongodb": "^3.3.2",

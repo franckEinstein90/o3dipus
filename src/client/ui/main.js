@@ -7,16 +7,12 @@
 
 
 const ui = function( app ){
-
-    let _appUiFrame = require('./frame/main.js').uiFrameFeature( app )
-
-    return {
-        frame : _appUiFrame
-    }
+    app.ui = {}; 
+    app.ui.frame = require('./frame/main.js').uiFrameFeature( app )
 }
 
 const addUiFeature = app => {
-    app.ui = ui(app);
+    ui(app);
     return app; 
 }
 

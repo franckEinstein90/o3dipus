@@ -7,7 +7,7 @@ body {
 #topNav {
     position:absolute; 
     background-color: var(--pop); 
-    color: black; 
+    color: white; 
     left: 0; 
     top: 0;
     width: 100%; 

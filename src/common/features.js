@@ -51,14 +51,14 @@ const featureSystem = (function(){
         }
     }
 
-})()
+})();
 
-const addFeatureSystem = function( app ){
-    app.features = featureSystem
-    app.addFeature = feature => featureSystem.addFeature( feature )
-    app.implements = featureLabel => featureSystem.implements(featureLabel)
+const mountFeatureSystem = function( app ){
+    app.features = featureSystem;
+    app.addFeature = feature => featureSystem.addFeature( feature );
+    app.implements = featureLabel => featureSystem.implements(featureLabel);
 }
 
 module.exports = {
-    addFeatureSystem
-}
+    mountFeatureSystem 
+};

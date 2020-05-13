@@ -1,14 +1,18 @@
+/*****************************************************************************/
 "use strict"
+/*****************************************************************************/
 
 const divPerimeter = function(divID){
-    let height  =   $( divID ).height()
-    let width   =   $( divID ).width()
-    let orientation = height > width ? 'portrait' : 'landscape' 
-     return {
-        height,
-        width,
-        orientation
-    }
+    let returnObject =    {
+        height: $( divID ).height(), 
+        width:  $( divID ).width()
+    }; 
+
+    returnObject.orientation = returnObject.height > returnObject.width 
+        ? 'portrait' 
+        : 'landscape'; 
+
+    return returnObject; 
 }
 
 module.exports = {

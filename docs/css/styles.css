@@ -1,17 +1,45 @@
 @import 'colors.css'; 
 @import 'ui.css';    
 
+#images, #text{
+    background:none;
+    border: 3px red solid;
+    position:absolute; 
+    left:0px;
+    top:40px; 
+    width:1800px;
+    height:1350px;
+}
 
-.gutter {
+#images img{
+    border: 3px red solid; 
+}
+.gutter, .hGutter {
     position: absolute; 
     background-color:white;
     z-index:15; 
 }
 
-.oedipusCaption, .oracleCaption {
+.hGutter {
+    height:20px; 
+}
+
+.oedipusCaption, .oracleCaption, .sphincsCaption {
     position: absolute; 
     padding-left: 10px; 
     padding-right: 10px; 
+}
+
+.sphincsCaption {
+    background-color:rgba(255, 0, 0, 0.8);
+    padding-left:10px;
+    border: 3px solid white;
+    font-family: 'Architects Daughter', cursive;
+    font-stretch: extra-expanded;
+    font-weight: 900;
+    font-size: 2.5em;
+    text-align: center;
+    color: white; 
 }
 
 .oracleCaption {
@@ -19,7 +47,6 @@
     font-family: 'Frijole', cursive;
     font-size: 2.5em;
     text-align: center;
-    border: 1px inset red;  
     color: white; 
 }
 
@@ -27,13 +54,13 @@
     position: absolute; 
     padding-left: 10px; 
     padding-right: 10px; 
-    background-color: red; 
+    background-color: rgba(255,0,0,0.8); 
     font-family: 'Indie Flower', cursive;
     font-size: 3em;
     text-align: center;
-    border: 1px inset black;  
-    box-shadow: 2px 2px; 
+    border: 3px solid white;  
     color: white; 
+    font-weight:bold;
 }
 
 #eventContainer {

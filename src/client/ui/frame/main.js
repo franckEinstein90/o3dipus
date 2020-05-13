@@ -1,6 +1,7 @@
 "use strict";
 
 const cssDef = require('../utils/cssDef').cssDef;
+const divPerimeter = require('../utils/divPerimeter').divPerimeter; 
 
 let bottomNavCss = cssDef({ 
    width: s => s.width, 
@@ -13,37 +14,66 @@ let topNavCss    = cssDef({
 })
 
 
-const _configureOuterLayout = function( ){
+const _configureOuterLayout = function( app ){
+    debugger
 
-   //figure out which type of viewPort fits this best 
-   let layoutType = figureOutLayout()
-   //render surrounding ui 
+    let screen = divPerimeter( window ); 
+    //figure out which type of viewPort fits this best 
+    //let layoutType = figureOutLayout()
+    //render surrounding ui 
+    
+    let contentViewport = {
+        top: 0, 
+        height: screen.height, 
+        width: screen.width, 
+        bottom: screen.height
+    };
 
-   return {
-      configureLayout : function( storyBoard ){
-         //get current frame of story
-         //get current column of frame
-         //render story for layoutType, story.frame, story.frame.column 
-      }
-   }
+    if(app.ui.visualElements.topNav){
+        let topNav = app.ui.visualElements.topNav( screen ); 
+        contentViewport.top     += topNav.height; 
+        contentViewport.height  -= topNav.height; 
+        $('#topNav').css(topNav)
+    }
+
+    return contentViewport; 
 }
 
 const _configureLayout = function( app ){
 
-   let contentViewport = _configureOuterLayout( )
-   contentViewport.configureLayout( app.storyBoard )
+    let contentViewport = _configureOuterLayout( app  );
+    contentViewport.border = 'none';
+    $('#images').css( contentViewport ); 
+
+    $('#images').children("img").each( function(){
+        $( this ).css({
+            'border' : 'none'
+        });
+        let position = $( this ).position(); 
+        let height   = $( this ).height();
+        let width    = $( this ).width();
+        let imgCss   = {
+            width : (width / 1800) * contentViewport.width, 
+            left : (position.left / 1800) * contentViewport.width, 
+            top : (position.top / 1350) * contentViewport.height, 
+            height: (height / 1350) * contentViewport.height
+        }
+        $( this ).css(imgCss)
+    })
 }
 
 
 const uiFrameFeature = function( app ){
 
-   return {
-      topNav : topNavCss, 
-      bottomNav : bottomNavCss,
-      resize : function(){
-         _configureLayout( app )
-      }
-   };
+
+    app.ui.visualElements = { 
+        topNav    : topNavCss, 
+        bottomNav : bottomNavCss,
+        resize    : _ =>  _configureLayout( app )
+    };
+    
+    _configureLayout( app ); 
+    return app; 
 }
 
 module.exports = {

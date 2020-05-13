@@ -11,9 +11,9 @@
  * ****************************************************************************/
 
 $(document).ready(function() {
-    
+
     const app = {};
-    require('../common/features').addFeatureSystem( app );
+    require('../common/features').mountFeatureSystem( app );
     require('./ui/main.js').addUiFeature( app );
     require('./storyBoard/main.js').storyBoard( app );
 
@@ -22,7 +22,6 @@ $(document).ready(function() {
     const runComic = function( storyBoard ){
         let currentPage = storyBoard[0];
         let drawCurrentPage = function(){
-            debugger
         };
         drawCurrentPage();
     }
