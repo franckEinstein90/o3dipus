@@ -8,29 +8,36 @@
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Yeon+Sung&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Frijole&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/styles.css"> 
+    <link rel="stylesheet" type="text/css" href="../css/styles.css"> 
     <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+
 </head>
 
 <body>
 
     <div id='topNav' style="z-index:30"> 
-        <a href="1_5/index.html">next</a>
+        <a href="../index.html">prev</a>
+        <a href="../1_8/index.html">next</a>
     </div>
 
     <div id="marginLeft"  style="background-color:white;position:absolute;left:0;top:0"></div>
     <div id="marginRight" style="background-color:white;position:absolute;left:0;top:0"></div>
 
+    <div id="contentFormats" data-formats='{
+                    "A": {"width":1800, "height":1350, "cols":3, "rows":3},
+                    "C": {"width":2300, "height":1350, "cols": 4, "rows":3}
+                }'></div>
 
- <div id="universe" class="scale-stretched" data-width="1200" data-height="450" data-row="1" data-hor-span="3" data-vert-span="2" data-col="1" /> 
-
-      <div id="galaxy" style="background:none">
-        <div id="solar-system" class="">
+     <div id="universe" class="scale-stretched" 
+     data-width="1200" data-height="450" data-row="1" data-hor-span="3" data-col="1" /> 
+      <div id="galaxy">
+        <div id="solar-system" class="earth jupiter moon sun">
           <div id="earth" class="orbit">
             <div class="pos">
               <div class="orbit">
                 <div class="pos">
-                  <div class="moon"> </div>
+                  <div class="moon">
+                        <p style="color:white;text-align:center"><br/>Pythia's temple</p></div>
                 </div>
               </div>
               <div class="planet">
@@ -71,20 +78,44 @@
         </div>
       </div>
     </div>
-  
- 
- 
-    <div  data-row="1" data-col="1" data-hor-span="2" style="position:absolute;left:40;top:0; width:100%; height:75%; 
-    background-image:url(intro/Akra1.png); background-position: center; background-repeat: no-repeat; background-size:cover" />
+   
+    <img src='../intro/O3dipus1.png' 
+        data-include-in-viewport ='A'
+        data-row ='{
+            "A":2
+        }'
+        data-col = '{"A":1}' 
+        style="position:absolute;"/> 
 
+<!--    <img src='../intro/Oracle2.png'  data-width = "600" data-height="450" data-row="2" data-col="2" style="position:absolute;"/> 
 
-    <div class="oracleCaption" style="border: 5px white solid;left:350px; top:480px; width:500px; z-index:25;font-size:1.5em;">
-        <span style='font-size:1.8em'>O3dipus, King of thebes</span>, 
+    <div class="caption oracleCaption" style="left:540px; top:300px; z-index:25; background-color:rgba(0,0,0,0.5)">
+            O3dipus.
     </div>
+
+    <img src="../intro/Oracle3.png" data-row="3" data-col ="3" style="position:absolute;" />
+    <img src="../intro/O3dipus2.png" data-row="2" data-col = "3" style="position:absolute;">
+
+    <img src="../intro/Akra1.png" data-row="3" data-col="1" data-hor-span="2" style="position:absolute;" />-->
 
 
 
 <!--
+    <div class="caption oracleCaption" style="left:770px; top:10px; width:300px; z-index:25;font-size:1.8em;border:white solid 3px">
+        You've done well for yourself
+        </div>
+
+        <div class="caption oracleCaption" 
+        style="text-align:left; background-color:black; width:300px; left:770px; top:85px; border:white solid 3px; z-index:26;font-size:1.4em;">
+      from the GUTTERS of Corynth... 
+      </div>
+
+  
+    <div class="oracleCaption" style="border: 5px white solid; 
+    left:1000px; top:480px; width:500px; z-index:25;font-size:1.5em;">
+        ...so says <span style='font-size:1.8em'>Apollo</span>, 
+    </div>
+
    
 
 
@@ -237,6 +268,6 @@ Next Frame
   integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
   crossorigin="anonymous"></script>
 
-    <script src="./bundle.js"> </script>
+    <script src="../bundle.js"> </script>
 </body>
 </html>

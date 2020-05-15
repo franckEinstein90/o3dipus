@@ -1,9 +1,9 @@
 @import 'colors.css'; 
-@import 'ui.css';    
+@import 'ui.css';   
+@import 'extraSolar.css' ;
 
-#images, #text{
+#images, #captions, #gutters{
     background:none;
-    border: 3px red solid;
     position:absolute; 
     left:0px;
     top:40px; 

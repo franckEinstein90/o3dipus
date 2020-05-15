@@ -18,7 +18,21 @@ $(document).ready(function() {
     require('./ui/main.js').addUiFeature( app );
     require('./storyBoard/main.js').storyBoard( app );
 
-   
+
+  var body = $("body"),
+      universe = $("#universe"),
+      solarsys = $("#solar-system");
+
+  var init = function() {
+        body.removeClass('view-2D opening').addClass("view-3D").delay(2000).queue(function() {
+        $(this).dequeue();
+    });
+  };
+
+  var setView = function(view) { universe.removeClass().addClass(view); };
+
+ init();
+
 
     const runComic = function( storyBoard ){
         let currentPage = storyBoard[0];
@@ -35,7 +49,7 @@ $(document).ready(function() {
 
 
 
-},{"../common/features":7,"./storyBoard/main.js":2,"./ui/main.js":4}],2:[function(require,module,exports){
+},{"../common/features":10,"./storyBoard/main.js":2,"./ui/main.js":7}],2:[function(require,module,exports){
 "use strict";
 
 
@@ -52,31 +66,80 @@ module.exports = {
 }
 },{}],3:[function(require,module,exports){
 "use strict";
+const sizeToViewport = require('./sizeToViewport').sizeToViewport;
 
-const cssDef = require('../utils/cssDef').cssDef;
-const divPerimeter = require('../utils/divPerimeter').divPerimeter; 
+const layoutImages = function( contentViewport , viewportTemplate){
+
+    $('img').each( function(){
+        let viewportClients = $(this).data('include-in-viewport');
+        if( viewportClients ){ 
+            if(viewportClients.split(',').includes(viewportTemplate.name)){
+                sizeToViewport( $(this), contentViewport, viewportTemplate ); 
+            }
+        }
+    })
+    
+}
+
+module.exports = {
+    layoutImages
+}
+
+
+},{"./sizeToViewport":6}],4:[function(require,module,exports){
+"use strict"; 
+
+const sizeToViewport = require('./sizeToViewport').sizeToViewport ; 
+
+const layoutCaptions = function(contentViewport){
+
+   $(".caption").each( function(){
+        sizeToViewport( $(this), contentViewport);
+        $(this).css({
+            border : '3px solid white', 
+            width: '300px', 
+            height: '70px'
+        })
+   });
+}
+
+
+module.exports = {
+    layoutCaptions
+}
+
+},{"./sizeToViewport":6}],5:[function(require,module,exports){
+
+/*****************************************************************************/
+"use strict";
+/*****************************************************************************/
+const cssDef         = require('../utils/cssDef').cssDef ;
+const divPerimeter   = require('../utils/divPerimeter').divPerimeter ; 
+const layoutImages   = require('./imgLayout').layoutImages ;
+const layoutCaptions = require('./layoutCaptions').layoutCaptions ; 
+const sizeToViewport = require('./sizeToViewport').sizeToViewport ; 
+/*****************************************************************************/
 
 let bottomNavCss = cssDef({ 
    width: s => s.width, 
    height: s => s.orientation === 'portrait' ? 55 : 30 
-})
+});
 
 let topNavCss    = cssDef({
    width: s => s.width,
    height:55
-})
+});
 
 
 const _configureOuterLayout = function( app ){
-    debugger
-
     let screen = divPerimeter( window ); 
     //figure out which type of viewPort fits this best 
     //let layoutType = figureOutLayout()
     //render surrounding ui 
     
     let contentViewport = {
-        top: 0, 
+        top: 0,
+        left: 0,  
         height: screen.height, 
         width: screen.width, 
         bottom: screen.height
@@ -84,35 +147,115 @@ const _configureOuterLayout = function( app ){
 
     if(app.ui.visualElements.topNav){
         let topNav = app.ui.visualElements.topNav( screen ); 
-        contentViewport.top     += topNav.height; 
-        contentViewport.height  -= topNav.height; 
-        $('#topNav').css(topNav)
+        contentViewport.top += topNav.height; 
+        contentViewport.height -= topNav.height; 
+        $('#topNav').css(topNav);
     }
 
     return contentViewport; 
 }
 
+
+const _layoutGraphs = function(contentViewport){
+
+    $(".diagram").each( function(){
+
+        sizeToViewport( $(this), contentViewport );
+        let diagramData = $(this).data("diagram");
+        let edgeData = $(this).data("edges"); 
+
+        let nodes = new vis.DataSet(diagramData.nodes); 
+        let edges = new vis.DataSet(edgeData.edges); 
+
+    let container = document.getElementById('apolloSystemMap')
+
+    let data = {
+        nodes, 
+        edges
+    }
+
+    let options = {
+        nodes   : {
+            shadow:true, 
+            font: '15px yellow'
+        }, 
+        edges   : {
+            arrows  : {
+                to:true 
+            }
+        }
+    }
+
+    let trip = new vis.Network(container, data, options)
+    })
+}
+
+const _configureMargins = function(contentViewport){
+
+    $('#marginLeft').css({
+        top: contentViewport.top, 
+        width: contentViewport.left, 
+        height:contentViewport.height
+    })
+     $('#marginRight').css({
+        top: contentViewport.top, 
+        width: contentViewport.left, 
+        height:contentViewport.height, 
+        left: contentViewport.left + contentViewport.width
+    })
+
+}
+
+   
+  
+const fitToTemplate = function(contentMaxHeight, contentMaxWidth) {
+
+    let contentFormats = $('#contentFormats').data('formats');
+    let contentArea = contentMaxHeight * contentMaxWidth;
+    let wastedSpace = (width, height) => contentArea - (width * height)
+    let best = { wasted: contentArea };  
+    Object.entries(contentFormats).forEach( format => {
+           let desc = format[1]; 
+           let contentWidth = contentMaxWidth; 
+           let contentHeight = contentMaxWidth / desc.width * desc.height; //only handling landscape for now
+           if(contentHeight > contentMaxHeight){
+                contentWidth = contentMaxHeight * desc.width / desc.height; 
+                contentHeight = contentMaxHeight;   
+           }
+           let w = wastedSpace(contentWidth, contentHeight); 
+            if (w < best.wasted){
+                best.name = format[0]
+                best.format = format[1]
+                best.wasted = w; 
+                best.dimensions = {contentWidth, contentHeight}
+            }
+
+       })
+
+    return best;  
+}
+
 const _configureLayout = function( app ){
 
+    $(".gutter").remove();
     let contentViewport = _configureOuterLayout( app  );
-    contentViewport.border = 'none';
-    $('#images').css( contentViewport ); 
+    let maxHeight = contentViewport.height;
+    let maxWidth = contentViewport.width;
+    /* now we know how much real estate we have */
 
-    $('#images').children("img").each( function(){
-        $( this ).css({
-            'border' : 'none'
-        });
-        let position = $( this ).position(); 
-        let height   = $( this ).height();
-        let width    = $( this ).width();
-        let imgCss   = {
-            width : (width / 1800) * contentViewport.width, 
-            left : (position.left / 1800) * contentViewport.width, 
-            top : (position.top / 1350) * contentViewport.height, 
-            height: (height / 1350) * contentViewport.height
-        }
-        $( this ).css(imgCss)
-    })
+    let contentFrame     = fitToTemplate( maxHeight, maxWidth );  
+    let marginTotalWidth = contentViewport.width - contentFrame.dimensions.contentWidth; 
+    contentViewport.left = marginTotalWidth / 2; 
+    contentViewport.width = contentFrame.dimensions.contentWidth; 
+    contentViewport.height = contentFrame.dimensions.contentHeight; 
+
+    debugger
+    _configureMargins(contentViewport);
+    layoutImages(contentViewport, contentFrame); 
+    
+    sizeToViewport( $('#universe'), contentViewport);
+    _layoutGraphs(contentViewport);
+    layoutCaptions( contentViewport); 
 }
 
 
@@ -133,7 +276,62 @@ module.exports = {
    uiFrameFeature
 }
 
-},{"../utils/cssDef":5,"../utils/divPerimeter":6}],4:[function(require,module,exports){
+},{"../utils/cssDef":8,"../utils/divPerimeter":9,"./imgLayout":3,"./layoutCaptions":4,"./sizeToViewport":6}],6:[function(require,module,exports){
+"use strict";
+
+const defaultCols = 3; 
+const defaultRows = 3; 
+
+const _drawBorders =  function( contentViewport, eltCss ) {        
+
+    let odv = $([
+                `<div class="gutter" style="left:${eltCss.left + eltCss.width}`,  
+                `width:${contentViewport.width / 100}; top:${eltCss.top}`, 
+                `height:${eltCss.height}"></div>`].join(';'));
+        $("body").append(odv);
+
+        if(eltCss.top + eltCss.height < contentViewport.height){
+            let odh =  $([
+                `<div class="gutter" style="top:${eltCss.top + eltCss.height}`,  
+                `height:${contentViewport.height/ 100}; left:${eltCss.left}`, 
+                `width:${eltCss.width}"></div>`].join(';'));
+        
+            $("body").append(odh);
+        }
+}
+
+const sizeToViewport = function( elt, contentViewport, contentFrame ){
+
+        let rowInfo = elt.data('row')
+        let colInfo = elt.data('col')
+       /* 
+        let vertSpan = elt.data('vert-span') || 1 ;     //multiple rows 
+        let horSpan = elt.data('hor-span')   || 1 ;      //multiple column
+        let defaultWidth = elt.data('width') || 600 ;   //default width a single frame 
+
+        let borders = true;  
+        et position = elt.position(); 
+        
+
+        let eltCss ={
+            width: contentViewport.width / defaultCols * horSpan,  
+            left: contentViewport.left + (contentViewport.width / defaultCols ) * col, 
+            height: contentViewport.height / defaultRows * vertSpan, 
+            top : contentViewport.top + (contentViewport.height / defaultRows) * row
+        };  
+
+        elt.css(eltCss);
+        if( borders ) {
+            _drawBorders(contentViewport, eltCss)
+        }*/
+}
+
+
+module.exports = {
+    sizeToViewport
+}
+
+},{}],7:[function(require,module,exports){
 /******************************************************************************
  * 
  ******************************************************************************/
@@ -147,8 +345,16 @@ const ui = function( app ){
     app.ui.frame = require('./frame/main.js').uiFrameFeature( app )
 }
 
+
+const resizeUI = function( app ){
+    app.ui.visualElements.resize();
+}
+
 const addUiFeature = app => {
     ui(app);
+    $(window).resize(()=>{
+        resizeUI( app ); 
+    })
     return app; 
 }
 
@@ -156,7 +362,7 @@ module.exports = {
     addUiFeature
 }
 
-},{"./frame/main.js":3}],5:[function(require,module,exports){
+},{"./frame/main.js":5}],8:[function(require,module,exports){
 "use strict";
 
 const cssDef = options => screen => {
@@ -186,7 +392,7 @@ module.exports = {
     cssDef
 }
 
-},{}],6:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 /*****************************************************************************/
 "use strict"
 /*****************************************************************************/
@@ -208,7 +414,7 @@ module.exports = {
     divPerimeter
 }
 
-},{}],7:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 "use strict"
 
 const featureSystem = (function(){

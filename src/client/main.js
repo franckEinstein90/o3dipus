@@ -17,7 +17,21 @@ $(document).ready(function() {
     require('./ui/main.js').addUiFeature( app );
     require('./storyBoard/main.js').storyBoard( app );
 
-   
+
+  var body = $("body"),
+      universe = $("#universe"),
+      solarsys = $("#solar-system");
+
+  var init = function() {
+        body.removeClass('view-2D opening').addClass("view-3D").delay(2000).queue(function() {
+        $(this).dequeue();
+    });
+  };
+
+  var setView = function(view) { universe.removeClass().addClass(view); };
+
+ init();
+
 
     const runComic = function( storyBoard ){
         let currentPage = storyBoard[0];

@@ -7,6 +7,7 @@
     <title>front</title>
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Yeon+Sung&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Frijole&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/styles.css"> 
     <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
@@ -15,76 +16,81 @@
 <body>
 
     <div id='topNav' style="z-index:30"> 
-        <a href="1_5/index.html">next</a>
+        <a href="index.html">prev</a>
+        <a href="1_10.html">next</a>
     </div>
 
     <div id="marginLeft"  style="background-color:white;position:absolute;left:0;top:0"></div>
     <div id="marginRight" style="background-color:white;position:absolute;left:0;top:0"></div>
 
+<!--        <div class="caption oracleCaption" style="left:540px; top:300px; z-index:25; background-color:rgba(0,0,0,0.5)">
+            O3dipus.
+         </div>-->
 
- <div id="universe" class="scale-stretched" data-width="1200" data-height="450" data-row="1" data-hor-span="3" data-vert-span="2" data-col="1" /> 
-
-      <div id="galaxy" style="background:none">
-        <div id="solar-system" class="">
-          <div id="earth" class="orbit">
-            <div class="pos">
-              <div class="orbit">
-                <div class="pos">
-                  <div class="moon"> </div>
-                </div>
-              </div>
-              <div class="planet">
-                <dl class="infos">
-                  <dt></dt>
-                  <dd><span></span></dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-          <div id="jupiter" class="orbit">
-            <div class="pos">
-
-             <div class="planet">
-                <dl class="infos">
-                  <dt></dt>
-                  <dd><span></span></dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-         <div id="neptune" class="orbit">
-            <div class="pos">
-              <div class="planet">
-                <dl class="infos">
-                  <dt>Neptune</dt>
-                  <dd><span></span></dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-          <div id="sun">
-            <dl class="infos">
-              <dt></dt>
-              <dd><span></span></dd>
-            </dl>
-          </div>
+<!--<div class="caption oracleCaption" style="left:770px; top:10px; width:300px; z-index:25;font-size:1.8em;border:white solid 3px">
+        You've done well for yourself
         </div>
-      </div>
-    </div>
-  
- 
- 
-    <div  data-row="1" data-col="1" data-hor-span="2" style="position:absolute;left:40;top:0; width:100%; height:75%; 
-    background-image:url(intro/Akra1.png); background-position: center; background-repeat: no-repeat; background-size:cover" />
+
+        <div class="caption oracleCaption" 
+        style="text-align:left; background-color:black; width:300px; left:770px; top:85px; border:white solid 3px; z-index:26;font-size:1.4em;">
+      from the GUTTERS of Corynth... 
+        </div>-->
+
+<div id="map">
+        
+        <div id="apolloSystemMap" class="diagram" 
+            data-width = "600" data-height="900" data-row="1" data-col="3" data-vert-span="2"
+            data-diagram='{"nodes": [
+                    {"id":1, "label":"Akra", "font":"20px", "shape":"circle", "color":"orange"}, 
+                    {"id":2, "label":"constellate AP", "font":"15px", "shape":"dot", "color":"red"}, 
+                    {"id":6, "label":"constellate AP", "font":"15px", "shape":"dot", "color":"blue"}, 
+                    {"id":7, "label":"constellate AP", "font":"15px", "shape":"dot", "color":"blue"}, 
+                    {"id":3, "label":"AP refueling", "font":"15px", "shape":"dot", "color":"green"}, 
+                    {"id":4, "label":"Thebia", "font":"25px", "shape":"circle", "color":"orange"}, 
+                    {"id":5, "label":"Thebia", "font":"20px", "shape":"star", "color":"yellow"} ,
+                    {"id":8, "label":"Thebia", "font":"10px", "shape":"square", "color":"red"} 
+            ]}'
+
+            data-edges = '{"edges": [
+                {"from": 1, "to": 2 }, 
+                {"from": 2, "to": 3 }, 
+                {"from": 3, "to": 4 }, 
+                {"from": 5, "to": 4 }, 
+                {"from": 2, "to": 6 },
+                {"from": 6, "to": 7 }, 
+                {"from": 7, "to": 5 },
+                {"from": 1, "to": 8 },
+                {"from": 8, "to": 4 }
+            ]}'
 
 
-    <div class="oracleCaption" style="border: 5px white solid;left:350px; top:480px; width:500px; z-index:25;font-size:1.5em;">
-        <span style='font-size:1.8em'>O3dipus, King of thebes</span>, 
+            style="background-image: url('intro/space.jpg'); background-repeat:no-repeat;background-size:cover;
+                    position:absolute; left:0; top:0;width:600px; height:900px;">
+        </div>
+
     </div>
+
+         <img src='1_8/O3inShip.gif' 
+             data-width = "1200" data-height="450" data-hor-span="2" data-row = "1" data-col = "1"
+             style="position:absolute; left:0px; top:0px; width:1200px; z-index:2; height:450px;"/>
+
+ 
+
+   
+       <img src='1_8/constellationMap.png' data-row="3" data-col="1" style="position:absolute;"/>
+       <img src='1_8/akra1200x450.png' data-row="2" data-col="1" data-hor-span="2" style="position:absolute;"/>
+
+
 
 
 
 <!--
+   
+    <div class="oracleCaption" style="border: 5px white solid; 
+    left:1000px; top:480px; width:500px; z-index:25;font-size:1.5em;">
+        ...so says <span style='font-size:1.8em'>Apollo</span>, 
+    </div>
+
    
 
 
