@@ -582,13 +582,13 @@ table {
   content: 'Apollo Star'; }
 
 #earth dl.infos dd:after {
-  content: 'Planet Apollo - Administrative seat of Apollo Empire'; }
+  content: 'Apollo [planet]'; }
 
 .set-speed #mars dl.infos dd:after {
   content: '86,677 km/h'; }
 
 #jupiter dl.infos dd:after {
-  content: 'Corinth - Industrial colony, home of O3dipus' ; }
+  content: 'Corinth' ; }
 
 .set-speed #saturn dl.infos dd:after {
   content: '34,701 km/h'; }
@@ -1016,7 +1016,6 @@ dl.infos {
 dl.infos:before {
   position: absolute;
   content: '';
-  width: 15px;
   height: 30px;
   left: 15px;
   bottom: 0;

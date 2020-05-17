@@ -2,15 +2,10 @@
 
 const sizeToViewport = require('./sizeToViewport').sizeToViewport ; 
 
-const layoutCaptions = function(contentViewport){
+const layoutCaptions = function( contentViewport, contentFrame ){
 
    $(".caption").each( function(){
-        sizeToViewport( $(this), contentViewport);
-        $(this).css({
-            border : '3px solid white', 
-            width: '300px', 
-            height: '70px'
-        })
+        sizeToViewport( $(this), contentViewport, contentFrame);
    });
 }
 

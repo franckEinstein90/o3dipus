@@ -24,12 +24,20 @@
     height:20px; 
 }
 
-.oedipusCaption, .oracleCaption, .sphincsCaption {
+.caption, .locationDescription, .oedipusCaption, .oracleCaption, .sphincsCaption {
     position: absolute; 
+    background-color:black;
     padding-left: 10px; 
     padding-right: 10px; 
+    color:red; 
+    font-size:1.4em; 
+    z-index:30;
 }
 
+.locationDescription{
+    color: orange; 
+    font-style: 'verdana';
+}
 .sphincsCaption {
     background-color:rgba(255, 0, 0, 0.8);
     padding-left:10px;
@@ -43,11 +51,10 @@
 }
 
 .oracleCaption {
-    background-color: black; 
+    padding-top: 30px;
+    width:'300px';  
+    background: none; 
     font-family: 'Frijole', cursive;
-    font-size: 2.5em;
-    text-align: center;
-    color: white; 
 }
 
 .oedipusCaption {

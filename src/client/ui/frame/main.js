@@ -43,8 +43,6 @@ const _configureOuterLayout = function( app ){
 
     return contentViewport; 
 }
-
-
 const _layoutGraphs = function(contentViewport){
 
     $(".diagram").each( function(){
@@ -99,7 +97,7 @@ const _configureMargins = function(contentViewport){
   
 const fitToTemplate = function(contentMaxHeight, contentMaxWidth) {
 
-    let contentFormats = $('#contentFormats').data('formats');
+    let contentFormats = $('#page').data('formats');
     let contentArea = contentMaxHeight * contentMaxWidth;
     let wastedSpace = (width, height) => contentArea - (width * height)
     let best = { wasted: contentArea };  
@@ -138,18 +136,15 @@ const _configureLayout = function( app ){
     contentViewport.width = contentFrame.dimensions.contentWidth; 
     contentViewport.height = contentFrame.dimensions.contentHeight; 
 
-    debugger
     _configureMargins(contentViewport);
     layoutImages(contentViewport, contentFrame); 
-    
-    sizeToViewport( $('#universe'), contentViewport);
-    _layoutGraphs(contentViewport);
-    layoutCaptions( contentViewport); 
+//    sizeToViewport( $('#universe'), contentViewport, contentFrame);
+//    _layoutGraphs(contentViewport);
+    layoutCaptions( contentViewport, contentFrame ); 
 }
 
 
 const uiFrameFeature = function( app ){
-
 
     app.ui.visualElements = { 
         topNav    : topNavCss, 

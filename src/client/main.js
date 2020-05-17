@@ -15,32 +15,27 @@ $(document).ready(function() {
     const app = {};
     require('../common/features').mountFeatureSystem( app );
     require('./ui/main.js').addUiFeature( app );
-    require('./storyBoard/main.js').storyBoard( app );
+//    require('./storyBoard/main.js').storyBoard( app );
 
+    app.storyBoard = ['A']
+    app.run = function( storyBoard ){
 
-  var body = $("body"),
-      universe = $("#universe"),
-      solarsys = $("#solar-system");
+        let metadata = $("#page").data("meta");
+        $("#storyNavigation").append(`<a href='${metadata.next.url}'>next</a>`);
+        $("#pageTitle").text( `${metadata.book.title} - ${metadata.book.page}`);
 
-  var init = function() {
+        let body = $("body");
+        let universe = $("#universe");
+        let solarsys = $("#solar-system");
+
         body.removeClass('view-2D opening').addClass("view-3D").delay(2000).queue(function() {
-        $(this).dequeue();
-    });
-  };
+            let setView = function(view) { universe.removeClass().addClass(view); };
+            $(this).dequeue();
+        })
 
-  var setView = function(view) { universe.removeClass().addClass(view); };
+   }
 
- init();
-
-
-    const runComic = function( storyBoard ){
-        let currentPage = storyBoard[0];
-        let drawCurrentPage = function(){
-        };
-        drawCurrentPage();
-    }
-
-    runComic(app.storyBoard);
+    app.run(app.storyBoard);
 })
 
 
