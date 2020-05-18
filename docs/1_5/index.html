@@ -20,15 +20,27 @@
                 "page" : 1, 
                 "book" : {
                     "title": "O3dipus, King of Thebes"
-                } ,
+                },
+                "scenes":[1,5], 
                 "plot" : "A", 
                 "next" : {
                     "url": "../1_8/index.html"
                  }
-            }'    
+            }'   
+
+ 
             data-formats='{
-                    "A": {"width":1800, "height":1350, "cols":3, "rows":3}
-            }'></div>
+                "A": {"width":1800, "height":1350, "cols":3, "rows":3}
+            }'>
+    </div>
+
+    <script>
+        const acceptPythiaCall = function(){
+            $('#cap1').css({'display':'none'});
+        }
+    </script>
+
+
 <!-- "C": {"width":2400, "height":1400, "cols": 4, "rows":4}-->
 
 
@@ -48,13 +60,16 @@
         <div id="pageTitle"> </div>
     </div>
 
+
+
+
     <div id="marginLeft"  style="background-color:white;position:absolute;left:0;top:0"></div>
     <div id="marginRight" style="background-color:white;position:absolute;left:0;top:0"></div>
 
     <div id="universe" class="scale-stretched visual-elt" style="z-index:30"
             data-include-in-viewport = 'A'
-            data-row='{"A":1, "C":1}' 
-            data-col='{"A":1, "C":1}' 
+            data-row='{"A":1, "C":1}'
+            data-col='{"A":1, "C":1}'
             data-hor-span='{"A":3, "C":2}'>
 
       <div id="galaxy">
@@ -105,7 +120,38 @@
         </div>
       </div>
     </div>
-   
+
+
+     <div   class="caption" id="cap1" style="color:lime;font-family:'courier';padding-top:20px"
+         data-include-in-viewport = 'A'
+         data-row='{"A":2}'
+         data-col='{"A":1}'
+         data-hor-span='{"A":3}'
+         data-vert-span='{"A":2}'>
+
+        <div style="font-weight: bold; left:0; width:'100%'; top:0; height:20px; background-color:white;z-index:26;color:black;">
+            incoming call [region: Apollo Star System]
+        </div>
+        <div class="teletype" style="margin-top: 40px" >
+            <strong style="color:red">Sender</strong>: **** Pythia, Oracle of Delfi, High Priestess Apollo Temple ****
+            <br/><strong style="color:red">To</strong>: <strong>O3dipus</strong>, Envoy of Apollo
+        </div>
+        <div class="teletype">
+            <br/>server: [Delfi moon temple server, Apollo Planet Orbit]
+            <br/>client: [Akra Server, tribe Orlov, Nation Abacus]
+            <br/>standing by...<br/><br/><br/>
+        </div>
+        <div style="text-align:center">
+
+        <button class="blinkBorder" 
+                style="border:lime 4px solid;display:block;width:100%" 
+                onclick="acceptPythiaCall();">answer</button>
+        </div>
+
+    </div>
+
+
+  
     <img src='../intro/O3dipus1.png' class="visual-elt"
         data-include-in-viewport ='A'
         data-row ='{"A":2,"C":2}' 
@@ -132,25 +178,18 @@
             data-row='{"A":2}' data-col ='{"A":3}' 
             style="position:absolute;" />
 
-    <img    src="../intro/O3dipus2.png" class="visual-elt"
+    <img    src="./O3dipus2.png" class="visual-elt"
             data-include-in-viewport = 'A'
             data-row='{"A":3, "C":2}' 
             data-col = '{"A":3, "C":2}'     
             style="position:absolute;">
 
-    <img src="../intro/Akra1.png" class="visual-elt"
+    <img src="./akra1200x450.png" class="visual-elt"
          data-include-in-viewport = 'A'
-         data-row='{"A":3, "C":3}' 
-         data-col='{"A":1, "C":1}' 
-         data-hor-span='{"A":2, "C":2}' 
-         style="position:absolute;" />
-
-    <img src="./Akra1200x675.png" class="visual-elt"
-         data-include-in-viewport = 'C'
-         data-row='{"C":3}' 
-         data-col='{"C":1}' 
-         data-hor-span='{"C":2}' 
-         data-vert-span='{"C":2}' 
+         data-row='{"A":3}' 
+         data-col='{"A":1}' 
+         data-hor-span='{"A":2}' 
+         data-vert-span='{"A":1}' 
          style="position:absolute;" />
 
 <!--    <div class="caption oracleCaption" style="left:540px; top:300px; z-index:25; background-color:rgba(0,0,0,0.5)">
@@ -166,26 +205,6 @@
         <p>seat of Apollo Empire</p>
     </div>
         
-    <div class="caption" id="cap1" style="color:lime;font-family:'courier';padding-top:20px"
-         data-include-in-viewport = 'A'
-         data-row='{"A":2}'
-         data-col='{"A":1}'
-         data-hor-span='{"A":3}'
-         data-vert-span='{"A":2}'>
-        <div style="font-weight: bold; left:0; width:'100%'; top:0; height:20px; background-color:white;z-index:26;color:black;">
-            incoming call [region: Apollo Star System]
-        </div>
-        <br/><strong style="color:red">From</strong>: <strong>Pythia</strong>, Oracle of Delfi, High Priestess Apollo Temple ****
-        <br/><strong style="color:red">To</strong>: <strong>O3dipus</strong>, Envoy of Apollo
-        <br/>server: [Delfi moon temple server, Apollo Planet Orbit]
-        <br/>client: [Akra Server, tribe Orlov, Nation Abacus]
-        <br/>standing by...<br/><br/><br/>
-        <div style="text-align:center">
-        <button style="border:lime 2px inset;" class="blink" onclick="$('#cap1').css({'display':'none'});">answer call</button>
-        </div>
-    </div>
-
-
     <div class="caption oracleCaption" 
          data-include-in-viewport = 'A'
          data-row='{"A":2}'
@@ -235,13 +254,6 @@
             border:4px solid white; z-index:25;font-size:1.8em;"> 
     for <span style="font-size:1.9em">GREAT</span> things
     </div>
-
-
-
-
-
-
-
 
     <div class="gutter" style="left:1800px; top:0px; width:150px; height:1350px"> </div>
 
@@ -359,5 +371,6 @@ Next Frame
   crossorigin="anonymous"></script>
 
     <script src="../bundle.js"> </script>
+
 </body>
 </html>

@@ -2,6 +2,33 @@
 @import 'ui.css';   
 @import 'extraSolar.css' ;
 
+
+.blinkBorder{
+    animation: blink-border .75s step-end infinite
+}
+
+@keyframes blink-border{
+    from, to { border-color: transparent }
+    50% {border-color: orange }
+}
+
+.teletype{
+    white-space: nowrap; 
+    overflow: hidden; 
+    margin: 0 auto;
+    animation: typing 4.5s steps(40, end), blink-caret .75s step-end infinite; 
+}
+
+@keyframes typing {
+    from {width: 0}
+    to {width:100%}
+}
+
+@keyframes blink-caret{
+    from, to { border-color: transparent }
+    50% {border-color: orange }
+}
+
 #images, #captions, #gutters{
     background:none;
     position:absolute; 
