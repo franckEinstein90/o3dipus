@@ -1,36 +1,16 @@
 @import 'colors.css'; 
-@import 'ui.css';   
-@import 'extraSolar.css' ;
+@import 'ui.css';  
+@import 'captions.css';  
 
-
-.blinkBorder{
-    animation: blink-border .75s step-end infinite
+#visual-elt{
+    position:absolute;
+    background-image-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover;
 }
 
-@keyframes blink-border{
-    from, to { border-color: transparent }
-    50% {border-color: orange }
-}
-
-.teletype{
-    white-space: nowrap; 
-    overflow: hidden; 
-    margin: 0 auto;
-    animation: typing 4.5s steps(40, end), blink-caret .75s step-end infinite; 
-}
-
-@keyframes typing {
-    from {width: 0}
-    to {width:100%}
-}
-
-@keyframes blink-caret{
-    from, to { border-color: transparent }
-    50% {border-color: orange }
-}
-
-#images, #captions, #gutters{
-    background:none;
+#images, #gutters{
+    background-color:white;
     position:absolute; 
     left:0px;
     top:40px; 
@@ -51,52 +31,10 @@
     height:20px; 
 }
 
-.caption, .locationDescription, .oedipusCaption, .oracleCaption, .sphincsCaption {
-    position: absolute; 
-    background-color:black;
-    padding-left: 10px; 
-    padding-right: 10px; 
-    color:red; 
-    font-size:1.4em; 
-    z-index:30;
-}
-
 .locationDescription{
     color: orange; 
     font-style: 'verdana';
 }
-.sphincsCaption {
-    background-color:rgba(255, 0, 0, 0.8);
-    padding-left:10px;
-    border: 3px solid white;
-    font-family: 'Architects Daughter', cursive;
-    font-stretch: extra-expanded;
-    font-weight: 900;
-    font-size: 2.5em;
-    text-align: center;
-    color: white; 
-}
-
-.oracleCaption {
-    padding-top: 30px;
-    width:'300px';  
-    background: none; 
-    font-family: 'Frijole', cursive;
-}
-
-.oedipusCaption {
-    position: absolute; 
-    padding-left: 10px; 
-    padding-right: 10px; 
-    background-color: rgba(255,0,0,0.8); 
-    font-family: 'Indie Flower', cursive;
-    font-size: 3em;
-    text-align: center;
-    border: 3px solid white;  
-    color: white; 
-    font-weight:bold;
-}
-
 #eventContainer {
     height:15%;
 }

@@ -24,7 +24,6 @@ const _drawBorders =  function( contentViewport, eltCss ) {
 
 
 const layoutImages = function( contentViewport , viewportTemplate){
-
     $('.visual-elt').each( function(){
         let viewportClients = $(this).data('include-in-viewport');
         if( viewportClients ){ 

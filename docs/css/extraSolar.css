@@ -302,7 +302,7 @@ table {
 #uranus .pos,
 #uranus .planet,
 #uranus.orbit {
-  animation-duration: 1008.20215s; }
+  animation-duration: 40.20215s; }
 
 #neptune .pos,
 #neptune .planet,
@@ -336,7 +336,7 @@ table {
   font-size: 10.8em; }
 
 .scale-stretched #uranus .planet {
-  font-size: 4.68em; }
+  font-size: 3.68em; }
 
 .scale-stretched #neptune .planet {
   font-size: 4.9em; }
@@ -403,7 +403,7 @@ table {
   font-size: 34.9392em; }
 
 .scale-s #uranus .planet {
-  font-size: 15.2172em; }
+  font-size: 5.2172em; }
 
 .scale-s #neptune .planet {
   font-size: 14.7732em; }
@@ -452,10 +452,10 @@ table {
   margin-left: -75em; }
 
 .scale-stretched #uranus.orbit {
-  width: 186em;
-  height: 186em;
-  margin-top: -93em;
-  margin-left: -93em; }
+  width: 86em;
+  height: 86em;
+  margin-top: -33em;
+  margin-left: -33em; }
 
 .scale-stretched #neptune.orbit {
   width: 210em;
@@ -1000,58 +1000,6 @@ shadow-saturn-ring{ 0%   { box-shadow: inset -16px  0      4px   rgba(20, 40, 50
 
 /* */
 /* --------------------------------------------------------------------------- navigation styles */
-dl.infos {
-  position: absolute;
-  display: block;
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-  margin-top: -90%;
-  margin-left: 90%;
-  padding-left: 100%;
-  transform-origin: 100% 100%;
-  transform-style: preserve-3d;
-  transform: rotateX(90deg); }
-
-dl.infos:before {
-  position: absolute;
-  content: '';
-  height: 30px;
-  left: 15px;
-  bottom: 0;
-  border-top: 1px solid white;
-  border-left: 1px solid white;
-  transform-style: preserve-3d;
-  transform: skew(-45deg, 0deg);
-  box-shadow: inset 1px 1px black; }
-
-dl.infos dt {
-  position: absolute;
-  left: 50px;
-  margin-bottom: 26px;
-  bottom: 30px;
-  color: #FFF;
-  font-size: 14px;
-  text-shadow: 1px 1px 2px black; }
-
-dl.infos dd:after {
-  position: absolute;
-  left: 50px;
-  bottom: 30px;
-  width: 300px;
-  color: #FFF;
-  font-size: 22px;
-  text-shadow: 1px 1px 2px black; }
-
-dl.infos dd span:after {
-  position: absolute;
-  left: 50px;
-  bottom: 14px;
-  width: 300px;
-  color: #FFF;
-  font-size: 11px;
-  text-shadow: 1px 1px 2px black; }
-
 .sun #sun .infos,
 .mercury #mercury .infos,
 .venus #venus .infos,

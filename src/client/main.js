@@ -21,7 +21,6 @@ $(document).ready(function() {
     app.run = function( storyBoard ){
 
         let metadata = $("#page").data("meta");
-        $("#storyNavigation").append(`<a href='${metadata.next.url}'>next</a>`);
         $("#pageTitle").text( `${metadata.book.title} - ${metadata.book.page}`);
 
         let body = $("body");

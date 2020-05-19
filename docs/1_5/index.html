@@ -9,7 +9,82 @@
     <link href="https://fonts.googleapis.com/css2?family=Frijole&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../css/styles.css"> 
+    <link rel="stylesheet" type="text/css" href="../css/extrasolar.css"> 
     <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+
+    <style>
+        dl.infos {
+            position: absolute;
+            display: block;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+  margin-top: -90%;
+  margin-left: 90%;
+  padding-left: 100%;
+  transform-origin: 100% 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(90deg); }
+
+        dl.infos:before {
+          position: absolute;
+          content: '';
+          height: 30px;
+          left: 15px;
+          bottom: 0;
+          border-top: 1px solid white;
+          border-left: 4px dashed white;
+          transform-style: preserve-3d;
+          transform: skew(-45deg, 0deg);
+          box-shadow: inset 1px 1px black; }
+
+
+dl.infos dt {
+  position: absolute;
+  left: 50px;
+  margin-bottom: 26px;
+  bottom: 30px;
+  color: #FFF;
+  font-size: 14px;
+  text-shadow: 1px 1px 2px black; }
+
+dl.infos dd:after {
+  position: absolute;
+  left: 50px;
+  bottom: 30px;
+  width: 300px;
+  color: #FFF;
+  font-size: 22px;
+  text-shadow: 1px 1px 2px black; }
+
+        dl.infos dd span:after {
+          position: absolute; left: 50px; bottom: 14px; width: 300px;
+          color: #FFF; font-size: 11px; text-shadow: 1px 1px 2px black; }
+
+
+        .blinkBorder{
+            animation: blink-border .75s step-end infinite
+        }
+
+        @keyframes blink-border{
+            from, to { border-color: transparent }
+            50% {border-color: orange }
+        }
+
+        .teletype{
+            white-space: nowrap; overflow: hidden; margin: 0 auto; animation: typing 4.5s steps(40, end), blink-caret .75s step-end infinite; 
+        }
+
+        @keyframes typing {
+            from {width: 0}
+            to {width:100%}
+        }
+
+        @keyframes blink-caret{
+            from, to { border-color: transparent }
+            50% {border-color: orange }
+        }
+    </style>
 
 </head>
 
@@ -37,6 +112,8 @@
     <script>
         const acceptPythiaCall = function(){
             $('#cap1').css({'display':'none'});
+ //           $('#mapCaption').css({'display':'none'}); 
+            $('.oracleCaption').show();
         }
     </script>
 
@@ -44,8 +121,8 @@
 <!-- "C": {"width":2400, "height":1400, "cols": 4, "rows":4}-->
 
 
-    <div id='topNav' style="z-index:30"> 
-        <div id="storyNavigation">
+    <div id='topNav' style="background-color:rgba(210, 220, 220, 0.5);color:white; font-weight:bold"> 
+        <div id="storyNavigation" style="display:flex">
             <div id="first">
                 <a href="../index.html">first</a>
             </div>
@@ -53,10 +130,9 @@
                 <a href="../index.html">prev</a>
             </div>
             <div id="next">
+                <a href="../1_8/index.html">next</a>
             </div>
-         </div> 
-
-    
+        </div> 
         <div id="pageTitle"> </div>
     </div>
 
@@ -65,13 +141,13 @@
 
     <div id="marginLeft"  style="background-color:white;position:absolute;left:0;top:0"></div>
     <div id="marginRight" style="background-color:white;position:absolute;left:0;top:0"></div>
-
     <div id="universe" class="scale-stretched visual-elt" style="z-index:30"
             data-include-in-viewport = 'A'
             data-row='{"A":1, "C":1}'
             data-col='{"A":1, "C":1}'
             data-hor-span='{"A":3, "C":2}'>
 
+      <div style="left:300;z-index:40;colo:white;">  fkdla;</div>
       <div id="galaxy">
         <div id="solar-system" class="earth jupiter moon sun">
           <div id="earth" class="orbit">
@@ -90,9 +166,20 @@
               </div>
             </div>
           </div>
-          <div id="jupiter" class="orbit">
-            <div class="pos">
 
+         <div id="uranus" class="orbit">
+            <div class="pos">
+              <div class="planet">
+                <dl class="infos">
+                  <dt>Uranus</dt>
+                  <dd><span></span></dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+         
+<div id="jupiter" class="orbit">
+            <div class="pos">
              <div class="planet">
                 <dl class="infos">
                   <dt></dt>
@@ -121,8 +208,23 @@
       </div>
     </div>
 
+    <div class="caption storyCaption" style="width:340px;" 
+        data-include-in-viewport = 'A'
+        data-row='{"A":1}'
+        data-col='{"A":3}'>
+        <p>
+        The Apollo empire is wrestling with massive social unrest caused by the slavery abolishment movement. 
+        <p>
+        Pythia, high priestess of Appolo, and spiritual leader of the empire hasn't left the moon temple in decades, 
+        but continues to deliver edicts directly via videoConf.  
+        <p>
+        The young O3dipus has just been named envoy of the empire, allowing him and his business partner, 
+        the living ship Akra, to legally use the trade routes controlled by the empire. 
+     </div>
 
-     <div   class="caption" id="cap1" style="color:lime;font-family:'courier';padding-top:20px"
+
+
+     <div class="caption" id="cap1" style="color:lime;width:800px;height:400px;font-family:'courier';padding-top:20px"
          data-include-in-viewport = 'A'
          data-row='{"A":2}'
          data-col='{"A":1}'
@@ -133,7 +235,11 @@
             incoming call [region: Apollo Star System]
         </div>
         <div class="teletype" style="margin-top: 40px" >
-            <strong style="color:red">Sender</strong>: **** Pythia, Oracle of Delfi, High Priestess Apollo Temple ****
+            <strong style="color:red">Sender</strong>:
+            <br/> **************************
+            <br/> Pythia, Oracle of Delfi, 
+            <br/>High Priestess Apollo Temple 
+            <br/> **************************
             <br/><strong style="color:red">To</strong>: <strong>O3dipus</strong>, Envoy of Apollo
         </div>
         <div class="teletype">
@@ -141,28 +247,28 @@
             <br/>client: [Akra Server, tribe Orlov, Nation Abacus]
             <br/>standing by...<br/><br/><br/>
         </div>
-        <div style="text-align:center">
 
-        <button class="blinkBorder" 
-                style="border:lime 4px solid;display:block;width:100%" 
-                onclick="acceptPythiaCall();">answer</button>
+        <div style="text-align:center">
+            <button class="blinkBorder" style="border:lime 4px solid;display:block;width:50%" 
+                onclick="acceptPythiaCall();">answer call</button>
         </div>
 
     </div>
 
 
   
-    <img src='../intro/O3dipus1.png' class="visual-elt"
+    <img src='./O3dipus1_600x450.png' class="visual-elt" 
         data-include-in-viewport ='A'
         data-row ='{"A":2,"C":2}' 
         data-col = '{"A":2, "C":1}' 
-        style="position:absolute;"/> 
+        style="position:absolute;">
 
-    <img src='../intro/Oracle2.png'  class="visual-elt"
+    <div class="visual-elt"
         data-include-in-viewport = 'A'
         data-row='{"A":2, "C":1}' 
         data-col='{"A":1, "C":4}' 
-        style="position:absolute;"/> 
+        style="position:absolute; background-image:url('./Oracle2_600x450.png'); background-size: cover; " > 
+    </div>
 
     <img src='./Oracle2_600x350.png'  class="visual-elt"
         data-include-in-viewport = 'C'
@@ -173,7 +279,7 @@
 
 
 
-    <img    src="./Oracle3.png" class="visual-elt"
+    <img    src="./Oracle3_600x450.png" class="visual-elt"
             data-include-in-viewport ='A'
             data-row='{"A":2}' data-col ='{"A":3}' 
             style="position:absolute;" />
@@ -197,11 +303,11 @@
     </div>-->
 
 
-    <div class="caption locationDescription" style="background:none"
+    <div id="mapCaption" class="caption locationDescription"  style="background:none"
         data_row='{"A":1}'
-        data_col='{"A":1}'
-        data-hor-span='{"A":2}'>
-        <h1>Apollo Empire star system</h1>
+        data_col='{"A":3}'
+        data-hor-span='{"A":1}'>
+        <h3>Apollo Empire star system</h3>
         <p>seat of Apollo Empire</p>
     </div>
         
@@ -211,15 +317,27 @@
          data-col='{"A":1}'
          data-hor-span='{"A":3}'
          data-vert-span='{"A":2}'
-         style="z-index:25;font-size:1.8em;border:'white solid 3px'">
+         style="z-index:25;font-size:1.8em;border:'white solid 3px;'">
          O3dipus
     </div>
-<!--        <div class="caption oracleCaption" 
-        style="text-align:left; background-color:black; width:300px; left:770px; top:85px; border:white solid 3px; z-index:26;font-size:1.4em;">
-      from the GUTTERS of Corynth... 
-      </div>
 
-  
+
+    <svg height="900" width="900" style="z-index:20;position:absolute;left:0; top:0">
+        <line x1="200" y1="600" x2="100" y2="400" style="stroke:rgb(255,255,255);stroke-width:3" />
+              Sorry, your browser does not support inline SVG.
+    </svg>
+
+    <div class="caption oracleCaption"  style="display:none"
+        data-include-in-viewport= 'A'
+        data-row='{"A":2}'
+        data-col='{"A":2}'
+        data-caption-ends='{"A":{"col":2, "row":2}'>
+        
+      You've done well for yourself. 
+        <br/>from the GUTTERS of Corynth... 
+     </div>
+
+ <!-- 
     <div class="oracleCaption" style="border: 5px white solid; 
     left:1000px; top:480px; width:500px; z-index:25;font-size:1.5em;">
         ...so says <span style='font-size:1.8em'>Apollo</span>, 

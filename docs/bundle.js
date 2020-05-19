@@ -22,7 +22,6 @@ $(document).ready(function() {
     app.run = function( storyBoard ){
 
         let metadata = $("#page").data("meta");
-        $("#storyNavigation").append(`<a href='${metadata.next.url}'>next</a>`);
         $("#pageTitle").text( `${metadata.book.title} - ${metadata.book.page}`);
 
         let body = $("body");
@@ -71,7 +70,6 @@ const _drawBorders =  function( contentViewport, eltCss ) {
 
 
 const layoutImages = function( contentViewport , viewportTemplate){
-
     $('.visual-elt').each( function(){
         let viewportClients = $(this).data('include-in-viewport');
         if( viewportClients ){ 
@@ -96,7 +94,36 @@ module.exports = {
 },{"./sizeToViewport":5}],3:[function(require,module,exports){
 "use strict"; 
 
-const sizeToViewport = require('./sizeToViewport').sizeToViewport ; 
+
+const sizeToViewport = function( elt, contentViewport, contentFrame, options ){
+        
+        let posDim = {}
+
+        let pageLayoutName = contentFrame.name;
+        let getValue = (info, defaultVal) => (info !== undefined && pageLayoutName in info) ? info[pageLayoutName] : defaultVal; 
+
+ 
+        let rowInfo = elt.data('row'); 
+        posDim.row = getValue(rowInfo, 1) - 1; 
+
+        let colInfo = elt.data('col'); 
+        posDim.col = getValue(colInfo, 1) - 1; 
+
+        let vertSpanInfo = elt.data('vert-span');   //multiple cols? 
+        posDim.vertSpan = getValue(vertSpanInfo, 1)
+
+        let horSpanInfo = elt.data('hor-span') ;
+        posDim.horSpan = getValue(horSpanInfo, 1); 
+
+
+        let eltCss ={
+            left: contentViewport.left + (contentViewport.width / contentFrame.format.cols) * posDim.col, 
+            top : contentViewport.top + (contentViewport.height / contentFrame.format.rows ) * posDim.row
+        };  
+        elt.css(eltCss);
+        return eltCss; 
+}
+
 
 const layoutCaptions = function( contentViewport, contentFrame ){
 
@@ -110,7 +137,7 @@ module.exports = {
     layoutCaptions
 }
 
-},{"./sizeToViewport":5}],4:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 
 /*****************************************************************************/
 "use strict";
@@ -236,7 +263,6 @@ const fitToTemplate = function(contentMaxHeight, contentMaxWidth) {
 }
 
 const _configureLayout = function( app ){
-
     $(".gutter").remove();
     let contentViewport = _configureOuterLayout( app  );
     let maxHeight = contentViewport.height;
@@ -277,7 +303,8 @@ module.exports = {
 "use strict";
 
 
-const sizeToViewport = function( elt, contentViewport, contentFrame ){
+const sizeToViewport = function( elt, contentViewport, contentFrame, options ){
+        
         let posDim = {}
 
         let pageLayoutName = contentFrame.name;

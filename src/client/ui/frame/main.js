@@ -123,7 +123,6 @@ const fitToTemplate = function(contentMaxHeight, contentMaxWidth) {
 }
 
 const _configureLayout = function( app ){
-
     $(".gutter").remove();
     let contentViewport = _configureOuterLayout( app  );
     let maxHeight = contentViewport.height;

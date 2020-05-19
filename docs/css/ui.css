@@ -5,22 +5,25 @@ body {
 
 
 #topNav {
+    padding-top:10px; 
     position:absolute; 
-    background-color: var(--pop); 
+    background-color: rgba(240, 20, 110, 0.3); 
     color: white; 
     left: 0; 
     top: 0;
     width: 100%; 
     box-shadow: 2px, 2px; 
-    z-index: 4; 
+    display:flex;
+    z-index:30; 
+    justify-content:space-around;
+    align-content:center;
 }
 
 #topNav A{
-    color: var(--wood);
+    color: white;  
     font-family: 'Yeon Sung'; 
-    font-size: 1.4em; 
+    font-size: 2.0em; 
     padding-left: 20px;
-    margin-top:-4; 
 }
     
 #bottomNav {
