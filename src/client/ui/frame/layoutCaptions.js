@@ -2,8 +2,8 @@
 
 
 const sizeToViewport = function( elt, contentViewport, contentFrame, options ){
-        
-        let posDim = {}
+      
+    let posDim = {}
 
         let pageLayoutName = contentFrame.name;
         let getValue = (info, defaultVal) => (info !== undefined && pageLayoutName in info) ? info[pageLayoutName] : defaultVal; 
@@ -25,7 +25,17 @@ const sizeToViewport = function( elt, contentViewport, contentFrame, options ){
         let eltCss ={
             left: contentViewport.left + (contentViewport.width / contentFrame.format.cols) * posDim.col, 
             top : contentViewport.top + (contentViewport.height / contentFrame.format.rows ) * posDim.row
-        };  
+        }; 
+        if(options){
+            if(options.fullWidth) {
+                eltCss.width = contentViewport.width / contentFrame.format.cols * posDim.horSpan
+            }
+
+            if(options.fullHeight) {
+                eltCss.height = contentViewport.height / contentFrame.format.rows * posDim.vertSpan
+            }
+        } 
+        
         elt.css(eltCss);
         return eltCss; 
 }
@@ -34,7 +44,8 @@ const sizeToViewport = function( elt, contentViewport, contentFrame, options ){
 const layoutCaptions = function( contentViewport, contentFrame ){
 
    $(".caption").each( function(){
-        sizeToViewport( $(this), contentViewport, contentFrame);
+      let options = $( this ).data('options');
+       sizeToViewport( $(this), contentViewport, contentFrame, options);
    });
 }
 

@@ -4,18 +4,94 @@
 
     <meta charset = "utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>1_8</title>
+    <title>front</title>
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Yeon+Sung&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Frijole&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&family=Montserrat:wght@100;300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../css/styles.css"> 
     <link rel="stylesheet" type="text/css" href="../css/extrasolar.css"> 
     <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+
+    <style>
+        dl.infos {
+            position: absolute;
+            display: block;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+  margin-top: -90%;
+  margin-left: 90%;
+  padding-left: 100%;
+  transform-origin: 100% 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(90deg); }
+
+        dl.infos:before {
+          position: absolute;
+          content: '';
+          height: 30px;
+          left: 15px;
+          bottom: 0;
+          border-top: 1px solid white;
+          border-left: 4px dashed white;
+          transform-style: preserve-3d;
+          transform: skew(-45deg, 0deg);
+          box-shadow: inset 1px 1px black; }
+
+
+dl.infos dt {
+  position: absolute;
+  left: 50px;
+  margin-bottom: 26px;
+  bottom: 30px;
+  color: #FFF;
+  font-size: 14px;
+  text-shadow: 1px 1px 2px black; }
+
+dl.infos dd:after {
+  position: absolute;
+  left: 50px;
+  bottom: 30px;
+  width: 300px;
+  color: #FFF;
+  font-size: 22px;
+  text-shadow: 1px 1px 2px black; }
+
+        dl.infos dd span:after {
+          position: absolute; left: 50px; bottom: 14px; width: 300px;
+          color: #FFF; font-size: 11px; text-shadow: 1px 1px 2px black; }
+
+
+        .blinkBorder{
+            animation: blink-border .75s step-end infinite
+        }
+
+        @keyframes blink-border{
+            from, to { border-color: transparent }
+            50% {border-color: orange }
+        }
+
+        .teletype{
+            white-space: nowrap; overflow: hidden; margin: 0 auto; animation: typing 4.5s steps(40, end), blink-caret .75s step-end infinite; 
+        }
+
+        @keyframes typing {
+            from {width: 0}
+            to {width:100%}
+        }
+
+        @keyframes blink-caret{
+            from, to { border-color: transparent }
+            50% {border-color: orange }
+        }
+    </style>
+
 </head>
 
 <body>
- <div id="page" 
+
+    <div id="page" 
             data-meta= '{
                 "page" : 1, 
                 "book" : {
@@ -34,91 +110,86 @@
             }'>
     </div>
 
+    <script>
+        const audio = new Audio('./connect.mp3');
+        const playRing = function(){
+            audio.play();
+        }
+        const acceptPythiaCall = function(){
+            playRing();
+            $('#cap1').css({'display':'none'});
+ //           $('#mapCaption').css({'display':'none'}); 
+            $('.oracleCaption').show();
+        }
+    </script>
 
- <div id='topNav' style="background-color:rgba(210, 220, 220, 0.5);color:white; font-weight:bold"> 
+
+<!-- "C": {"width":2400, "height":1400, "cols": 4, "rows":4}-->
+
+
+    <div id='topNav' style="background-color:rgba(210, 220, 220, 0.5);color:white; font-weight:bold"> 
         <div id="storyNavigation" style="display:flex">
             <div id="first">
                 <a href="../index.html">first</a>
             </div>
             <div id="prev">
-                <a href="../1_5/index.html">prev</a>
+                <a href="../1_8/index.html">prev</a>
             </div>
             <div id="next">
-                <a href="../1_10/index.html">next</a>
+                <a href="../1_8/index.html">next</a>
             </div>
         </div> 
         <div id="pageTitle"> </div>
     </div>
 
+
+
+
     <div id="marginLeft"  style="background-color:white;position:absolute;left:0;top:0"></div>
     <div id="marginRight" style="background-color:white;position:absolute;left:0;top:0"></div>
-<!--
-<div id="map">
-        
-        <div id="apolloSystemMap" class="diagram" 
-            data-width = "600" data-height="900" 
-            data-row="A:1" data-col="A:3" data-vert-span="A:2"
-            data-diagram='{"nodes": [
-                    {"id":1, "label":"Akra", "font":"20px", "shape":"circle", "color":"orange"}, 
-                    {"id":2, "label":"constellate AP", "font":"15px", "shape":"dot", "color":"red"}, 
-                    {"id":6, "label":"constellate AP", "font":"15px", "shape":"dot", "color":"blue"}, 
-                    {"id":7, "label":"constellate AP", "font":"15px", "shape":"dot", "color":"blue"}, 
-                    {"id":3, "label":"AP refueling", "font":"15px", "shape":"dot", "color":"green"}, 
-                    {"id":4, "label":"Thebia", "font":"25px", "shape":"circle", "color":"orange"}, 
-                    {"id":5, "label":"Thebia", "font":"20px", "shape":"star", "color":"yellow"} ,
-                    {"id":8, "label":"Thebia", "font":"10px", "shape":"square", "color":"red"} 
-            ]}'
 
-            data-edges = '{"edges": [
-                {"from": 1, "to": 2 }, 
-                {"from": 2, "to": 3 }, 
-                {"from": 3, "to": 4 }, 
-                {"from": 5, "to": 4 }, 
-                {"from": 2, "to": 6 },
-                {"from": 6, "to": 7 }, 
-                {"from": 7, "to": 5 },
-                {"from": 1, "to": 8 },
-                {"from": 8, "to": 4 }
-            ]}'
+    <div class="visual-elt"
+        data-include-in-viewport = 'A'
+        data-row='{"A":1, "C":1}' 
+        data-col='{"A":1, "C":4}' 
+        data-hor-span='{"A":2}'
+        style="position:absolute; background-image:url('./akraDashboard_1200x450.png'); background-size: cover; " > 
+    </div>
+
+       
+    <div class="visual-elt"
+        data-include-in-viewport = 'A'
+        data-row='{"A":2, "C":1}' 
+        data-col='{"A":1, "C":4}' 
+        data-vert-span='{"A":2}'
+        style="position:absolute; background-image:url('./hybernating_600x450.png'); background-size: cover; " > 
+    </div>
 
 
-            style="background-image: url('intro/space.jpg'); background-repeat:no-repeat;background-size:cover;
-                    position:absolute; left:0; top:0;width:600px; height:900px;">
-        </div>
+    <div class="visual-elt"
+        data-include-in-viewport = 'A'
+        data-row='{"A":2, "C":1}' 
+        data-col='{"A":2, "C":4}' 
+        data-vert-span='{"A":2}'
+        data-hor-span = '{"A":2}'
+        style="position:absolute; background-image:url('./akraSpace_1200x450.png'); background-size: cover; " > 
+    </div>
 
+
+
+<!--    <div class="caption oracleCaption" style="left:540px; top:300px; z-index:25; background-color:rgba(0,0,0,0.5)">
+            O3dipus.
     </div>-->
 
-       <img src='./O3inShip.gif' class="visual-elt"
-             data-include-in-viewport = 'A'
-             data-hor-span='{"A":2}' 
-             data-row = '{"A":1}'
-             data-col = '{"A":1}' style="position:absolute;"/>
 
- 
-        <img src='./akra2_600x450.png' class="visual-elt"
-             data-include-in-viewport = "A"
-             data-row='{"A":1}' 
-             data-col='{"A":3}' style="position:absolute;"/>
-   
-<!--      <img src='./constellationMap.png' class="visual-elt"
-             data-include-in-viewport = "A"
-             data-row='{"A":1}' data-col='{"A":1}' style="position:absolute;"/>-->
+       
 
-        <img src='./akra1200x450.png' class="visual-elt"
-            data-include-in-viewport = "A"
-            data-row='{"A":3}' data-col='{"A":2}' data-hor-span='{"A":2}' style="position:absolute;"/>
+    <svg height="900" width="900" style="z-index:20;position:absolute;left:0; top:0">
+        <line x1="200" y1="600" x2="100" y2="400" style="stroke:rgb(255,255,255);stroke-width:3" />
+              Sorry, your browser does not support inline SVG.
+    </svg>
 
-        <img src='./O3dipus2.png' class="visual-elt"
-            data-include-in-viewport = "A"
-            data-row='{"A":2}' data-col='{"A":1}' data-vert-span='{"A":2}' style="position:absolute;"/>
-
-
-
-
-
-
-<!--
-   
+ <!-- 
     <div class="oracleCaption" style="border: 5px white solid; 
     left:1000px; top:480px; width:500px; z-index:25;font-size:1.5em;">
         ...so says <span style='font-size:1.8em'>Apollo</span>, 
@@ -153,13 +224,6 @@
             border:4px solid white; z-index:25;font-size:1.8em;"> 
     for <span style="font-size:1.9em">GREAT</span> things
     </div>
-
-
-
-
-
-
-
 
     <div class="gutter" style="left:1800px; top:0px; width:150px; height:1350px"> </div>
 
@@ -277,5 +341,6 @@ Next Frame
   crossorigin="anonymous"></script>
 
     <script src="../bundle.js"> </script>
+
 </body>
 </html>
