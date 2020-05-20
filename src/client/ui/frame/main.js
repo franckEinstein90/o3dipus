@@ -93,47 +93,57 @@ const _configureMargins = function(contentViewport){
 
 }
 
-   
-  
-const fitToTemplate = function(contentMaxHeight, contentMaxWidth) {
+const setFormat = function( maxDimensions, contentFormats ){
+    let maxArea = maxDimensions.width * maxDimensions.height; 
+    let area = (width, height) => width * height; 
+    let wastedSpace = (width, height) => maxArea - area(width * height)
 
-    let contentFormats = $('#page').data('formats');
-    let contentArea = contentMaxHeight * contentMaxWidth;
-    let wastedSpace = (width, height) => contentArea - (width * height)
-    let best = { wasted: contentArea };  
+    let best = { wasted: maxArea};  //the most space that can be wasted is all of it
     Object.entries(contentFormats).forEach( format => {
-           let desc = format[1]; 
-           let contentWidth = contentMaxWidth; 
-           let contentHeight = contentMaxWidth / desc.width * desc.height; //only handling landscape for now
-           if(contentHeight > contentMaxHeight){
-                contentWidth = contentMaxHeight * desc.width / desc.height; 
-                contentHeight = contentMaxHeight;   
-           }
-           let w = wastedSpace(contentWidth, contentHeight); 
-            if (w < best.wasted){
-                best.name = format[0]
-                best.format = format[1]
-                best.wasted = w; 
-                best.dimensions = {contentWidth, contentHeight}
-            }
 
-       })
-
-    return best;  
+        let formatDescription = format[1];
+        let contentWidth = maxDimensions.width; 
+        let contentHeight = (contentWidth * formatDescription.height / formatDescription.width); 
+        while( contentHeight > maxDimensions.height ){ //scale the height 
+                contentHeight = contentHeight * 0.95;   
+                contentWidth = contentWidth * 0.95; 
+         }
+        let wasted = maxDimensions.area - (contentWidth * contentHeight); 
+        if (wasted < best.wasted){
+                best.name = format[0]; 
+                best.format = format[1]; 
+                best.wasted = wasted; 
+                best.dimensions = {
+                    width: contentWidth, 
+                    height: contentHeight, 
+                    area: contentWidth * contentHeight
+                }; 
+         }
+    })
+    best.screenDimensions = maxDimensions
+    return best
+}   
+  
+const fitToTemplate = function( maxDimensions ) {
+    let contentFormats = $('#page').data('formats');
+    return setFormat( maxDimensions, contentFormats )
 }
 
 const _configureLayout = function( app ){
-    $(".gutter").remove();
+    $(".gutter").remove();          //removing all gutters
     let contentViewport = _configureOuterLayout( app  );
-    let maxHeight = contentViewport.height;
-    let maxWidth = contentViewport.width;
+    let maxDimensions = {
+        height: contentViewport.height, 
+        width: contentViewport.width,
+        area: contentViewport.height * contentViewport.width
+    }
     /* now we know how much real estate we have */
 
-    let contentFrame     = fitToTemplate( maxHeight, maxWidth );  
-    let marginTotalWidth = contentViewport.width - contentFrame.dimensions.contentWidth; 
-    contentViewport.left = marginTotalWidth / 2; 
-    contentViewport.width = contentFrame.dimensions.contentWidth; 
-    contentViewport.height = contentFrame.dimensions.contentHeight; 
+    let contentFrame = fitToTemplate( maxDimensions );  
+    let totalMarginWidth = contentViewport.width - contentFrame.dimensions.width; 
+    contentViewport.left = totalMarginWidth / 2; 
+    contentViewport.width = contentFrame.dimensions.width; 
+    contentViewport.height = contentFrame.dimensions.height; 
 
     _configureMargins(contentViewport);
     layoutImages(contentViewport, contentFrame); 
