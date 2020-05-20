@@ -32,10 +32,10 @@ const sizeToViewport = function( elt, contentViewport, contentFrame, options ){
 
 
 const layoutCaptions = function( contentViewport, contentFrame ){
-
-   $(".caption").each( function(){
+    debugger;
+    $(".caption").each( function(){
         sizeToViewport( $(this), contentViewport, contentFrame);
-   });
+    });
 }
 
 
