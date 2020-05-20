@@ -15,231 +15,55 @@
 <body>
 
     <div id='topNav' style="z-index:30"> 
-        <a href="1_5/index.html">next</a>
+        <a href="1_5/index.html">go to first page</a>
     </div>
+    <div id="page" 
+            data-meta= '{
+                "page" : 1, 
+                "book" : {
+                    "title": "O3dipus, King of Thebes"
+                },
+                "scenes":[1,5], 
+                "plot" : "A", 
+                "next" : {
+                    "url": "../1_8/index.html"
+                 }
+            }'   
+
+ 
+            data-formats='{
+                "A": {"width":1800, "height":1350, "cols":3, "rows":3}
+            }'>
+    </div>
+
 
     <div id="marginLeft"  style="background-color:white;position:absolute;left:0;top:0"></div>
     <div id="marginRight" style="background-color:white;position:absolute;left:0;top:0"></div>
 
 
- <div id="universe" class="scale-stretched" 
-   data-row="1" 
-   data-hor-span="3" 
-   data-vert-span="2" 
-   data-col="1" /> 
-
-      <div id="galaxy" style="background:none">
-        <div id="solar-system" class="">
-          <div id="earth" class="orbit">
-            <div class="pos">
-              <div class="orbit">
-                <div class="pos">
-                  <div class="moon"> </div>
-                </div>
-              </div>
-              <div class="planet">
-                <dl class="infos">
-                  <dt></dt>
-                  <dd><span></span></dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-          <div id="jupiter" class="orbit">
-            <div class="pos">
-
-             <div class="planet">
-                <dl class="infos">
-                  <dt></dt>
-                  <dd><span></span></dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-         <div id="neptune" class="orbit">
-            <div class="pos">
-              <div class="planet">
-                <dl class="infos">
-                  <dt>Neptune</dt>
-                  <dd><span></span></dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-          <div id="sun">
-            <dl class="infos">
-              <dt></dt>
-              <dd><span></span></dd>
-            </dl>
-          </div>
-        </div>
-      </div>
-    </div>
-  
- 
- 
-    <div  data-row="1" data-col="1" data-hor-span="2" style="position:absolute;left:40;top:0; width:100%; height:75%; 
-    background-image:url(intro/Akra1.png); background-position: center; background-repeat: no-repeat; background-size:cover" />
-
-
-    <div class="oracleCaption" style="border: 5px white solid;left:350px; top:480px; width:500px; z-index:25;font-size:1.5em;">
-        <span style='font-size:1.8em'>O3dipus, King of thebes</span>, 
+    <div class="visual-elt"
+        data-include-in-viewport = 'A'
+        data-row='{"A":1, "C":1}' 
+        data-col='{"A":1, "C":4}'
+        data-hor-span='{"A":3}' 
+        style="position:absolute; background-image:url('./akra_1800x450.png'); background-size: cover; " > 
     </div>
 
 
-
-<!--
-   
-
-
-
-
-    <div style="position:absolute; left:20px; top:440px; width:800px; z-index:25">
-        <div class="oracleCaption" style="left:0; top:0px; font-size:1.4em;border:white 1px solid">
-            Apparently, <span style="font-size:1.7em">fate</span> has big plans 
-        </div>
-
-        <div class="oracleCaption" 
-        style="border: white 3px solid; left:330px; top:70px;  font-size:1.4em">
-           for you 
-        </div>
-
-
-    </div>
-    
-    <div style="position:absolute; left:400px; top:640px; width:400px">
-        <div class="oracleCaption" 
-         style="border:1px solid white; z-index:25;font-size:1.9em;"> 
-    You seem destined
-    </div>
-</div>
-    <div class="oracleCaption" 
-    style=  "left:430px; top:800px; 
-            border:4px solid white; z-index:25;font-size:1.8em;"> 
-    for <span style="font-size:1.9em">GREAT</span> things
-    </div>
-
-
-
-
-
-
-
-
-    <div class="gutter" style="left:1800px; top:0px; width:150px; height:1350px"> </div>
-
-    <div class="oedipusCaption" style="left:420px; top:120px; z-index:25; font-size:1.8em">
-       Your Eternity...  
-    </div>
-    <div class="oedipusCaption" style="left:440px; top:240px; z-index:25; font-size:1.8em">
-      this call honors me 
-    </div>
-
-
-    <div style="position:absolute; top:230px; left:1100px; width:400px; z-index:25;"> 
-         <div class="oedipusCaption" style="left:0; top:0px; z-index:25;font-size:1.8em">
-            My ship, Akra, and I,  
-        </div>
-         <div class="oedipusCaption" style="left:100px; top:70px; z-index:25;font-size:1.8em">
-            serve <span style="font-size:1.9em">Apollo</span>
-         </div>
-    </div>
-
-
-
-        <div style="position:absolute; left:600px; top:900px; width:1200px; 450px; background-color:black; z-index:6">
- </div>
-
-    <div class="oracleCaption" 
-         style="border:3px white solid; font-size:1.4em; left:1080px; width:300px; top:700px; z-index:26">
-         <span style="font-size:1.6em">He also says you are to kill</span>
-    </div>
-
-
-   <div class="oracleCaption" style="border:3px white solid; font-size:1.4em; left:1250px; top:750px; z-index:25">
-        the <span style="font-size:1.8em">vermin</span>
-    </div> 
-
-    <div class="oracleCaption" style="font-size:1.4em; border:3px white solid; left:1310px; top:830px; z-index:25">
-        they call <span style="font-size:1.8em">Sphincs</span>
-    </div>
--->
-
-<!--     <div class="oedipusCaption" style="left:1320px; top:650px; z-index:25; font-size:2.4em">
-        some worlds... 
-    </div>
-
-   <div class="oedipusCaption" style="left:1420px; top:650px; z-index:25">
-        ...are worth
-    </div>
-
-   <div class="oedipusCaption" style="left:1220px; top:780px; z-index:25">
-        ...more than others
-    </div>
-   <div class="oedipusCaption" style="font-size:1.5em;left:120px; top:920px; z-index:25">
-    and some people harder to <br/><span style="font-size:1.5em">kill</span> than others
-    </div>
-
-    <div class="oracleCaption" style="font-size:1.4em; left:80px; top:1080px; z-index:25">
-    right you are 
-    <br/> Junior Envoy
-    <br/> on both counts, 
-    <br/> Still, I do not bargain, 
-    <br/>nor do I ask. 
-    </div>
-   <div class="oracleCaption" style="font-size:1.4em; left:80px; top:1190px; z-index:25">
-    <br/> I merely say what will and it becomes. 
-    <a href="sphincs.html">fdsa</a>
-    </div>
-
-
-   <div class="oedipusCaption" style="left:620px; top:920px; z-index:25">
-    I apologize, high priestess
-    </div>
--   [Oracle] You will kill Sphincs, and then you will go and rule Thebes. 
-</div>
-    [call end signal]
-
--   [O3dipus, to himself] Thebes
-
-Next Frame
-
--   [O3dipus, narrator] I was 27, I had a ship, a crew, and a name. I knew about Sphincs, 
-    a bandit that operated in the Thespian system. I didn't know what he had done
-    to piss off the temple, but it must have been big because Thebes
-    was a suprisingly valuable prize, especially since I had been an envoy for 
-    only 8 months, a merit I had quite literally acquired. 
-
-
-
-
-
-
-    It had been expensive, but it opened the kind of legal routes a young enterprising 
-    business person could use to make himself very rich...and special connections, 
-    like a personal call from her Eternity herself, hight priestess of 
-    the temple of Apollo. I didn't really believe she knew the future, but 
-    I certainly believed she had enough pull to decide what the future
-    would be, which came to the same. 
-
-    At least there was payment, I felt lucky. She could have told 
-    to go and kill Sphyncs without even so much as a please and thank you... 
-    and I would have had to do it just the same
--->
     <div id='bottomNav'> </div>
     
 
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
-  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" 
-  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" 
+    crossorigin="anonymous"></script>
 
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
-  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
-  crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
+    crossorigin="anonymous"></script>
 
     <script src="./bundle.js"> </script>
 </body>
