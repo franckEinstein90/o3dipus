@@ -1,7 +1,7 @@
 @import 'colors.css'; 
 @import 'ui.css';  
 @import 'captions.css';  
-
+@import 'extraSolar.css';
 #visual-elt{
     position:absolute;
     background-image-position: center; 
