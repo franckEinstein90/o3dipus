@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&family=Montserrat:wght@100;300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../css/styles.css"> 
+    <link rel="stylesheet" type="text/css" href="../css/extrasolar.css"> 
     <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
 
     <style>
@@ -132,7 +133,7 @@ dl.infos dd:after {
                 <a href="../index.html">first</a>
             </div>
             <div id="prev">
-                <a href="../index.html">prev</a>
+                <a href="../1_8/index.html">prev</a>
             </div>
             <div id="next">
                 <a href="../1_8/index.html">next</a>
@@ -146,199 +147,47 @@ dl.infos dd:after {
 
     <div id="marginLeft"  style="background-color:white;position:absolute;left:0;top:0"></div>
     <div id="marginRight" style="background-color:white;position:absolute;left:0;top:0"></div>
-    <div id="universe" class="scale-stretched visual-elt" style="z-index:30"
-            data-include-in-viewport = 'A'
-            data-row='{"A":1, "C":1}'
-            data-col='{"A":1, "C":1}'
-            data-hor-span='{"A":3, "C":2}'>
 
-      <div style="left:300;z-index:40;colo:white;">  fkdla;</div>
-      <div id="galaxy">
-        <div id="solar-system" class="earth jupiter moon sun">
-          <div id="earth" class="orbit">
-            <div class="pos">
-              <div class="orbit">
-                <div class="pos">
-                  <div class="moon">
-                        <p style="color:white;text-align:center"><br/>Pythia's temple</p></div>
-                </div>
-              </div>
-              <div class="planet">
-                <dl class="infos">
-                  <dt></dt>
-                  <dd><span></span></dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-
-         <div id="uranus" class="orbit">
-            <div class="pos">
-              <div class="planet">
-                <dl class="infos">
-                  <dt>Uranus</dt>
-                  <dd><span></span></dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-         
-<div id="jupiter" class="orbit">
-            <div class="pos">
-             <div class="planet">
-                <dl class="infos">
-                  <dt></dt>
-                  <dd><span></span></dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-         <div id="neptune" class="orbit">
-            <div class="pos">
-              <div class="planet">
-                <dl class="infos">
-                  <dt>Neptune</dt>
-                  <dd><span></span></dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-          <div id="sun">
-            <dl class="infos">
-              <dt></dt>
-              <dd><span></span></dd>
-            </dl>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="caption storyCaption" style="width:340px;" 
+    <div class="visual-elt"
         data-include-in-viewport = 'A'
-        data-row='{"A":1}'
-        data-col='{"A":3}'>
-        <p>
-        The Apollo Empire, a giant cofdsa:walition of colonized 
-        worlds ruled from the Apollo star system 
-        is wrestling with massive social unrest
-        <p>
-        Pythia, high priestess of Apollo, and spiritual leader of the empire hasn't left the moon temple in decades, 
-        but continues to deliver edicts directly via videoConf.  
-        <p>
-        The young O3dipus has just been named envoy of the empire, giving him full legal access to 
-        trade routes controlled by the empire. 
-     </div>
-     <div class="caption" id="cap1" style="display:'none'; color:lime;font-family:'courier';"
-         data-include-in-viewport = 'C'
-         data-options='{"fullWidth":1, "fullHeight":1}'
-         data-row='{"A":2}'
-         data-col='{"A":1}'
-         data-hor-span='{"A":2}'
-         data-vert-span='{"A":2}'>
-        <div style="height:20px;background-color:white;width:100%"></div>
-       <div class="teletype" style="margin-top: 40px; border:'2px orange solid';" >
-            incoming call [region: Apollo Star System]
-            <br/>
-            <strong style="color:red">Sender</strong>:
-            <br/> **************************
-            <br/> Pythia, Oracle of Delfi, 
-            <br/> High Priestess Apollo Temple 
-            <br/> **************************
-            <br/><strong style="color:red">To</strong>: <strong>O3dipus</strong>, Envoy of Apollo
-        </div>
-        <div class="teletype">
-            <br/>server: [Delfi moon temple server, Apollo Planet Orbit]
-            <br/>client: [Akra Server, tribe Orlov, Nation Abacus]
-            <br/>standing by...<br/><br/><br/>
-        </div>
-
-        <div style="text-align:center; width:100%">
-            <center><button class="blinkBorder" style="border:lime 4px solid;" 
-                onclick="acceptPythiaCall();">Connect to videoConf</button></center>
-        </div>
-
+        data-row='{"A":1, "C":1}' 
+        data-col='{"A":1, "C":4}' 
+        data-hor-span='{"A":2}'
+        style="position:absolute; background-image:url('./akraDashboard_1200x450.png'); background-size: cover; " > 
     </div>
 
-  
-    <img src='./O3dipus1_600x450.png' class="visual-elt" 
-        data-include-in-viewport ='A'
-        data-row ='{"A":2,"C":2}' 
-        data-col = '{"A":2, "C":1}' 
-        style="position:absolute;">
-
+       
     <div class="visual-elt"
         data-include-in-viewport = 'A'
         data-row='{"A":2, "C":1}' 
         data-col='{"A":1, "C":4}' 
-        style="position:absolute; background-image:url('./Oracle2_600x450.png'); background-size: cover; " > 
+        data-vert-span='{"A":2}'
+        style="position:absolute; background-image:url('./hybernating_600x450.png'); background-size: cover; " > 
     </div>
 
-    <img src='./Oracle2_600x350.png'  class="visual-elt"
-        data-include-in-viewport = 'C'
-        data-row='{"C":1}' data-col='{"C":3}' 
-        data-vert-span='{"C":2}'
-        data-hor-span='{"C":2}'
-        style="position:absolute;z-index:5"/> 
+
+    <div class="visual-elt"
+        data-include-in-viewport = 'A'
+        data-row='{"A":2, "C":1}' 
+        data-col='{"A":2, "C":4}' 
+        data-vert-span='{"A":2}'
+        data-hor-span = '{"A":2}'
+        style="position:absolute; background-image:url('./akraSpace_1200x450.png'); background-size: cover; " > 
+    </div>
 
 
-
-    <img    src="./Oracle3_600x450.png" class="visual-elt"
-            data-include-in-viewport ='A'
-            data-row='{"A":2}' data-col ='{"A":3}' 
-            style="position:absolute;" />
-
-    <img    src="./O3dipus2.png" class="visual-elt"
-            data-include-in-viewport = 'A'
-            data-row='{"A":3, "C":2}' 
-            data-col = '{"A":3, "C":2}'     
-            style="position:absolute;">
-
-    <img src="./akra1200x450.png" class="visual-elt"
-         data-include-in-viewport = 'A'
-         data-row='{"A":3}' 
-         data-col='{"A":1}' 
-         data-hor-span='{"A":2}' 
-         data-vert-span='{"A":1}' 
-         style="position:absolute;" />
 
 <!--    <div class="caption oracleCaption" style="left:540px; top:300px; z-index:25; background-color:rgba(0,0,0,0.5)">
             O3dipus.
     </div>-->
 
 
-    <div id="mapCaption" class="caption locationDescription"  style="background:none"
-        data_row='{"A":1}'
-        data_col='{"A":3}'
-        data-hor-span='{"A":1}'>
-        <h3>Apollo Empire star system</h3>
-        <p>seat of Apollo Empire</p>
-    </div>
-        
-    <div class="caption oracleCaption" 
-         data-include-in-viewport = 'A'
-         data-row='{"A":2}'
-         data-col='{"A":1}'
-         data-hor-span='{"A":3}'
-         data-vert-span='{"A":2}'
-         style="z-index:25;font-size:1.8em;border:'white solid 3px;'">
-         O3dipus
-    </div>
-
+       
 
     <svg height="900" width="900" style="z-index:20;position:absolute;left:0; top:0">
         <line x1="200" y1="600" x2="100" y2="400" style="stroke:rgb(255,255,255);stroke-width:3" />
               Sorry, your browser does not support inline SVG.
     </svg>
-
-    <div class="caption oracleCaption"  style="display:none"
-        data-include-in-viewport= 'A'
-        data-row='{"A":2}'
-        data-col='{"A":2}'
-        data-caption-ends='{"A":{"col":2, "row":2}'>
-        
-      You've done well for yourself. 
-        <br/>from the GUTTERS of Corynth... 
-     </div>
 
  <!-- 
     <div class="oracleCaption" style="border: 5px white solid; 

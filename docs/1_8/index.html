@@ -4,31 +4,55 @@
 
     <meta charset = "utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>front</title>
+    <title>1_8</title>
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Yeon+Sung&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Frijole&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/styles.css"> 
+    <link rel="stylesheet" type="text/css" href="../css/styles.css"> 
+    <link rel="stylesheet" type="text/css" href="../css/extrasolar.css"> 
     <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
 </head>
 
 <body>
+ <div id="page" 
+            data-meta= '{
+                "page" : 1, 
+                "book" : {
+                    "title": "O3dipus, King of Thebes"
+                },
+                "scenes":[1,5], 
+                "plot" : "A", 
+                "next" : {
+                    "url": "../1_8/index.html"
+                 }
+            }'   
 
-    <div id='topNav' style="z-index:30"> 
-        <a href="index.html">prev</a>
-        <a href="1_8/index.html">next</a>
+ 
+            data-formats='{
+                "A": {"width":1800, "height":1350, "cols":3, "rows":3}
+            }'>
     </div>
 
-    <div id="contentFormats" data-formats='{
-                    "A": {"width":1800, "height":1350, "cols":3, "rows":3},
-                    "C": {"width":2400, "height":1400, "cols": 4, "rows":4}
-                }'></div>
 
+ <div id='topNav' style="background-color:rgba(210, 220, 220, 0.5);color:white; font-weight:bold"> 
+        <div id="storyNavigation" style="display:flex">
+            <div id="first">
+                <a href="../index.html">first</a>
+            </div>
+            <div id="prev">
+                <a href="../1_5/index.html">prev</a>
+            </div>
+            <div id="next">
+                <a href="../1_10/index.html">next</a>
+            </div>
+        </div> 
+        <div id="pageTitle"> </div>
+    </div>
 
     <div id="marginLeft"  style="background-color:white;position:absolute;left:0;top:0"></div>
     <div id="marginRight" style="background-color:white;position:absolute;left:0;top:0"></div>
-
+<!--
 <div id="map">
         
         <div id="apolloSystemMap" class="diagram" 
@@ -62,17 +86,32 @@
                     position:absolute; left:0; top:0;width:600px; height:900px;">
         </div>
 
-    </div>
+    </div>-->
 
-         <img src='1_8/O3inShip.gif' 
-             data-width = "1200" data-height="450" data-hor-span="2" data-row = "1" data-col = "1"
-             style="position:absolute; left:0px; top:0px; width:1200px; z-index:2; height:450px;"/>
+       <img src='./O3inShip.gif' class="visual-elt"
+             data-include-in-viewport = 'A'
+             data-hor-span='{"A":2}' 
+             data-row = '{"A":1}'
+             data-col = '{"A":1}' style="position:absolute;"/>
 
  
-
+        <img src='./akra2_600x450.png' class="visual-elt"
+             data-include-in-viewport = "A"
+             data-row='{"A":1}' 
+             data-col='{"A":3}' style="position:absolute;"/>
    
-       <img src='1_8/constellationMap.png' data-row="3" data-col="1" style="position:absolute;"/>
-       <img src='1_8/akra1200x450.png' data-row="2" data-col="1" data-hor-span="2" style="position:absolute;"/>
+<!--      <img src='./constellationMap.png' class="visual-elt"
+             data-include-in-viewport = "A"
+             data-row='{"A":1}' data-col='{"A":1}' style="position:absolute;"/>-->
+
+        <img src='./akra1200x450.png' class="visual-elt"
+            data-include-in-viewport = "A"
+            data-row='{"A":3}' data-col='{"A":2}' data-hor-span='{"A":2}' style="position:absolute;"/>
+
+        <img src='./O3dipus2.png' class="visual-elt"
+            data-include-in-viewport = "A"
+            data-row='{"A":2}' data-col='{"A":1}' data-vert-span='{"A":2}' style="position:absolute;"/>
+
 
 
 
@@ -237,6 +276,6 @@ Next Frame
   integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
   crossorigin="anonymous"></script>
 
-    <script src="./bundle.js"> </script>
+    <script src="../bundle.js"> </script>
 </body>
 </html>
