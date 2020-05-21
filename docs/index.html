@@ -16,7 +16,7 @@
 <body>
 
     <div id='topNav' style="z-index:30"> 
-        <a href="1_5/index.html">O3dipus: go to first page</a>
+        <a href="1_5/index.html">read</a>
     </div>
     <div id="page" 
             data-meta= '{
@@ -45,14 +45,63 @@
 
 
     <div class="visual-elt"
+        data-include-in-viewport = 'tablet,wide'
+        data-row='{"tablet":1, "wide":1}' 
+        data-col='{"tablet":1, "wide":3}'
+        data-hor-span='{"tablet":2, "wide":3}' 
+        data-vert-span='{"tablet":2, "wide":3}'
+        style="position:absolute; background-image:url('./akra_1200x800.png'); background-size: cover; " > 
+    </div>
+
+    <div class="visual-elt"
+        data-include-in-viewport = 'wide,normal,tablet'
+        data-row='{"tablet":3, "normal": 2, "wide":1}' 
+        data-col='{"tablet":1, "normal":1, "wide":1}'
+        data-hor-span='{"tablet":2, "normal":2, "wide":2}' 
+        data-vert-span='{"tablet":1, "normal":2, "wide":2}'
+        style="position:absolute; background-image:url('./title_1200x800.png'); background-size: cover; " > 
+    </div>
+
+
+    <div class="visual-elt"
         data-include-in-viewport = 'normal'
         data-row='{"normal":1, "tablet":1}' 
         data-col='{"normal":1, "tablet":1}'
-        data-hor-span='{"normal":4, "tablet":2}' 
-        data-vert-span='{"normal":2, "tablet":2}'
-        style="position:absolute; background-image:url('./akra_1800x450.png'); background-size: cover; " > 
+        data-hor-span='{"normal":3, "tablet":2}' 
+        data-vert-span='{"normal":1}'
+        style=" position:absolute; 
+    background-image-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover;
+                background-image:url('./akra_1800x400.png'); background-size: cover; " > 
     </div>
 
+    <div class="visual-elt"
+        data-include-in-viewport = 'normal'
+        data-row='{"normal":2, "tablet":1}' 
+        data-col='{"normal":3, "tablet":1}'
+        data-hor-span='{"normal":2, "tablet":2}' 
+        data-vert-span='{"normal":2}'
+        style=" position:absolute; 
+    background-image-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover;
+    background-image:url('./Oracle_600x400.png'); background-size: cover; " > 
+    </div>
+
+    <div class="visual-elt"
+        data-include-in-viewport = 'wide,normal,tablet'
+        data-row='{"normal":4, "wide":4,"tablet":4}' 
+        data-col='{"normal":1, "wide":1,"tablet":1}'
+        data-hor-span='{"normal":4, "wide":5, "tablet":2}' 
+        style="position:absolute;background-color:red;color:white;" >
+    <h1>O3dipus, King of Thebia</h1>
+   </div>
+
+
+
+    
+<!--
     <div class="visual-elt"
         data-include-in-viewport = 'A'
         data-row='{"A":2, "C":1}' 
@@ -60,7 +109,7 @@
         data-hor-span='{"A":3}' 
         data-vert-span='{"A":2}' 
         style="position:absolute; background-image:url('./O3dipus2.png'); background-size: cover; " > 
-    </div>
+    </div>-->
 
 
     <div id='bottomNav'> </div>
