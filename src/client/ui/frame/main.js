@@ -146,7 +146,7 @@ const _configureLayout = function( app ){
     contentViewport.height = contentFrame.dimensions.height; 
 
     _configureMargins(contentViewport);
-    layoutImages(contentViewport, contentFrame); 
+    layoutImages(contentViewport, contentFrame, app.scenes); 
 //    sizeToViewport( $('#universe'), contentViewport, contentFrame);
 //    _layoutGraphs(contentViewport);
     layoutCaptions( contentViewport, contentFrame ); 

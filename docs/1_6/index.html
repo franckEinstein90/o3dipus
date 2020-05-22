@@ -1,0 +1,250 @@
+<!doctype.html>
+<html lang="en">
+<head>
+
+    <meta charset = "utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Page 2</title>
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Yeon+Sung&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Frijole&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&family=Montserrat:wght@100;300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css"> 
+
+    <style>
+        dl.infos {
+            position: absolute; display: block; opacity: 0; width: 100%;
+            height: 100%; margin-top: -90%; margin-left: 90%; padding-left: 100%;
+            transform-origin: 100% 100%; transform-style: preserve-3d; transform: rotateX(90deg); }
+
+        dl.infos:before {
+            position: absolute; content: ''; height: 30px;
+            left: 15px; bottom: 0; border-top: 1px solid white; border-left: 4px dashed white;
+          transform-style: preserve-3d;
+          transform: skew(-45deg, 0deg);
+          box-shadow: inset 1px 1px black; }
+
+
+dl.infos dt {
+  position: absolute;
+  left: 50px;
+  margin-bottom: 26px;
+  bottom: 30px;
+  color: #FFF;
+  font-size: 14px;
+  text-shadow: 1px 1px 2px black; }
+
+    dl.infos dd:after {
+        position: absolute;
+        left: 50px;
+        bottom: 30px;
+        width: 300px;
+        color: #FFF;
+        font-size: 22px;
+        text-shadow: 1px 1px 2px black; }
+
+        dl.infos dd span:after {
+          position: absolute; left: 50px; bottom: 14px; width: 300px;
+          color: #FFF; font-size: 11px; text-shadow: 1px 1px 2px black; }
+
+
+   </style>
+</head>
+
+
+<body>
+
+    <div id="page" 
+        data-meta= '{
+          "page" : 1, 
+          "book" : {
+                    "title": "O3dipus, King of Thebes"
+                },
+                "scenes":[1,5], 
+                "plot" : "A", 
+                "next" : {
+                    "url": "../1_8/index.html"
+                 }
+            }'   
+        data-scenes = '1,2'
+        data-formats='{
+            "wide": {"width": 3000, "height":1600, "cols":5, "rows":4}, 
+             "normal":   {"width": 2400, "height":1600, "cols":4, "rows":4}, 
+             "tablet": {"width":1200, "height":1600, "cols":2, "rows":4}
+        }'>
+    </div>
+
+    <div id='topNav' style="background-color:rgba(210, 220, 220, 0.5);color:white; font-weight:bold"> 
+        <div id="storyNavigation" style="display:flex">
+            <div id="first">
+                <a href="../index.html">first</a>
+            </div>
+            <div id="prev">
+                <a href="../1_5/index.html">prev</a>
+            </div>
+            <div id="next">
+                <a href="../1_8/index.html">next</a>
+            </div>
+        </div> 
+        <div id="pageTitle"> </div>
+    </div>
+
+    <div id="universe" class="scale-stretched visual-elt" style="z-index:10"
+            data-include-in-viewport = 'tablet,normal,wide'
+            data-row='{"normal":1, "wide":1}'
+            data-col='{"normal":1, "wide":1}'
+            data-hor-span='{"normal":4, "wide":5}'
+            data-vert-span='{"normal":2, "wide":2}'>
+
+      <div style="left:300;z-index:40;colo:white;">  fkdla;</div>
+      <div id="galaxy">
+        <div id="solar-system" class="earth jupiter moon sun">
+          <div id="earth" class="orbit">
+            <div class="pos">
+              <div class="orbit">
+                <div class="pos">
+                  <div class="moon">
+                        <p style="color:white;text-align:center"><br/>Pythia's temple</p></div>
+                </div>
+              </div>
+              <div class="planet">
+                <dl class="infos">
+                  <dt></dt>
+                  <dd><span></span></dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+
+         <div id="uranus" class="orbit">
+            <div class="pos">
+              <div class="planet">
+                <dl class="infos">
+                  <dt>Uranus</dt>
+                  <dd><span></span></dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+         
+<div id="jupiter" class="orbit">
+            <div class="pos">
+             <div class="planet">
+                <dl class="infos">
+                  <dt></dt>
+                  <dd><span></span></dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+         <div id="neptune" class="orbit">
+            <div class="pos">
+              <div class="planet">
+                <dl class="infos">
+                  <dt>Neptune</dt>
+                  <dd><span></span></dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+          <div id="sun">
+            <dl class="infos">
+              <dt></dt>
+              <dd><span></span></dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="visual-elt"
+        data-include-in-viewport = 'wide,normal'
+        data-row='{"tablet":1, "normal": 3, "wide":3}' 
+        data-col='{"tablet":1, "normal":1, "wide":1}'
+        data-hor-span='{"tablet":2, "normal":2, "wide":2}' 
+        data-vert-span='{"tablet":1, "normal":2, "wide":2}'
+        style="position:absolute; background-image:url('./Oracle2_600x450.png'); 
+               background-size: cover; 
+               padding-left:10px; padding-top:20px;
+               font-family:'Baloo Chettan 2'; " > 
+
+        <p style="  background-color:rgba(0,0,0,0.3); color:white; 
+                    width:100%; border:white 1px solid; 
+                    font-size:1.1em; 
+                    padding-left:4px;padding-top:4px;">
+        The Apollo Empire, a myriad of colonized worlds ruled from the Apollo Star 
+        relies on slave labor for all essential aspect of its vast economy.
+        </p>
+     </div>
+
+     <div class="visual-elt"
+        data-include-in-viewport = 'normal,wide'
+        data-row='{"tablet":1, "normal": 2, "wide":3}' 
+        data-col='{"tablet":1, "normal":4, "wide":3}'
+        data-hor-span='{"tablet":2, "normal":1, "wide":2}' 
+        data-vert-span='{"tablet":1, "normal":1, "wide":2}'
+        style="position:absolute; background-image:url('./Akra600x400.png'); 
+               background-size: cover; z-index:15;
+               padding-left:10px; padding-top:20px;
+               font-family:'Baloo Chettan 2'; " > 
+
+     </div>
+
+   <div class="visual-elt"
+        data-include-in-viewport = 'wide'
+        data-row='{"tablet":1, "normal": 3, "wide":2}' 
+        data-col='{"tablet":1, "normal":3, "wide":5}'
+        data-hor-span='{"tablet":2, "normal":2, "wide":1}' 
+        data-vert-span='{"tablet":1, "normal":2, "wide":1}'
+        style="position:absolute; background-image:url('./Oracle3_600x450.png'); 
+               background-size: cover;z-index:22;
+               padding-left:10px; padding-top:20px;
+               font-family:'Baloo Chettan 2'; " > 
+
+   </div>
+   
+    <div class="visual-elt"
+        data-include-in-viewport = 'normal'
+        data-row='{"tablet":1, "normal": 3, "wide":2}' 
+        data-col='{"tablet":1, "normal":3, "wide":3}'
+        data-hor-span='{"tablet":2, "normal":2, "wide":2}' 
+        data-vert-span='{"tablet":1, "normal":2, "wide":2}'
+        style="position:absolute; background-image:url('./Akra2_600x400.png'); 
+               background-size: cover;z-index:12;
+               padding-left:10px; padding-top:20px;
+               font-family:'Baloo Chettan 2'; " > 
+
+     </div>
+
+
+    <div class="visual-elt"
+        data-include-in-viewport = 'wide,normal'
+        data-row='{"tablet":1, "normal": 3, "wide":2}' 
+        data-col='{"tablet":1, "normal":3, "wide":4}'
+        data-hor-span='{"tablet":2, "normal":1, "wide":1}' 
+        data-vert-span='{"tablet":1, "normal":1, "wide":1}'
+        style="position:absolute; background-image:url('./O3dipus1_600x450.png'); 
+               background-size: cover;z-index:12; 
+               padding-left:10px; padding-top:20px;
+               font-family:'Baloo Chettan 2'; " > 
+
+     </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" 
+  crossorigin="anonymous"></script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
+  crossorigin="anonymous"></script>
+
+  <script src="../bundle.js"> </script>
+
+</body>
+</html>
+

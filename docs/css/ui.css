@@ -1,7 +1,13 @@
 
 body {
     background-color: black; 
+     -ms-overflow-style: none;
+} 
+
+body::-webkit-scrollbar {
+  display: none;
 }
+
 
 
 #topNav {
