@@ -70,8 +70,8 @@
             }'   
         data-scenes = '1,2'
         data-formats='{
-            "wide": {"width": 3000, "height":1600, "cols":5, "rows":4}, 
-             "normal":   {"width": 2400, "height":1600, "cols":4, "rows":4}, 
+             "normal":   {"width": 2400, "height":1600, "cols":4, "rows":4},
+             "wide": {"width": 3000, "height":1600, "cols":5, "rows":4}, 
              "tablet": {"width":1200, "height":1600, "cols":2, "rows":4}
         }'>
     </div>
@@ -85,14 +85,15 @@
                 <a href="../index.html">prev</a>
             </div>
             <div id="next">
-                <a href="../1_8/index.html">next</a>
+                <a href="../1_6/index.html">next</a>
             </div>
         </div> 
         <div id="pageTitle"> </div>
     </div>
 
     <div class="visual-elt" 
-        style=" position:absolute; background-image:url('./back1.png'); 
+        style=" 
+            position:absolute; background-image:url('./back1.png'); 
             background-image-position: center; 
             background-repeat: no-repeat; 
             background-size: cover;
@@ -105,33 +106,41 @@
         data-col='{"normal":1,"tablet":1,"wide":1}'
         data-hor-span='{"normal":2, "tablet":2,"wide":2}'
         data-vert-span='{"normal":2,"tablet":2,"wide":2}'>
-        <p style="background-color:rgba(0,0,0,0.3);border:white 1px solid; padding-left:4px;padding-top:4px;">
-        The Apollo Empire, a myriad of colonized worlds ruled from the Apollo Star 
-        relies on slave labor for all essential aspect of its vast economy.
-        </p>
-        <p style="background-color:rgba(0,0,0,0.3);border:white 1px solid; padding-left:4px;padding-top:4px;">
-        <strong>Centaurs</strong>, a nomadic race of living spaceships, and the only practical means of 
-        interstellar transport, make very valuable slaves. 
-        </p>
-        <p style="background-color:rgba(0,0,0,0.3);border:white 1px solid; padding-left:4px;padding-top:4px;">
-        still, some are legally free, and many more are beyond the reach of the empire...
-        </p>
+       <p style="background-color:rgba(0,0,0,0.3);border:white 1px solid; padding-left:4px;padding-top:4px;">
+        <strong>O3dipus</strong> and Akra are taking a well-deserved rest after another profitable trade venture
     </div>
 
+    <div class="visual-elt" 
+        style=" 
+            position:absolute; background-image:url('./akra4_600x400.png'); 
+            background-image-position: center; 
+            background-repeat: no-repeat; 
+            background-size: cover;
+            padding-top:30px; padding-left:30px; padding-right:20px; 
+            color:white; font-size:1.3em;
+            font-family:'Baloo Chettan 2';" 
+
+        data-include-in-viewport = 'normal,tablet,wide'
+        data-row='{"normal":4,"tablet":1,"wide":1}'
+        data-col='{"normal":1,"tablet":1,"wide":3}'
+        data-hor-span='{"normal":1, "tablet":2,"wide":2}'
+        data-vert-span='{"normal":1,"tablet":2,"wide":2}'>
+    </div>
+
+ 
      <div class="visual-elt" 
         style=" position:absolute; background:none; 
-                padding-top:20px; 
                 color:white; font-size:1.3em;
                 font-family:'Baloo Chettan 2';
                 z-index:3;" 
         data-include-in-viewport = 'normal,tablet'
-        data-row='{"normal":4,"tablet":4}'
-        data-col='{"normal":1,"tablet":1}'
+        data-row='{"normal":2,"tablet":4}'
+        data-col='{"normal":3,"tablet":1}'
         data-hor-span='{"normal":1}'>
         <p style="background-color:rgba(0,0,0,0.3);
-                  padding-bottom:4px;padding-left:5px;text-align:left">
-        Having just closed a juicy business deal, O3dipus, newly made Apollo envoy, and his business partner, 
-        the free centaur Akra, are looking for their next venture when 
+                  padding-top:10px; padding-bottom:4px;padding-left:15px;text-align:left">
+        But the R&R is broken by a priorty incoming from Phythia, High Priestess of Delfi
+        ...A call O3dipus would rather not take, but when the High Priestess calls, you answer. 
         </p>
     </div>
 
@@ -141,8 +150,8 @@
            style="position:absolute;padding-right:20px;color:white;font-family:'courier';"
          data-include-in-viewport = 'normal,wide'
          data-row='{"normal":3,"wide":3}' 
-         data-col='{"normal":2,"wide":3}'
-         data-hor-span='{"normal":3,"wide":3}'
+         data-col='{"normal":2,"wide":1}'
+         data-hor-span='{"normal":3,"wide":4}'
          data-vert-span='{"normal":2,"wide":2}'>
 
         <div class="teletype" style="margin-top: 40px; border:'2px orange solid';" >
@@ -161,17 +170,38 @@
             <br/>client: [Akra Server, tribe Orlov, Nation Abacus]
             <br/>standing by...<br/><br/><br/>
         </div>
+    </div>
 
-        <div style="text-align:center; width:100%;font-size:2.0em">
-            <center><button class="blinkBorder" style="font-size:1.4em; border:lime 4px solid;" 
-                onclick="acceptPythiaCall();">Connect to videoConf</button></center>
-        </div>
+    <div class="visual-elt" id="connect" 
+         style="position:absolute; text-align:center; 
+                display: flex; align-items: center;
+                justify-content: center;
+                font-size:2.0em;background-color:orange;"
+         data-include-in-viewport = 'normal,wide'
+         data-row='{"normal":3,"wide":3}' data-col='{"normal":4,"wide":4}'
+         data-hor-span='{"normal":1,"wide":1}' data-vert-span='{"normal":1,"wide":1}'>
+         <center> <button class="blinkBorder" 
+                    style="padding-top:20%; padding-bottom:20%; padding-left:10%; padding-right:10%;
+                    background-color:red;color:white;
+                    font-size:1.4em; border:blue 4px solid;border-radius:50%" 
+                    onclick="acceptPythiaCall();">Connect</button></center>
+    </div>
+
+    <div class="visual-elt" id="akraWireframe"
+        data-include-in-viewport = 'normal,tablet,wide'
+        data-row='{"normal":2, "tablet":3, "wide":3}' 
+        data-col='{"normal":1, "tablet":1, "wide":5}'
+        style=" position:absolute;z-index:3; 
+            background-image-position: center; 
+            background-repeat: no-repeat; 
+            background-size: cover;
+            background-image:url('./Akra2_600x400.png'); background-size: cover; " > 
     </div>
 
     <div class="visual-elt"
-        data-include-in-viewport = 'normal,tablet'
-        data-row='{"normal":3, "tablet":3}' 
-        data-col='{"normal":1, "tablet":1}'
+        data-include-in-viewport = 'normal,tablet,wide'
+        data-row='{"normal":3, "tablet":3, "wide":2}' 
+        data-col='{"normal":1, "tablet":1, "wide":1}'
         style=" position:absolute;z-index:3; 
             background-image-position: center; 
             background-repeat: no-repeat; 
@@ -180,9 +210,33 @@
     </div>
 
     <div class="visual-elt"
-        data-include-in-viewport = 'normal,tablet'
-        data-row='{"normal":1, "tablet":3}' 
-        data-col='{"normal":3, "tablet":1}'
+        data-include-in-viewport = 'wide'
+        data-row='{"normal":3, "tablet":3, "wide":1}' 
+        data-col='{"normal":1, "tablet":1, "wide":5}'
+        data-vert-span='{"wide":2}'
+        style=" position:absolute;z-index:3; 
+            background-image-position: center; 
+            background-repeat: no-repeat; 
+            background-size: cover;
+            background-image:url('./Oracle4_600x800.png');" > 
+    </div>
+
+    <div class="visual-elt"
+        data-include-in-viewport = 'normal,tablet,wide'
+        data-row='{"normal":3, "tablet":3, "wide":2}' 
+        data-col='{"normal":1, "tablet":1, "wide":1}'
+        style=" position:absolute;z-index:3; 
+            background-image-position: center; 
+            background-repeat: no-repeat; 
+            background-size: cover;
+            background-image:url('./O3dipus1_600x400.png'); background-size: cover; " > 
+    </div>
+
+
+    <div class="visual-elt"
+        data-include-in-viewport = 'wide,normal,tablet'
+        data-row='{"normal":1, "tablet":3, "wide":4}' 
+        data-col='{"normal":3, "tablet":1, "wide":5}'
         data-hor-span='{"normal":2, "tablet":2}' 
         data-vert-span='{"normal":2, "tablet":2}'
         style=" position:absolute; 
