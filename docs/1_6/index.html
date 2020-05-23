@@ -4,10 +4,11 @@
 
     <meta charset = "utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Page 2</title>
+    <title>Page 3</title>
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Yeon+Sung&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Frijole&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&family=Montserrat:wght@100;300&display=swap" rel="stylesheet">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../css/styles.css"> 
 
@@ -25,7 +26,7 @@
           box-shadow: inset 1px 1px black; }
 
 
-dl.infos dt {
+        dl.infos dt {
   position: absolute;
   left: 50px;
   margin-bottom: 26px;
@@ -53,12 +54,12 @@ dl.infos dt {
 
 
 <body>
-
     <div id="page" 
         data-meta= '{
           "page" : 1, 
           "book" : {
-                    "title": "O3dipus, King of Thebes"
+                    "title": "O3dipus, King of Thebes",
+                    "page":3
                 },
                 "scenes":[1,5], 
                 "plot" : "A", 
@@ -69,14 +70,17 @@ dl.infos dt {
         data-scenes = '1,2'
         data-formats='{
             "wide": {"width": 3000, "height":1600, "cols":5, "rows":4}, 
-             "normal":   {"width": 2400, "height":1600, "cols":4, "rows":4}, 
-             "tablet": {"width":1200, "height":1600, "cols":2, "rows":4}
+            "normal":   {"width": 2400, "height":1600, "cols":4, "rows":4}, 
+            "tablet": {"width":1200, "height":1600, "cols":2, "rows":4}
         }'>
     </div>
 
-    <div id='topNav' style="background-color:rgba(210, 220, 220, 0.5);color:white; font-weight:bold"> 
-        <div id="storyNavigation" style="display:flex">
-            <div id="first">
+    <div id='topNav' 
+         style="background-color:rgba(210, 220, 220, 0.5);
+                justify-content:space-between; color:white; font-weight:bold"> 
+
+        <i class='fas fa-bars' id="openLeftNav" style='font-size:48px;color:red'></i>
+           <div id="first">
                 <a href="../index.html">first</a>
             </div>
             <div id="prev">
@@ -85,18 +89,16 @@ dl.infos dt {
             <div id="next">
                 <a href="../1_8/index.html">next</a>
             </div>
-        </div> 
         <div id="pageTitle"> </div>
     </div>
 
     <div id="universe" class="scale-stretched visual-elt" style="z-index:10"
-            data-include-in-viewport = 'tablet,normal,wide'
-            data-row='{"normal":1, "wide":1}'
-            data-col='{"normal":1, "wide":1}'
-            data-hor-span='{"normal":4, "wide":5}'
-            data-vert-span='{"normal":2, "wide":2}'>
+            data-include-in-viewport = 'normal,wide'
+            data-row='{"tablet":1, "normal":1, "wide":1}'
+            data-col='{"tablet":1, "normal":1, "wide":1}'
+            data-hor-span='{"tablet":2, "normal":4, "wide":5}'
+            data-vert-span='{"normal":4, "wide":2}'>
 
-      <div style="left:300;z-index:40;colo:white;">  fkdla;</div>
       <div id="galaxy">
         <div id="solar-system" class="earth jupiter moon sun">
           <div id="earth" class="orbit">
@@ -127,7 +129,7 @@ dl.infos dt {
             </div>
           </div>
          
-<div id="jupiter" class="orbit">
+        <div id="jupiter" class="orbit">
             <div class="pos">
              <div class="planet">
                 <dl class="infos">
@@ -164,7 +166,7 @@ dl.infos dt {
         data-hor-span='{"tablet":2, "normal":2, "wide":2}' 
         data-vert-span='{"tablet":1, "normal":2, "wide":2}'
         style="position:absolute; background-image:url('./Oracle2_600x450.png'); 
-               background-size: cover; 
+               background-size: cover;z-index:25; 
                padding-left:10px; padding-top:20px;
                font-family:'Baloo Chettan 2'; " > 
 
@@ -178,7 +180,7 @@ dl.infos dt {
      </div>
 
      <div class="visual-elt"
-        data-include-in-viewport = 'normal,wide'
+        data-include-in-viewport = 'wide'
         data-row='{"tablet":1, "normal": 2, "wide":3}' 
         data-col='{"tablet":1, "normal":3, "wide":3}'
         data-hor-span='{"tablet":2, "normal":2, "wide":2}' 
@@ -197,7 +199,7 @@ dl.infos dt {
         data-hor-span='{"tablet":2, "normal":2, "wide":1}' 
         data-vert-span='{"tablet":1, "normal":2, "wide":1}'
         style="position:absolute; background-image:url('./Oracle3_600x450.png'); 
-               background-size: cover;z-index:12;
+               background-size: cover;z-index:12;z-index:30;
                padding-left:10px; padding-top:20px;
                font-family:'Baloo Chettan 2'; " > 
 
@@ -230,7 +232,6 @@ dl.infos dt {
 
      </div>
 
-
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
@@ -244,6 +245,20 @@ dl.infos dt {
   crossorigin="anonymous"></script>
 
   <script src="../bundle.js"> </script>
+    <script>
+            let body = $("body");
+            let universe = $("#universe");
+            let solarsys = $("#solar-system");
+
+            body.removeClass('view-2D opening').addClass("view-3D").delay(2000).queue(function() {
+                let setView = function(view) { universe.removeClass().addClass(view); };
+                $(this).dequeue();
+            })
+
+            $("#openLeftNav").click(function(){
+                alert('test');
+            })
+    </script>
 
 </body>
 </html>

@@ -11,8 +11,9 @@ body::-webkit-scrollbar {
 
 
 #topNav {
-    padding-top:10px; 
+    padding-top:10px;padding-bottom:10px; 
     position:absolute; 
+    padding-left:20px;padding-right:20px;
     background-color: rgba(240, 20, 110, 0.3); 
     color: white; 
     left: 0; 
@@ -21,8 +22,6 @@ body::-webkit-scrollbar {
     box-shadow: 2px, 2px; 
     display:flex;
     z-index:30; 
-    justify-content:space-around;
-    align-content:center;
 }
 
 #topNav A{

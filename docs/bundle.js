@@ -6,10 +6,7 @@
 /******************************************************************************/
 /******************************************************************************/
 
-/******************************************************************************
- * The page is bordered at the top with a 4 rows widget and 
- * at the bottom with a  2 rows widget. 
- * ****************************************************************************/
+
 
 
 
@@ -27,25 +24,28 @@ const addSceneSystem = function( app ){
     }
 }
 
+const setContentFormat = function( app ){
 
+    let _contentFormats = $('#page').data('formats');
+
+    return {
+        available : _contentFormats 
+
+    }
+}
 $(document).ready(function() {
 
     const app = {};
     require('../common/features').mountFeatureSystem( app );
     addSceneSystem(app); 
+
+    app.contentFormats = setContentFormat( app ); 
     require('./ui/main.js').addUiFeature( app );
+
+
 
     let metadata = $("#page").data("meta");
     $("#pageTitle").text( `${metadata.book.title} - ${metadata.book.page}`);
-
-    let body = $("body");
-    let universe = $("#universe");
-    let solarsys = $("#solar-system");
-
-    body.removeClass('view-2D opening').addClass("view-3D").delay(2000).queue(function() {
-        let setView = function(view) { universe.removeClass().addClass(view); };
-            $(this).dequeue();
-        })
 
 
 })
@@ -62,8 +62,24 @@ $(document).ready(function() {
 /*****************************************************************************/
 const sizeToViewport = require('./sizeToViewport').sizeToViewport;
 /*****************************************************************************/
-const _drawBorders =  function( contentViewport, viewportTemplate, eltCss, rowColInfo ) {        
 
+
+const _drawBorders =  function( elt, contentViewport, viewportTemplate, eltCss, rowColInfo ) {        
+
+    let borderSpecs = elt.data('borders');
+
+    let topBorder = rowColInfo.row > 0
+    let leftBorder = true;
+    let bottomBorder =  (rowColInfo.row + rowColInfo.vertSpan) < (viewportTemplate.format.rows)
+
+    if(borderSpecs && viewportTemplate.name in borderSpecs){
+        let borderInstructions = borderSpecs[viewportTemplate.name];
+        if (borderInstructions === "none"){
+            leftBorder = false;
+            bottomBorder = false;  
+            topBorder = false; 
+        }
+    }       
     let gutterWidth = contentViewport.width / 100; 
     //right border
     if(rowColInfo.col + rowColInfo.horSpan < viewportTemplate.format.cols){
@@ -74,7 +90,7 @@ const _drawBorders =  function( contentViewport, viewportTemplate, eltCss, rowCo
         $("body").append(odv);
     }
     //left border
-     if(rowColInfo.col > 0 ) {
+     if(leftBorder && rowColInfo.col > 0 ) {
         let odv = $([       //right border
             `<div class="gutter" style="left:${eltCss.left}`,  
             `width:${gutterWidth}; top:${eltCss.top}`, 
@@ -82,7 +98,7 @@ const _drawBorders =  function( contentViewport, viewportTemplate, eltCss, rowCo
         $("body").append(odv);
     }
 
-    if(rowColInfo.row > 0){
+    if( topBorder ){
         let odh =  $([
             `<div class="gutter" style="top:${eltCss.top}`,  
                 `height:${contentViewport.height/ 100}; left:${eltCss.left}`, 
@@ -90,8 +106,7 @@ const _drawBorders =  function( contentViewport, viewportTemplate, eltCss, rowCo
             $("body").append(odh);
     } 
     
-    //bottom border
-    if(rowColInfo.row + rowColInfo.vertSpan < viewportTemplate.format.rows){
+    if( bottomBorder ){
         let odh =  $([
             `<div class="gutter" style="top:${eltCss.top + eltCss.height}`,  
             `height:${contentViewport.height/ 100}; left:${eltCss.left}`, 
@@ -133,7 +148,7 @@ const layoutImages = function( contentViewport , viewportTemplate, scenes){
             if(viewportClients.split(',').includes(viewportTemplate.name)){ //if this viewport includes this elt
                 let rowColInfo =  getRowColInfo( $(this), viewportTemplate) 
                 let eltCss = sizeToViewport( $(this), contentViewport, viewportTemplate ); 
-                _drawBorders(contentViewport, viewportTemplate, eltCss, rowColInfo)
+                _drawBorders($(this), contentViewport, viewportTemplate, eltCss, rowColInfo)
                 $( this ).show(); 
             }
             else{
@@ -355,6 +370,8 @@ const _configureLayout = function( app ){
 
     _configureMargins(contentViewport);
     layoutImages(contentViewport, contentFrame, app.scenes); 
+//    sizeToViewport( $('#universe'), contentViewport, contentFrame);
+//    _layoutGraphs(contentViewport);
     layoutCaptions( contentViewport, contentFrame ); 
 }
 
