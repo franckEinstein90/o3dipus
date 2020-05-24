@@ -13,7 +13,17 @@
     <link rel="stylesheet" type="text/css" href="../css/styles.css"> 
 
     <style>
-        dl.infos {
+        #akraStatus{
+           -webkit-animation:spin 10s linear infinite;
+           -moz-animation:spin 10s linear infinite;
+           animation:spin 10s linear infinite;
+        }
+
+        @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+        @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+        @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+         dl.infos {
             position: absolute; display: block; opacity: 0; width: 100%;
             height: 100%; margin-top: -90%; margin-left: 90%; padding-left: 100%;
             transform-origin: 100% 100%; transform-style: preserve-3d; transform: rotateX(90deg); }
@@ -165,7 +175,7 @@
         data-col='{"tablet":1, "normal":1, "wide":1}'
         data-hor-span='{"tablet":2, "normal":2, "wide":2}' 
         data-vert-span='{"tablet":1, "normal":2, "wide":2}'
-        style="position:absolute; background-image:url('./Oracle2_600x450.png'); 
+        style="position:absolute; background-image:url('./Pythia2.png'); 
                background-size: cover;z-index:25; 
                padding-left:10px; padding-top:20px;
                font-family:'Baloo Chettan 2'; " > 
@@ -174,10 +184,11 @@
                     width:100%; border:white 1px solid; 
                     font-size:1.1em; 
                     padding-left:4px;padding-top:4px;">
-        The Apollo Empire, a myriad of colonized worlds ruled from the Apollo Star 
-        relies on slave labor for all essential aspect of its vast economy.
+        Apollo needs its slaves to function 
         </p>
      </div>
+
+
 
      <div class="visual-elt"
         data-include-in-viewport = 'wide'
@@ -194,17 +205,30 @@
 
    <div class="visual-elt"
         data-include-in-viewport = 'wide'
-        data-row='{"tablet":1, "normal": 3, "wide":2}' 
+        data-row='{"tablet":1, "normal": 3, "wide":1}' 
         data-col='{"tablet":1, "normal":3, "wide":5}'
         data-hor-span='{"tablet":2, "normal":2, "wide":1}' 
-        data-vert-span='{"tablet":1, "normal":2, "wide":1}'
-        style="position:absolute; background-image:url('./Oracle3_600x450.png'); 
+        data-vert-span='{"tablet":1, "normal":2, "wide":2}'
+        style="position:absolute; background-image:url('./Pythia1.png'); 
                background-size: cover;z-index:12;z-index:30;
                padding-left:10px; padding-top:20px;
                font-family:'Baloo Chettan 2'; " > 
 
    </div>
-   
+  
+    <div class="visual-elt" id="akraWireframe"
+        data-include-in-viewport = 'normal,tablet,wide'
+        data-borders='{"normal":"none","wide":"none"}'
+        data-row='{"normal":2, "tablet":3, "wide":4}' 
+        data-col='{"normal":1, "tablet":1, "wide":4}'
+        style=" position:absolute;z-index:3;text-align:center;">
+
+            <img id="akraStatus" src="./AkraWire_600x400.png"
+                style="width:65%;border:red solid 10px;border-radius:50%;"/>
+    </div>
+
+
+ 
     <div class="visual-elt"
         data-include-in-viewport = 'normal'
         data-row='{"tablet":1, "normal": 3, "wide":2}' 

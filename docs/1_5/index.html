@@ -13,6 +13,16 @@
     <link rel="stylesheet" type="text/css" href="../css/styles.css"> 
 
     <style>
+        #akraStatus{
+           -webkit-animation:spin 10s linear infinite;
+           -moz-animation:spin 10s linear infinite;
+           animation:spin 10s linear infinite;
+        }
+
+        @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+        @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+        @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
         .blinkBorder{
             animation: blink-border .75s step-end infinite
         }
@@ -103,16 +113,19 @@
             background-repeat: no-repeat; 
             background-size: cover;
             padding-top:30px; padding-left:30px; padding-right:20px; 
-            color:white; font-size:1.3em;
+            color:white; font-size:1.0em;
             font-family:'Baloo Chettan 2';" 
 
         data-include-in-viewport = 'normal,tablet,wide'
+        data-borders='{"wide":"none"}'
         data-row='{"normal":1,"tablet":1,"wide":1}'
         data-col='{"normal":1,"tablet":1,"wide":1}'
         data-hor-span='{"normal":2, "tablet":2,"wide":2}'
         data-vert-span='{"normal":2,"tablet":2,"wide":2}'>
-       <p style="background-color:rgba(0,0,0,0.3);border:white 1px solid; padding-left:4px;padding-top:4px;">
-        <strong>O3dipus</strong> and Akra are taking a well-deserved rest after another profitable trade venture
+       <p style="background-color:rgba(0,0,0,0.3);border:white 1px solid; 
+                 padding-left:4px;padding-top:4px;font-size:1.1em">
+        <strong>O3dipus</strong> and Akra are taking a well-deserved 
+        rest after another profitable trade venture
     </div>
 
     <div class="visual-elt" 
@@ -126,8 +139,8 @@
             font-family:'Baloo Chettan 2';" 
 
         data-include-in-viewport = 'normal,tablet,wide'
-        data-row='{"normal":4,"tablet":1,"wide":1}'
-        data-col='{"normal":1,"tablet":1,"wide":3}'
+        data-row='{"normal":3,"tablet":1,"wide":1}'
+        data-col='{"normal":4,"tablet":1,"wide":3}'
         data-hor-span='{"normal":1, "tablet":2,"wide":2}'
         data-vert-span='{"normal":1,"tablet":2,"wide":2}'>
     </div>
@@ -135,10 +148,11 @@
  
      <div class="visual-elt" 
         style=" position:absolute; background:none; 
-                color:white; font-size:1.3em;
+                color:white; font-size:1.0em;
                 font-family:'Baloo Chettan 2';padding-left:15px;
                 z-index:3;" 
         data-include-in-viewport = 'tablet,wide'
+        data-borders='{"wide":"none"}'
         data-row='{"normal":2,"tablet":4,"wide":1}'
         data-col='{"normal":3,"tablet":1,"wide":3}'
         data-hor-span='{"normal":2,"wide":1}'>
@@ -150,21 +164,22 @@
          <p style="background-color:rgba(0,0,0,0.3);z-index:30;
                   padding-top:10px; padding-bottom:4px; padding-left:15px;
                   text-align:left">
-        ...A call O3dipus would rather not take, but when the High Priestess calls, 
-          <p style="background-color:rgba(0,0,0,0.3);z-index:30;
-                  padding-top:10px; padding-bottom:4px; padding-left:15px;
-                  text-align:left">
-      ...you answer.<br/> 
+        ...A call O3dipus would rather not take, but when the 
+        High Priestess reaches to a citizen
+        of the Apollo empire 
+         
         </p>
     </div>
 
 
 
     <div   class="visual-elt" id="cap1" 
-           style="position:absolute;padding-right:20px;color:white;font-family:'courier';"
+           style="position:absolute;padding-right:20px;color:white;
+                  font-family:'courier';"
          data-include-in-viewport = 'normal,wide'
+         data-borders = '{"normal":"none"}'
          data-row='{"normal":3,"wide":3}' 
-         data-col='{"normal":2,"wide":1}'
+         data-col='{"normal":1,"wide":1}'
          data-hor-span='{"normal":3,"wide":4}'
          data-vert-span='{"normal":2,"wide":2}'>
 
@@ -186,79 +201,79 @@
 
     <div class="visual-elt" id="connect" 
          style="position:absolute; text-align:center; 
-                display:flex; align-items:center; justify-content: center;
+                display:flex; align-items:center; text-align:center;justify-content: center;
                 font-size:2.0em; background:none;"
          data-include-in-viewport = 'normal,wide'
-         data-borders='{"normal":"none"}'
+         data-borders='{"normal":"none","wide":"none"}'
          data-row='{"normal":4,"wide":3}' 
          data-col='{"normal":4,"wide":4}'
          data-hor-span='{"normal":1,"wide":1}' data-vert-span='{"normal":1,"wide":1}'>
          <center> <button class="blinkBorder" 
-                    style="padding-top:20%; padding-bottom:20%; padding-left:10%; padding-right:10%;
+                    style="padding-top:20%; padding-bottom:20%; 
                     background-color:red;color:white;
                     font-size:1.4em; border-radius:50%; border:blue 20px solid;" 
                     onclick="acceptPythiaCall();">connect</button></center>
     </div>
 
+
+
+
     <div class="visual-elt" id="akraWireframe"
         data-include-in-viewport = 'normal,tablet,wide'
-        data-row='{"normal":2, "tablet":3, "wide":3}' 
-        data-col='{"normal":1, "tablet":1, "wide":5}'
-        style=" position:absolute;z-index:3; 
-            background-image-position: center; 
-            background-repeat: no-repeat; 
-            background-size: cover;
-            background-image:url('./Akra2_600x400.png'); background-size: cover; " > 
+        data-borders='{"normal":"none","wide":"none"}'
+        data-row='{"normal":2, "tablet":3, "wide":2}' 
+        data-col='{"normal":1, "tablet":1, "wide":1}'
+        style=" position:absolute;z-index:3;text-align:center;">
+
+            <img id="akraStatus" src="./Akra2_600x400.png" 
+                style="width:65%;border:red solid 10px;border-radius:50%;"/>
     </div>
+
+
+
 
     <div class="visual-elt"
         data-include-in-viewport = 'normal,tablet,wide'
-        data-row='{"normal":3, "tablet":3, "wide":2}' 
-        data-col='{"normal":1, "tablet":1, "wide":1}'
+        data-row='{"normal":2, "tablet":3, "wide":2}' 
+        data-col='{"normal":3, "tablet":1, "wide":5}'
         style=" position:absolute;z-index:3; 
             background-image-position: center; 
             background-repeat: no-repeat; 
             background-size: cover;
             background-image:url('./O3dipus1_600x400.png'); background-size: cover; " > 
+             <p style="background-color:rgba(0,0,0,0.3);z-index:30;
+             color:white;padding-top:10px; padding-bottom:4px; padding-left:15px;
+             text-align:left">
+ ...he answers.
     </div>
 
     <div class="visual-elt"
         data-include-in-viewport = 'normal,wide'
         data-row='{"normal":1, "tablet":3, "wide":1}' 
         data-col='{"normal":3, "tablet":1, "wide":5}'
-        data-vert-span='{"normal":2, "wide":2}'
+        data-vert-span='{"normal":1, "wide":1}'
         style=" position:absolute;z-index:3; 
             background-image-position: center; 
             background-repeat: no-repeat; 
             background-size: cover;
-            background-image:url('./Oracle4_600x800.png');" > 
+            background-image:url('./imgOracle/Pythia1_600x400.png');" >  
+            
+       
     </div>
+
+   
 
     <div class="visual-elt"
-        data-include-in-viewport = 'normal,tablet,wide'
-        data-row='{"normal":3, "tablet":3, "wide":2}' 
-        data-col='{"normal":1, "tablet":1, "wide":1}'
-        style=" position:absolute;z-index:3; 
-            background-image-position: center; 
-            background-repeat: no-repeat; 
-            background-size: cover;
-            background-image:url('./O3dipus1_600x400.png'); background-size: cover; " > 
-    </div>
 
-<!--    <div class="visual-elt"
-        data-include-in-viewport = 'normal'
+        data-include-in-viewport = 'normal,wide'
         data-row='{"normal":1, "tablet":3, "wide":4}' 
-        data-col='{"normal":3, "tablet":1, "wide":5}'
-        data-hor-span='{"normal":2, "tablet":2}' 
+        data-col='{"normal":4, "tablet":1, "wide":5}'
+        data-hor-span='{"normal":1, "tablet":2}' 
         data-vert-span='{"normal":2, "tablet":2}'
-        style=" position:absolute; 
-            background-image-position: center; 
-            background-repeat: no-repeat; 
-            background-size: cover;
-            background-image:url('./fromAbove.png');  " > 
+        style=" position:absolute;">
+        <img src="./imgOedipus/O3dipusStanding.png"/>
 
-        <img src="./fromAbove.png"/ style="width:100%"/>
-    </div>-->
+    </div>
 
 
     <div class="visual-elt"

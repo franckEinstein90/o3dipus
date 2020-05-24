@@ -70,7 +70,8 @@ const _drawBorders =  function( elt, contentViewport, viewportTemplate, eltCss, 
 
     let topBorder = rowColInfo.row > 0
     let leftBorder = true;
-    let bottomBorder =  (rowColInfo.row + rowColInfo.vertSpan) < (viewportTemplate.format.rows)
+    let bottomBorder =  (rowColInfo.row + rowColInfo.vertSpan) < (viewportTemplate.format.rows);
+    let rightBorder = (rowColInfo.col + rowColInfo.horSpan) < (viewportTemplate.format.cols);
 
     if(borderSpecs && viewportTemplate.name in borderSpecs){
         let borderInstructions = borderSpecs[viewportTemplate.name];
@@ -78,11 +79,12 @@ const _drawBorders =  function( elt, contentViewport, viewportTemplate, eltCss, 
             leftBorder = false;
             bottomBorder = false;  
             topBorder = false; 
+            rightBorder = false; 
         }
     }       
     let gutterWidth = contentViewport.width / 100; 
     //right border
-    if(rowColInfo.col + rowColInfo.horSpan < viewportTemplate.format.cols){
+        if( rightBorder) {
         let odv = $([       //right border
             `<div class="gutter" style="left:${eltCss.left + eltCss.width}`,  
             `width:${gutterWidth}; top:${eltCss.top}`, 
