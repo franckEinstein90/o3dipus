@@ -96,7 +96,7 @@ const _configureMargins = function(contentViewport){
    
   
 const fitToTemplate = function(contentMaxHeight, contentMaxWidth) {
-
+    debugger
     let contentFormats = $('#page').data('formats');
     let contentArea = contentMaxHeight * contentMaxWidth;
     let wastedSpace = (width, height) => contentArea - (width * height)
