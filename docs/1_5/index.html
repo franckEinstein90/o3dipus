@@ -4,75 +4,42 @@
 
     <meta charset = "utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>front</title>
+    <title>Page 2</title>
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Yeon+Sung&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Frijole&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&family=Montserrat:wght@100;300&display=swap" rel="stylesheet">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../css/styles.css"> 
-    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
 
     <style>
-        dl.infos {
-            position: absolute;
-            display: block;
-            opacity: 0;
-            width: 100%;
-            height: 100%;
-  margin-top: -90%;
-  margin-left: 90%;
-  padding-left: 100%;
-  transform-origin: 100% 100%;
-  transform-style: preserve-3d;
-  transform: rotateX(90deg); }
+        #akraStatus{
+           -webkit-animation:spin 10s linear infinite;
+           -moz-animation:spin 10s linear infinite;
+           animation:spin 10s linear infinite;
+        }
 
-        dl.infos:before {
-          position: absolute;
-          content: '';
-          height: 30px;
-          left: 15px;
-          bottom: 0;
-          border-top: 1px solid white;
-          border-left: 4px dashed white;
-          transform-style: preserve-3d;
-          transform: skew(-45deg, 0deg);
-          box-shadow: inset 1px 1px black; }
-
-
-dl.infos dt {
-  position: absolute;
-  left: 50px;
-  margin-bottom: 26px;
-  bottom: 30px;
-  color: #FFF;
-  font-size: 14px;
-  text-shadow: 1px 1px 2px black; }
-
-dl.infos dd:after {
-  position: absolute;
-  left: 50px;
-  bottom: 30px;
-  width: 300px;
-  color: #FFF;
-  font-size: 22px;
-  text-shadow: 1px 1px 2px black; }
-
-        dl.infos dd span:after {
-          position: absolute; left: 50px; bottom: 14px; width: 300px;
-          color: #FFF; font-size: 11px; text-shadow: 1px 1px 2px black; }
-
+        @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+        @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+        @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
         .blinkBorder{
             animation: blink-border .75s step-end infinite
         }
 
         @keyframes blink-border{
-            from, to { border-color: transparent }
-            50% {border-color: orange }
+            from{ font-size:0.4em;border-color: black;}
+            50% {border-color: blue; color:black; font-size:1.03em;}
+            75% {border-color: yellow}
+            to{  font-size:2.0em }
         }
 
         .teletype{
-            white-space: nowrap; overflow: hidden; margin: 0 auto; animation: typing 4.5s steps(40, end), blink-caret .75s step-end infinite; 
+            white-space: nowrap; 
+            overflow: hidden; 
+            padding-left:20px; padding-top:10px; 
+            font-size:1.4em;  
+            margin: 0 auto; animation: typing 4.5s steps(40, end), blink-caret .75s step-end infinite; 
         }
 
         @keyframes typing {
@@ -85,30 +52,10 @@ dl.infos dd:after {
             50% {border-color: orange }
         }
     </style>
-
 </head>
 
+
 <body>
-
-    <div id="page" 
-            data-meta= '{
-                "page" : 1, 
-                "book" : {
-                    "title": "O3dipus, King of Thebes"
-                },
-                "scenes":[1,5], 
-                "plot" : "A", 
-                "next" : {
-                    "url": "../1_8/index.html"
-                 }
-            }'   
-
- 
-            data-formats='{
-                "A": {"width":1800, "height":1350, "cols":3, "rows":3}
-            }'>
-    </div>
-
     <script>
         const audio = new Audio('./connect.mp3');
         const playRing = function(){
@@ -117,367 +64,231 @@ dl.infos dd:after {
         const acceptPythiaCall = function(){
             playRing();
             $('#cap1').css({'display':'none'});
- //           $('#mapCaption').css({'display':'none'}); 
-            $('.oracleCaption').show();
+            window.location.href = "../1_6/index.html"; 
         }
     </script>
 
 
-<!-- "C": {"width":2400, "height":1400, "cols": 4, "rows":4}-->
+    <div id="page" 
+        data-meta= '{
+          "page" : 1, 
+          "book" : {
+                    "title": "O3dipus, King of Thebes"
+                },
+                "scenes":[1,5], 
+                "plot" : "A", 
+                "next" : {
+                    "url": "../1_8/index.html"
+                 }
+            }'   
+        data-scenes = '1,2'
+        data-formats='{
+             "normal":   {"width": 2400, "height":1600, "cols":4, "rows":4},
+             "wide": {"width": 3000, "height":1600, "cols":5, "rows":4}, 
+             "tablet": {"width":1200, "height":1600, "cols":2, "rows":4}
+        }'>
+    </div>
 
+    <div id='topNav' 
+         style="background-color:rgba(210, 220, 220, 0.5);
+                justify-content:space-between; color:white; font-weight:bold"> 
 
-    <div id='topNav' style="background-color:rgba(210, 220, 220, 0.5);color:white; font-weight:bold"> 
-        <div id="storyNavigation" style="display:flex">
-            <div id="first">
+        <i class='fas fa-bars' id="openLeftNav" style='font-size:48px;color:red'></i>
+           <div id="first">
                 <a href="../index.html">first</a>
             </div>
             <div id="prev">
                 <a href="../index.html">prev</a>
             </div>
             <div id="next">
-                <a href="../1_8/index.html">next</a>
+                <a href="../1_6/index.html">next</a>
             </div>
-        </div> 
         <div id="pageTitle"> </div>
     </div>
 
+   <div class="visual-elt" 
+        style=" 
+            position:absolute; background-image:url('./back1.png'); 
+            background-image-position: center; 
+            background-repeat: no-repeat; 
+            background-size: cover;
+            padding-top:30px; padding-left:30px; padding-right:20px; 
+            color:white; font-size:1.0em;
+            font-family:'Baloo Chettan 2';" 
 
-
-
-    <div id="marginLeft"  style="background-color:white;position:absolute;left:0;top:0"></div>
-    <div id="marginRight" style="background-color:white;position:absolute;left:0;top:0"></div>
-    <div id="universe" class="scale-stretched visual-elt" style="z-index:30"
-            data-include-in-viewport = 'A'
-            data-row='{"A":1, "C":1}'
-            data-col='{"A":1, "C":1}'
-            data-hor-span='{"A":3, "C":2}'>
-
-      <div style="left:300;z-index:40;colo:white;">  fkdla;</div>
-      <div id="galaxy">
-        <div id="solar-system" class="earth jupiter moon sun">
-          <div id="earth" class="orbit">
-            <div class="pos">
-              <div class="orbit">
-                <div class="pos">
-                  <div class="moon">
-                        <p style="color:white;text-align:center"><br/>Pythia's temple</p></div>
-                </div>
-              </div>
-              <div class="planet">
-                <dl class="infos">
-                  <dt></dt>
-                  <dd><span></span></dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-
-         <div id="uranus" class="orbit">
-            <div class="pos">
-              <div class="planet">
-                <dl class="infos">
-                  <dt>Uranus</dt>
-                  <dd><span></span></dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-         
-<div id="jupiter" class="orbit">
-            <div class="pos">
-             <div class="planet">
-                <dl class="infos">
-                  <dt></dt>
-                  <dd><span></span></dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-         <div id="neptune" class="orbit">
-            <div class="pos">
-              <div class="planet">
-                <dl class="infos">
-                  <dt>Neptune</dt>
-                  <dd><span></span></dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-          <div id="sun">
-            <dl class="infos">
-              <dt></dt>
-              <dd><span></span></dd>
-            </dl>
-          </div>
-        </div>
-      </div>
+        data-include-in-viewport = 'normal,tablet,wide'
+        data-borders='{"wide":"none"}'
+        data-row='{"normal":1,"tablet":1,"wide":1}'
+        data-col='{"normal":1,"tablet":1,"wide":1}'
+        data-hor-span='{"normal":2, "tablet":2,"wide":2}'
+        data-vert-span='{"normal":2,"tablet":2,"wide":2}'>
+       <p style="background-color:rgba(0,0,0,0.3);border:white 1px solid; 
+                 padding-left:4px;padding-top:4px;font-size:1.1em">
+        <strong>O3dipus</strong> and Akra are taking a well-deserved 
+        rest after another profitable trade venture
     </div>
 
-    <div class="caption storyCaption" style="width:340px;" 
-        data-include-in-viewport = 'A'
-        data-row='{"A":1}'
-        data-col='{"A":3}'>
-        <p>
-        The Apollo Empire, a giant cofdsa:walition of colonized 
-        worlds ruled from the Apollo star system 
-        is wrestling with massive social unrest
-        <p>
-        Pythia, high priestess of Apollo, and spiritual leader of the empire hasn't left the moon temple in decades, 
-        but continues to deliver edicts directly via videoConf.  
-        <p>
-        The young O3dipus has just been named envoy of the empire, giving him full legal access to 
-        trade routes controlled by the empire. 
-     </div>
-     <div class="caption" id="cap1" style="display:'none'; color:lime;font-family:'courier';"
-         data-include-in-viewport = 'C'
-         data-options='{"fullWidth":1, "fullHeight":1}'
-         data-row='{"A":2}'
-         data-col='{"A":1}'
-         data-hor-span='{"A":2}'
-         data-vert-span='{"A":2}'>
-        <div style="height:20px;background-color:white;width:100%"></div>
-       <div class="teletype" style="margin-top: 40px; border:'2px orange solid';" >
-            incoming call [region: Apollo Star System]
+    <div class="visual-elt" 
+        style=" 
+            position:absolute; background-image:url('./akra4_600x400.png'); 
+            background-image-position: center; 
+            background-repeat: no-repeat; 
+            background-size: cover;
+            padding-top:30px; padding-left:30px; padding-right:20px; 
+            color:white; font-size:1.3em;
+            font-family:'Baloo Chettan 2';" 
+
+        data-include-in-viewport = 'normal,tablet,wide'
+        data-row='{"normal":3,"tablet":1,"wide":1}'
+        data-col='{"normal":4,"tablet":1,"wide":3}'
+        data-hor-span='{"normal":1, "tablet":2,"wide":2}'
+        data-vert-span='{"normal":1,"tablet":2,"wide":2}'>
+    </div>
+
+ 
+     <div class="visual-elt" 
+        style=" position:absolute; background:none; 
+                color:white; font-size:1.0em;
+                font-family:'Baloo Chettan 2';padding-left:15px;
+                z-index:3;" 
+        data-include-in-viewport = 'tablet,wide'
+        data-borders='{"wide":"none"}'
+        data-row='{"normal":2,"tablet":4,"wide":1}'
+        data-col='{"normal":3,"tablet":1,"wide":3}'
+        data-hor-span='{"normal":2,"wide":1}'>
+        <p style="background-color:rgba(0,0,0,0.3);z-index:30;
+                  padding-top:10px; padding-bottom:4px; padding-left:15px;
+                  text-align:left">
+        But this nice bit of R&R is quickly destroyed by 
+        a priority incoming from Phythia, High Priestess of Delfi
+         <p style="background-color:rgba(0,0,0,0.3);z-index:30;
+                  padding-top:10px; padding-bottom:4px; padding-left:15px;
+                  text-align:left">
+        ...A call O3dipus would rather not take, but when the 
+        High Priestess reaches to a citizen
+        of the Apollo empire 
+         
+        </p>
+    </div>
+
+
+
+    <div   class="visual-elt" id="cap1" 
+           style="position:absolute;padding-right:20px;color:white;
+                  font-family:'courier';"
+         data-include-in-viewport = 'normal,wide'
+         data-borders = '{"normal":"none"}'
+         data-row='{"normal":3,"wide":3}' 
+         data-col='{"normal":1,"wide":1}'
+         data-hor-span='{"normal":3,"wide":4}'
+         data-vert-span='{"normal":2,"wide":2}'>
+
+        <div class="teletype" style="border:'2px orange solid';" >
             <br/>
-            <strong style="color:red">Sender</strong>:
+            <strong>*incoming call [region: Apollo Star System]*</strong>
+            <br/><br/>
+            <strong style="color:white">Sender</strong>: Pythia, 
+            <br/> Oracle of Delfi, High Priestess Apollo Temple 
             <br/> **************************
-            <br/> Pythia, Oracle of Delfi, 
-            <br/> High Priestess Apollo Temple 
-            <br/> **************************
-            <br/><strong style="color:red">To</strong>: <strong>O3dipus</strong>, Envoy of Apollo
+            <br/><strong style="color:white">To</strong>: <strong>O3dipus</strong>, Envoy of Apollo
         </div>
         <div class="teletype">
             <br/>server: [Delfi moon temple server, Apollo Planet Orbit]
             <br/>client: [Akra Server, tribe Orlov, Nation Abacus]
             <br/>standing by...<br/><br/><br/>
         </div>
-
-        <div style="text-align:center; width:100%">
-            <center><button class="blinkBorder" style="border:lime 4px solid;" 
-                onclick="acceptPythiaCall();">Connect to videoConf</button></center>
-        </div>
-
     </div>
 
-  
-    <img src='./O3dipus1_600x450.png' class="visual-elt" 
-        data-include-in-viewport ='A'
-        data-row ='{"A":2,"C":2}' 
-        data-col = '{"A":2, "C":1}' 
-        style="position:absolute;">
+    <div class="visual-elt" id="connect" 
+         style="position:absolute; text-align:center; 
+                display:flex; align-items:center; text-align:center;justify-content: center;
+                font-size:2.0em; background:none;"
+         data-include-in-viewport = 'normal,wide'
+         data-borders='{"normal":"none","wide":"none"}'
+         data-row='{"normal":4,"wide":3}' 
+         data-col='{"normal":4,"wide":4}'
+         data-hor-span='{"normal":1,"wide":1}' data-vert-span='{"normal":1,"wide":1}'>
+         <center> <button class="blinkBorder" 
+                    style="padding-top:20%; padding-bottom:20%; 
+                    background-color:red;color:white;
+                    font-size:1.4em; border-radius:50%; border:blue 20px solid;" 
+                    onclick="acceptPythiaCall();">connect</button></center>
+    </div>
+
+
+
+
+    <div class="visual-elt" id="akraWireframe"
+        data-include-in-viewport = 'normal,tablet,wide'
+        data-borders='{"normal":"none","wide":"none"}'
+        data-row='{"normal":2, "tablet":3, "wide":2}' 
+        data-col='{"normal":1, "tablet":1, "wide":1}'
+        style=" position:absolute;z-index:3;text-align:center;">
+
+            <img id="akraStatus" src="./Akra2_600x400.png" 
+                style="width:65%;border:red solid 10px;border-radius:50%;"/>
+    </div>
+
+
+
 
     <div class="visual-elt"
-        data-include-in-viewport = 'A'
-        data-row='{"A":2, "C":1}' 
-        data-col='{"A":1, "C":4}' 
-        style="position:absolute; background-image:url('./Oracle2_600x450.png'); background-size: cover; " > 
+        data-include-in-viewport = 'normal,tablet,wide'
+        data-row='{"normal":2, "tablet":3, "wide":2}' 
+        data-col='{"normal":3, "tablet":1, "wide":5}'
+        style=" position:absolute;z-index:3; 
+            background-image-position: center; 
+            background-repeat: no-repeat; 
+            background-size: cover;
+            background-image:url('./O3dipus1_600x400.png'); background-size: cover; " > 
+             <p style="background-color:rgba(0,0,0,0.3);z-index:30;
+             color:white;padding-top:10px; padding-bottom:4px; padding-left:15px;
+             text-align:left">
+ ...he answers.
     </div>
 
-    <img src='./Oracle2_600x350.png'  class="visual-elt"
-        data-include-in-viewport = 'C'
-        data-row='{"C":1}' data-col='{"C":3}' 
-        data-vert-span='{"C":2}'
-        data-hor-span='{"C":2}'
-        style="position:absolute;z-index:5"/> 
-
-
-
-    <img    src="./Oracle3_600x450.png" class="visual-elt"
-            data-include-in-viewport ='A'
-            data-row='{"A":2}' data-col ='{"A":3}' 
-            style="position:absolute;" />
-
-    <img    src="./O3dipus2.png" class="visual-elt"
-            data-include-in-viewport = 'A'
-            data-row='{"A":3, "C":2}' 
-            data-col = '{"A":3, "C":2}'     
-            style="position:absolute;">
-
-    <img src="./akra1200x450.png" class="visual-elt"
-         data-include-in-viewport = 'A'
-         data-row='{"A":3}' 
-         data-col='{"A":1}' 
-         data-hor-span='{"A":2}' 
-         data-vert-span='{"A":1}' 
-         style="position:absolute;" />
-
-<!--    <div class="caption oracleCaption" style="left:540px; top:300px; z-index:25; background-color:rgba(0,0,0,0.5)">
-            O3dipus.
-    </div>-->
-
-
-    <div id="mapCaption" class="caption locationDescription"  style="background:none"
-        data_row='{"A":1}'
-        data_col='{"A":3}'
-        data-hor-span='{"A":1}'>
-        <h3>Apollo Empire star system</h3>
-        <p>seat of Apollo Empire</p>
-    </div>
-        
-    <div class="caption oracleCaption" 
-         data-include-in-viewport = 'A'
-         data-row='{"A":2}'
-         data-col='{"A":1}'
-         data-hor-span='{"A":3}'
-         data-vert-span='{"A":2}'
-         style="z-index:25;font-size:1.8em;border:'white solid 3px;'">
-         O3dipus
-    </div>
-
-
-    <svg height="900" width="900" style="z-index:20;position:absolute;left:0; top:0">
-        <line x1="200" y1="600" x2="100" y2="400" style="stroke:rgb(255,255,255);stroke-width:3" />
-              Sorry, your browser does not support inline SVG.
-    </svg>
-
-    <div class="caption oracleCaption"  style="display:none"
-        data-include-in-viewport= 'A'
-        data-row='{"A":2}'
-        data-col='{"A":2}'
-        data-caption-ends='{"A":{"col":2, "row":2}'>
-        
-      You've done well for yourself. 
-        <br/>from the GUTTERS of Corynth... 
-     </div>
-
- <!-- 
-    <div class="oracleCaption" style="border: 5px white solid; 
-    left:1000px; top:480px; width:500px; z-index:25;font-size:1.5em;">
-        ...so says <span style='font-size:1.8em'>Apollo</span>, 
+    <div class="visual-elt"
+        data-include-in-viewport = 'normal,wide'
+        data-row='{"normal":1, "tablet":3, "wide":1}' 
+        data-col='{"normal":3, "tablet":1, "wide":5}'
+        data-vert-span='{"normal":1, "wide":1}'
+        style=" position:absolute;z-index:3; 
+            background-image-position: center; 
+            background-repeat: no-repeat; 
+            background-size: cover;
+            background-image:url('./imgOracle/Pythia1_600x400.png');" >  
+            
+       
     </div>
 
    
 
+    <div class="visual-elt"
 
-
-
-    <div style="position:absolute; left:20px; top:440px; width:800px; z-index:25">
-        <div class="oracleCaption" style="left:0; top:0px; font-size:1.4em;border:white 1px solid">
-            Apparently, <span style="font-size:1.7em">fate</span> has big plans 
-        </div>
-
-        <div class="oracleCaption" 
-        style="border: white 3px solid; left:330px; top:70px;  font-size:1.4em">
-           for you 
-        </div>
-
+        data-include-in-viewport = 'normal,wide'
+        data-row='{"normal":1, "tablet":3, "wide":4}' 
+        data-col='{"normal":4, "tablet":1, "wide":5}'
+        data-hor-span='{"normal":1, "tablet":2}' 
+        data-vert-span='{"normal":2, "tablet":2}'
+        style=" position:absolute;">
+        <img src="./imgOedipus/O3dipusStanding.png"/>
 
     </div>
-    
-    <div style="position:absolute; left:400px; top:640px; width:400px">
-        <div class="oracleCaption" 
-         style="border:1px solid white; z-index:25;font-size:1.9em;"> 
-    You seem destined
-    </div>
-</div>
-    <div class="oracleCaption" 
-    style=  "left:430px; top:800px; 
-            border:4px solid white; z-index:25;font-size:1.8em;"> 
-    for <span style="font-size:1.9em">GREAT</span> things
-    </div>
 
-    <div class="gutter" style="left:1800px; top:0px; width:150px; height:1350px"> </div>
 
-    <div class="oedipusCaption" style="left:420px; top:120px; z-index:25; font-size:1.8em">
-       Your Eternity...  
-    </div>
-    <div class="oedipusCaption" style="left:440px; top:240px; z-index:25; font-size:1.8em">
-      this call honors me 
+    <div class="visual-elt"
+        data-include-in-viewport = 'wide,tablet'
+        data-row='{"normal":1, "tablet":3, "wide":4}' 
+        data-col='{"normal":3, "tablet":1, "wide":5}'
+        data-hor-span='{"normal":2, "tablet":2}' 
+        data-vert-span='{"normal":2, "tablet":2}'
+        style=" position:absolute; 
+            background-image-position: center; 
+            background-repeat: no-repeat; 
+            background-size: cover;
+            background-image:url('./akra600x400.png'); background-size: cover; " > 
     </div>
 
-
-    <div style="position:absolute; top:230px; left:1100px; width:400px; z-index:25;"> 
-         <div class="oedipusCaption" style="left:0; top:0px; z-index:25;font-size:1.8em">
-            My ship, Akra, and I,  
-        </div>
-         <div class="oedipusCaption" style="left:100px; top:70px; z-index:25;font-size:1.8em">
-            serve <span style="font-size:1.9em">Apollo</span>
-         </div>
-    </div>
-
-
-
-        <div style="position:absolute; left:600px; top:900px; width:1200px; 450px; background-color:black; z-index:6">
- </div>
-
-    <div class="oracleCaption" 
-         style="border:3px white solid; font-size:1.4em; left:1080px; width:300px; top:700px; z-index:26">
-         <span style="font-size:1.6em">He also says you are to kill</span>
-    </div>
-
-
-   <div class="oracleCaption" style="border:3px white solid; font-size:1.4em; left:1250px; top:750px; z-index:25">
-        the <span style="font-size:1.8em">vermin</span>
-    </div> 
-
-    <div class="oracleCaption" style="font-size:1.4em; border:3px white solid; left:1310px; top:830px; z-index:25">
-        they call <span style="font-size:1.8em">Sphincs</span>
-    </div>
--->
-
-<!--     <div class="oedipusCaption" style="left:1320px; top:650px; z-index:25; font-size:2.4em">
-        some worlds... 
-    </div>
-
-   <div class="oedipusCaption" style="left:1420px; top:650px; z-index:25">
-        ...are worth
-    </div>
-
-   <div class="oedipusCaption" style="left:1220px; top:780px; z-index:25">
-        ...more than others
-    </div>
-   <div class="oedipusCaption" style="font-size:1.5em;left:120px; top:920px; z-index:25">
-    and some people harder to <br/><span style="font-size:1.5em">kill</span> than others
-    </div>
-
-    <div class="oracleCaption" style="font-size:1.4em; left:80px; top:1080px; z-index:25">
-    right you are 
-    <br/> Junior Envoy
-    <br/> on both counts, 
-    <br/> Still, I do not bargain, 
-    <br/>nor do I ask. 
-    </div>
-   <div class="oracleCaption" style="font-size:1.4em; left:80px; top:1190px; z-index:25">
-    <br/> I merely say what will and it becomes. 
-    <a href="sphincs.html">fdsa</a>
-    </div>
-
-
-   <div class="oedipusCaption" style="left:620px; top:920px; z-index:25">
-    I apologize, high priestess
-    </div>
--   [Oracle] You will kill Sphincs, and then you will go and rule Thebes. 
-</div>
-    [call end signal]
-
--   [O3dipus, to himself] Thebes
-
-Next Frame
-
--   [O3dipus, narrator] I was 27, I had a ship, a crew, and a name. I knew about Sphincs, 
-    a bandit that operated in the Thespian system. I didn't know what he had done
-    to piss off the temple, but it must have been big because Thebes
-    was a suprisingly valuable prize, especially since I had been an envoy for 
-    only 8 months, a merit I had quite literally acquired. 
-
-
-
-
-
-
-    It had been expensive, but it opened the kind of legal routes a young enterprising 
-    business person could use to make himself very rich...and special connections, 
-    like a personal call from her Eternity herself, hight priestess of 
-    the temple of Apollo. I didn't really believe she knew the future, but 
-    I certainly believed she had enough pull to decide what the future
-    would be, which came to the same. 
-
-    At least there was payment, I felt lucky. She could have told 
-    to go and kill Sphyncs without even so much as a please and thank you... 
-    and I would have had to do it just the same
--->
-    <div id='bottomNav'> </div>
-    
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -491,7 +302,8 @@ Next Frame
   integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
   crossorigin="anonymous"></script>
 
-    <script src="../bundle.js"> </script>
+  <script src="../bundle.js"> </script>
 
 </body>
 </html>
+

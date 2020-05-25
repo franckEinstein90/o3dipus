@@ -21,6 +21,7 @@ const addUiFeature = app => {
     $(window).resize(()=>{
         resizeUI( app ); 
     })
+
     return app; 
 }
 

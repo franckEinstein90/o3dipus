@@ -2,6 +2,7 @@
 @import 'ui.css';  
 @import 'captions.css';  
 @import 'extraSolar.css';
+
 #visual-elt{
     position:absolute;
     background-image-position: center; 
@@ -24,7 +25,7 @@
 .gutter, .hGutter {
     position: absolute; 
     background-color:white;
-    z-index:15; 
+    z-index:25; 
 }
 
 .hGutter {

@@ -6,36 +6,48 @@
 /******************************************************************************/
 /******************************************************************************/
 
-/******************************************************************************
- * The page is bordered at the top with a 4 rows widget and 
- * at the bottom with a  2 rows widget. 
- * ****************************************************************************/
 
+
+
+
+const addSceneSystem = function( app ){
+    app.scenes = {};
+    
+    app.scenes.queue = $('#page').data('scenes');
+    if(app.scenes.queue){
+        app.scenes.queue = app.scenes.queue.split(',').map(Number) ;
+    } else {
+        app.scenes.queue = [1];
+    }
+    app.scenes.next =  function(){
+        debugger
+    }
+}
+
+const setContentFormat = function( app ){
+
+    let _contentFormats = $('#page').data('formats');
+
+    return {
+        available : _contentFormats 
+
+    }
+}
 $(document).ready(function() {
 
     const app = {};
     require('../common/features').mountFeatureSystem( app );
+    addSceneSystem(app); 
+
+    app.contentFormats = setContentFormat( app ); 
     require('./ui/main.js').addUiFeature( app );
-//    require('./storyBoard/main.js').storyBoard( app );
 
-    app.storyBoard = ['A']
-    app.run = function( storyBoard ){
 
-        let metadata = $("#page").data("meta");
-        $("#pageTitle").text( `${metadata.book.title} - ${metadata.book.page}`);
 
-        let body = $("body");
-        let universe = $("#universe");
-        let solarsys = $("#solar-system");
+    let metadata = $("#page").data("meta");
+    $("#pageTitle").text( `${metadata.book.title} - ${metadata.book.page}`);
 
-        body.removeClass('view-2D opening').addClass("view-3D").delay(2000).queue(function() {
-            let setView = function(view) { universe.removeClass().addClass(view); };
-            $(this).dequeue();
-        })
 
-   }
-
-    app.run(app.storyBoard);
 })
 
 
@@ -50,32 +62,95 @@ $(document).ready(function() {
 /*****************************************************************************/
 const sizeToViewport = require('./sizeToViewport').sizeToViewport;
 /*****************************************************************************/
-const _drawBorders =  function( contentViewport, eltCss ) {        
 
-    let odv = $([
-                `<div class="gutter" style="left:${eltCss.left + eltCss.width}`,  
-                `width:${contentViewport.width / 100}; top:${eltCss.top}`, 
-                `height:${eltCss.height}"></div>`].join(';'));
+
+const _drawBorders =  function( elt, contentViewport, viewportTemplate, eltCss, rowColInfo ) {        
+
+    let borderSpecs = elt.data('borders');
+
+    let topBorder = rowColInfo.row > 0
+    let leftBorder = true;
+    let bottomBorder =  (rowColInfo.row + rowColInfo.vertSpan) < (viewportTemplate.format.rows);
+    let rightBorder = (rowColInfo.col + rowColInfo.horSpan) < (viewportTemplate.format.cols);
+
+    if(borderSpecs && viewportTemplate.name in borderSpecs){
+        let borderInstructions = borderSpecs[viewportTemplate.name];
+        if (borderInstructions === "none"){
+            leftBorder = false;
+            bottomBorder = false;  
+            topBorder = false; 
+            rightBorder = false; 
+        }
+    }       
+    let gutterWidth = contentViewport.width / 100; 
+    //right border
+        if( rightBorder) {
+        let odv = $([       //right border
+            `<div class="gutter" style="left:${eltCss.left + eltCss.width}`,  
+            `width:${gutterWidth}; top:${eltCss.top}`, 
+            `height:${eltCss.height}"></div>`].join(';'));
         $("body").append(odv);
+    }
+    //left border
+     if(leftBorder && rowColInfo.col > 0 ) {
+        let odv = $([       //right border
+            `<div class="gutter" style="left:${eltCss.left}`,  
+            `width:${gutterWidth}; top:${eltCss.top}`, 
+            `height:${eltCss.height}"></div>`].join(';'));
+        $("body").append(odv);
+    }
 
-        if(eltCss.top + eltCss.height < contentViewport.height){
-            let odh =  $([
-                `<div class="gutter" style="top:${eltCss.top + eltCss.height}`,  
+    if( topBorder ){
+        let odh =  $([
+            `<div class="gutter" style="top:${eltCss.top}`,  
                 `height:${contentViewport.height/ 100}; left:${eltCss.left}`, 
                 `width:${eltCss.width}"></div>`].join(';'));
-        
             $("body").append(odh);
-        }
+    } 
+    
+    if( bottomBorder ){
+        let odh =  $([
+            `<div class="gutter" style="top:${eltCss.top + eltCss.height}`,  
+            `height:${contentViewport.height/ 100}; left:${eltCss.left}`, 
+            `width:${eltCss.width + gutterWidth}"></div>`].join(';'));
+        $("body").append(odh);
+   }
 }
 
 
-const layoutImages = function( contentViewport , viewportTemplate){
+let getRowColInfo  = function(elt, viewportTemplate){
+    let pageLayoutName = viewportTemplate.name; 
+    let rowColInfo = {};  
+    let getValue = (info, defaultVal) => (info !== undefined && pageLayoutName in info) ? info[pageLayoutName] : defaultVal; 
+    let rowInfo = elt.data('row'); 
+    rowColInfo.row = getValue(rowInfo, 1) - 1; 
+
+    let colInfo = elt.data('col'); 
+    rowColInfo.col = getValue(colInfo, 1) - 1; 
+
+    let vertSpanInfo = elt.data('vert-span');   //multiple cols? 
+    rowColInfo.vertSpan = getValue(vertSpanInfo, 1)
+
+    let horSpanInfo = elt.data('hor-span') ;
+    rowColInfo.horSpan = getValue(horSpanInfo, 1); 
+
+    return rowColInfo
+}
+
+const layoutImages = function( contentViewport , viewportTemplate, scenes){
+
     $('.visual-elt').each( function(){
+        let eltId = $(this).attr('id');
+        console.log(`placing element ${eltId}`);
         let viewportClients = $(this).data('include-in-viewport');
-        if( viewportClients ){ 
-            if(viewportClients.split(',').includes(viewportTemplate.name)){
+        let sceneInclude = $(this).data('scenes');
+        let showInScene = false; 
+        if( sceneInclude === undefined ) showInScene = true; 
+        if( viewportClients && showInScene ){ 
+            if(viewportClients.split(',').includes(viewportTemplate.name)){ //if this viewport includes this elt
+                let rowColInfo =  getRowColInfo( $(this), viewportTemplate) 
                 let eltCss = sizeToViewport( $(this), contentViewport, viewportTemplate ); 
-                _drawBorders(contentViewport, eltCss)
+                _drawBorders($(this), contentViewport, viewportTemplate, eltCss, rowColInfo)
                 $( this ).show(); 
             }
             else{
@@ -136,6 +211,7 @@ const sizeToViewport = function( elt, contentViewport, contentFrame, options ){
 
 
 const layoutCaptions = function( contentViewport, contentFrame ){
+    debugger;
     $(".caption").each( function(){
         sizeToViewport( $(this), contentViewport, contentFrame);
     });
@@ -242,50 +318,60 @@ const _configureMargins = function(contentViewport){
 
 }
 
-   
-  
-const fitToTemplate = function(contentMaxHeight, contentMaxWidth) {
-    debugger
-    let contentFormats = $('#page').data('formats');
-    let contentArea = contentMaxHeight * contentMaxWidth;
-    let wastedSpace = (width, height) => contentArea - (width * height)
-    let best = { wasted: contentArea };  
+const setFormat = function( maxDimensions, contentFormats ){
+    let maxArea = maxDimensions.width * maxDimensions.height; 
+    let area = (width, height) => width * height; 
+    let wastedSpace = (width, height) => maxArea - area(width * height)
+
+    let best = { wasted: maxArea};  //the most space that can be wasted is all of it
     Object.entries(contentFormats).forEach( format => {
-           let desc = format[1]; 
-           let contentWidth = contentMaxWidth; 
-           let contentHeight = contentMaxWidth / desc.width * desc.height; //only handling landscape for now
-           if(contentHeight > contentMaxHeight){
-                contentWidth = contentMaxHeight * desc.width / desc.height; 
-                contentHeight = contentMaxHeight;   
-           }
-           let w = wastedSpace(contentWidth, contentHeight); 
-            if (w < best.wasted){
-                best.name = format[0]
-                best.format = format[1]
-                best.wasted = w; 
-                best.dimensions = {contentWidth, contentHeight}
-            }
 
-       })
-
-    return best;  
+        let formatDescription = format[1];
+        let contentWidth = maxDimensions.width; 
+        let contentHeight = (contentWidth * formatDescription.height / formatDescription.width); 
+        while( contentHeight > maxDimensions.height ){ //scale the height 
+                contentHeight = contentHeight * 0.95;   
+                contentWidth = contentWidth * 0.95; 
+         }
+        let wasted = maxDimensions.area - (contentWidth * contentHeight); 
+        if (wasted < best.wasted){
+                best.name = format[0]; 
+                best.format = format[1]; 
+                best.wasted = wasted; 
+                best.dimensions = {
+                    width: contentWidth, 
+                    height: contentHeight, 
+                    area: contentWidth * contentHeight
+                }; 
+         }
+    })
+    best.screenDimensions = maxDimensions
+    return best
+}   
+  
+const fitToTemplate = function( maxDimensions ) {
+    let contentFormats = $('#page').data('formats');
+    return setFormat( maxDimensions, contentFormats )
 }
 
 const _configureLayout = function( app ){
-    $(".gutter").remove();
+    $(".gutter").remove();          //removing all gutters
     let contentViewport = _configureOuterLayout( app  );
-    let maxHeight = contentViewport.height;
-    let maxWidth = contentViewport.width;
+    let maxDimensions = {
+        height: contentViewport.height, 
+        width: contentViewport.width,
+        area: contentViewport.height * contentViewport.width
+    }
     /* now we know how much real estate we have */
 
-    let contentFrame     = fitToTemplate( maxHeight, maxWidth );  
-    let marginTotalWidth = contentViewport.width - contentFrame.dimensions.contentWidth; 
-    contentViewport.left = marginTotalWidth / 2; 
-    contentViewport.width = contentFrame.dimensions.contentWidth; 
-    contentViewport.height = contentFrame.dimensions.contentHeight; 
+    let contentFrame = fitToTemplate( maxDimensions );  
+    let totalMarginWidth = contentViewport.width - contentFrame.dimensions.width; 
+    contentViewport.left = totalMarginWidth / 2; 
+    contentViewport.width = contentFrame.dimensions.width; 
+    contentViewport.height = contentFrame.dimensions.height; 
 
     _configureMargins(contentViewport);
-    layoutImages(contentViewport, contentFrame); 
+    layoutImages(contentViewport, contentFrame, app.scenes); 
 //    sizeToViewport( $('#universe'), contentViewport, contentFrame);
 //    _layoutGraphs(contentViewport);
     layoutCaptions( contentViewport, contentFrame ); 
@@ -313,7 +399,6 @@ module.exports = {
 
 
 const sizeToViewport = function( elt, contentViewport, contentFrame, options ){
-        
         let posDim = {}
 
         let pageLayoutName = contentFrame.name;
@@ -372,6 +457,7 @@ const addUiFeature = app => {
     $(window).resize(()=>{
         resizeUI( app ); 
     })
+
     return app; 
 }
 

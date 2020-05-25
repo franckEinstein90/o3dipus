@@ -2,7 +2,6 @@
 
 
 const sizeToViewport = function( elt, contentViewport, contentFrame, options ){
-        
         let posDim = {}
 
         let pageLayoutName = contentFrame.name;
