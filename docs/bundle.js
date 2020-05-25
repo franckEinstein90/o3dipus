@@ -96,8 +96,8 @@ module.exports = {
 
 
 const sizeToViewport = function( elt, contentViewport, contentFrame, options ){
-        
-        let posDim = {}
+      
+    let posDim = {}
 
         let pageLayoutName = contentFrame.name;
         let getValue = (info, defaultVal) => (info !== undefined && pageLayoutName in info) ? info[pageLayoutName] : defaultVal; 
@@ -119,14 +119,23 @@ const sizeToViewport = function( elt, contentViewport, contentFrame, options ){
         let eltCss ={
             left: contentViewport.left + (contentViewport.width / contentFrame.format.cols) * posDim.col, 
             top : contentViewport.top + (contentViewport.height / contentFrame.format.rows ) * posDim.row
-        };  
+        }; 
+        if(options){
+            if(options.fullWidth) {
+                eltCss.width = contentViewport.width / contentFrame.format.cols * posDim.horSpan
+            }
+
+            if(options.fullHeight) {
+                eltCss.height = contentViewport.height / contentFrame.format.rows * posDim.vertSpan
+            }
+        } 
+        
         elt.css(eltCss);
         return eltCss; 
 }
 
 
 const layoutCaptions = function( contentViewport, contentFrame ){
-    debugger;
     $(".caption").each( function(){
         sizeToViewport( $(this), contentViewport, contentFrame);
     });
@@ -236,7 +245,7 @@ const _configureMargins = function(contentViewport){
    
   
 const fitToTemplate = function(contentMaxHeight, contentMaxWidth) {
-
+    debugger
     let contentFormats = $('#page').data('formats');
     let contentArea = contentMaxHeight * contentMaxWidth;
     let wastedSpace = (width, height) => contentArea - (width * height)
