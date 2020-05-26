@@ -1,4 +1,3 @@
-
 /*****************************************************************************/
 "use strict";
 /*****************************************************************************/
@@ -93,14 +92,12 @@ const _configureMargins = function(contentViewport){
 
 }
 
-   
-  
-const fitToTemplate = function(contentMaxHeight, contentMaxWidth) {
-    debugger
-    let contentFormats = $('#page').data('formats');
-    let contentArea = contentMaxHeight * contentMaxWidth;
-    let wastedSpace = (width, height) => contentArea - (width * height)
-    let best = { wasted: contentArea };  
+const setFormat = function( maxDimensions, contentFormats ){
+    let maxArea = maxDimensions.width * maxDimensions.height; 
+    let area = (width, height) => width * height; 
+    let wastedSpace = (width, height) => maxArea - area(width * height)
+
+    let best = { wasted: maxArea};  //the most space that can be wasted is all of it
     Object.entries(contentFormats).forEach( format => {
 
         let formatDescription = format[1];
@@ -151,7 +148,7 @@ const _configureLayout = function( app ){
     layoutImages(contentViewport, contentFrame, app.scenes); 
 //    sizeToViewport( $('#universe'), contentViewport, contentFrame);
 //    _layoutGraphs(contentViewport);
-    layoutCaptions( contentViewport, contentFrame ); 
+    layoutCaptions( contentViewport, contentFrame, app.scenes ); 
 }
 
 

@@ -4,19 +4,35 @@
 /*****************************************************************************/
 const sizeToViewport = require('./sizeToViewport').sizeToViewport;
 /*****************************************************************************/
-const _drawBorders =  function( contentViewport, viewportTemplate, eltCss, rowColInfo ) {        
 
+
+const _drawBorders =  function( elt, contentViewport, viewportTemplate, eltCss, rowColInfo ) {        
+
+    let borderSpecs = elt.data('borders');
+
+    let topBorder = rowColInfo.row > 0 ; 
+    let leftBorder = rowColInfo.col > 0 ;
+    let bottomBorder =  (rowColInfo.row + rowColInfo.vertSpan) < (viewportTemplate.format.rows);
+    let rightBorder = (rowColInfo.col + rowColInfo.horSpan) < (viewportTemplate.format.cols);
+
+    if(borderSpecs && viewportTemplate.name in borderSpecs){
+        let borderInstructions = borderSpecs[viewportTemplate.name];
+        if (borderInstructions === "none"){
+            leftBorder = false;
+            bottomBorder = false;  
+            topBorder = false; 
+            rightBorder = false; 
+        }
+    }       
     let gutterWidth = contentViewport.width / 100; 
-    //right border
-    if(rowColInfo.col + rowColInfo.horSpan < viewportTemplate.format.cols){
+    if( rightBorder) {
         let odv = $([       //right border
             `<div class="gutter" style="left:${eltCss.left + eltCss.width}`,  
             `width:${gutterWidth}; top:${eltCss.top}`, 
             `height:${eltCss.height}"></div>`].join(';'));
         $("body").append(odv);
     }
-    //left border
-     if(rowColInfo.col > 0 ) {
+    if( leftBorder ) {
         let odv = $([       //right border
             `<div class="gutter" style="left:${eltCss.left}`,  
             `width:${gutterWidth}; top:${eltCss.top}`, 
@@ -24,7 +40,7 @@ const _drawBorders =  function( contentViewport, viewportTemplate, eltCss, rowCo
         $("body").append(odv);
     }
 
-    if(rowColInfo.row > 0){
+    if( topBorder ){
         let odh =  $([
             `<div class="gutter" style="top:${eltCss.top}`,  
                 `height:${contentViewport.height/ 100}; left:${eltCss.left}`, 
@@ -32,8 +48,7 @@ const _drawBorders =  function( contentViewport, viewportTemplate, eltCss, rowCo
             $("body").append(odh);
     } 
     
-    //bottom border
-    if(rowColInfo.row + rowColInfo.vertSpan < viewportTemplate.format.rows){
+    if( bottomBorder ){
         let odh =  $([
             `<div class="gutter" style="top:${eltCss.top + eltCss.height}`,  
             `height:${contentViewport.height/ 100}; left:${eltCss.left}`, 
@@ -75,7 +90,7 @@ const layoutImages = function( contentViewport , viewportTemplate, scenes){
             if(viewportClients.split(',').includes(viewportTemplate.name)){ //if this viewport includes this elt
                 let rowColInfo =  getRowColInfo( $(this), viewportTemplate) 
                 let eltCss = sizeToViewport( $(this), contentViewport, viewportTemplate ); 
-                _drawBorders(contentViewport, viewportTemplate, eltCss, rowColInfo)
+                _drawBorders($(this), contentViewport, viewportTemplate, eltCss, rowColInfo)
                 $( this ).show(); 
             }
             else{

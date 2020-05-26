@@ -1,23 +1,160 @@
     <style>
-           </style>
+        dl.infos {
+            position: absolute;
+            display: block;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+  margin-top: -90%;
+  margin-left: 90%;
+  padding-left: 100%;
+  transform-origin: 100% 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(90deg); }
+
+        dl.infos:before {
+          position: absolute;
+          content: '';
+          height: 30px;
+          left: 15px;
+          bottom: 0;
+          border-top: 1px solid white;
+          border-left: 4px dashed white;
+          transform-style: preserve-3d;
+          transform: skew(-45deg, 0deg);
+          box-shadow: inset 1px 1px black; }
+
+
+dl.infos dt {
+  position: absolute;
+  left: 50px;
+  margin-bottom: 26px;
+  bottom: 30px;
+  color: #FFF;
+  font-size: 14px;
+  text-shadow: 1px 1px 2px black; }
+
+    dl.infos dd:after {
+        position: absolute;
+        left: 50px;
+        bottom: 30px;
+        width: 300px;
+        color: #FFF;
+        font-size: 22px;
+        text-shadow: 1px 1px 2px black; }
+
+        dl.infos dd span:after {
+          position: absolute; left: 50px; bottom: 14px; width: 300px;
+          color: #FFF; font-size: 11px; text-shadow: 1px 1px 2px black; }
+
+
+       </style>
 
 </head>
 
 <body>
 
-    
+        <script>
+        const audio = new Audio('./connect.mp3');
+        const playRing = function(){
+            audio.play();
+        }
+        const acceptPythiaCall = function(){
+            playRing();
+            $('#cap1').css({'display':'none'});
+ //           $('#mapCaption').css({'display':'none'}); 
+            $('.oracleCaption').show();
+        }
+    </script>
+
+
+<!-- "C": {"width":2400, "height":1400, "cols": 4, "rows":4}-->
+
+
     
 
 
     <div id="marginLeft"  style="background-color:white;position:absolute;left:0;top:0"></div>
     <div id="marginRight" style="background-color:white;position:absolute;left:0;top:0"></div>
-    <!--
+    <div id="universe" class="scale-stretched visual-elt" style="z-index:30"
+            data-include-in-viewport = 'A'
+            data-row='{"A":1, "C":1}'
+            data-col='{"A":1, "C":1}'
+            data-hor-span='{"A":3, "C":2}'>
+
+      <div style="left:300;z-index:40;colo:white;">  fkdla;</div>
+      <div id="galaxy">
+        <div id="solar-system" class="earth jupiter moon sun">
+          <div id="earth" class="orbit">
+            <div class="pos">
+              <div class="orbit">
+                <div class="pos">
+                  <div class="moon">
+                        <p style="color:white;text-align:center"><br/>Pythia's temple</p></div>
+                </div>
+              </div>
+              <div class="planet">
+                <dl class="infos">
+                  <dt></dt>
+                  <dd><span></span></dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+
+         <div id="uranus" class="orbit">
+            <div class="pos">
+              <div class="planet">
+                <dl class="infos">
+                  <dt>Uranus</dt>
+                  <dd><span></span></dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+         
+<div id="jupiter" class="orbit">
+            <div class="pos">
+             <div class="planet">
+                <dl class="infos">
+                  <dt></dt>
+                  <dd><span></span></dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+         <div id="neptune" class="orbit">
+            <div class="pos">
+              <div class="planet">
+                <dl class="infos">
+                  <dt>Neptune</dt>
+                  <dd><span></span></dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+          <div id="sun">
+            <dl class="infos">
+              <dt></dt>
+              <dd><span></span></dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+<!--
     
+    <img src='./O3dipus1_600x450.png' class="visual-elt" 
+        data-include-in-viewport ='A'
+        data-row ='{"A":2,"C":2}' 
+        data-col = '{"A":2, "C":1}' 
+        style="position:absolute;">
+
     <div class="visual-elt"
         data-include-in-viewport = 'A'
         data-row='{"A":2, "C":1}' 
         data-col='{"A":1, "C":4}' 
-        style="position:absolute; background-image:url('); background-size: cover; " > 
+        style="position:absolute; background-image:url('./Oracle2_600x450.png'); background-size: cover; " > 
     </div>
 
     <img src='./Oracle2_600x350.png'  class="visual-elt"

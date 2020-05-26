@@ -104,10 +104,11 @@
 
     <div id="universe" class="scale-stretched visual-elt" style="z-index:10"
             data-include-in-viewport = 'normal,wide'
+            data-borders='{"normal":"none"}'
             data-row='{"tablet":1, "normal":1, "wide":1}'
             data-col='{"tablet":1, "normal":1, "wide":1}'
-            data-hor-span='{"tablet":2, "normal":4, "wide":5}'
-            data-vert-span='{"normal":4, "wide":2}'>
+            data-hor-span='{"tablet":2, "normal":3, "wide":5}'
+            data-vert-span='{"normal":3, "wide":2}'>
 
       <div id="galaxy">
         <div id="solar-system" class="earth jupiter moon sun">
@@ -169,7 +170,20 @@
       </div>
     </div>
 
-    <div class="visual-elt"
+    <!-- Oracle -->
+
+  <div  class="caption oracleCaption" 
+        style="border:1px solid white; z-index:25;font-size:1.9em;"
+        data-include-in-viewport = 'normal'; 
+        data-position-description=
+            '{"normal":{
+                "origin":{"row":1, "col":2},
+                "destination":{"row":1, "col":3}}}' > 
+
+    You seem destined
+  </div>
+
+  <div class="visual-elt"
         data-include-in-viewport = 'wide,normal'
         data-row='{"tablet":1, "normal": 3, "wide":3}' 
         data-col='{"tablet":1, "normal":1, "wide":1}'
@@ -203,9 +217,25 @@
 
      </div>
 
+     <div class="visual-elt"
+        data-include-in-viewport = 'normal'
+        data-row='{"tablet":1, "normal": 3, "wide":2}' 
+        data-col='{"tablet":1, "normal":3, "wide":3}'
+        data-hor-span='{"tablet":2, "normal":2, "wide":2}' 
+        data-vert-span='{"tablet":1, "normal":2, "wide":2}'
+        style="position:absolute; 
+               background-image:url('./imgBacks/back1.png'); 
+               background-size: cover;">
+
+
+        <img src="./imgAkra/Akra1.png" />
+    </div>
+
+
    <div class="visual-elt"
-        data-include-in-viewport = 'wide'
-        data-row='{"tablet":1, "normal": 3, "wide":1}' 
+        data-include-in-viewport = 'wide,normal'
+        data-borders='{"normal":"none"}'
+        data-row='{"tablet":1, "normal": 1, "wide":1}' 
         data-col='{"tablet":1, "normal":3, "wide":5}'
         data-hor-span='{"tablet":2, "normal":2, "wide":1}' 
         data-vert-span='{"tablet":1, "normal":2, "wide":2}'
@@ -219,30 +249,17 @@
     <div class="visual-elt" id="akraWireframe"
         data-include-in-viewport = 'normal,tablet,wide'
         data-borders='{"normal":"none","wide":"none"}'
-        data-row='{"normal":2, "tablet":3, "wide":4}' 
-        data-col='{"normal":1, "tablet":1, "wide":4}'
-        style=" position:absolute;z-index:3;text-align:center;">
+        data-row='{"normal":3, "tablet":3, "wide":4}' 
+        data-col='{"normal":3, "tablet":1, "wide":4}'
+        style=" position:absolute;z-index:30;text-align:center;">
 
             <img id="akraStatus" src="./AkraWire_600x400.png"
-                style="width:65%;border:red solid 10px;border-radius:50%;"/>
+                style="height:80%; margin-top:10%; border:red solid 10px;border-radius:50%;"/>
     </div>
 
 
  
-    <div class="visual-elt"
-        data-include-in-viewport = 'normal'
-        data-row='{"tablet":1, "normal": 3, "wide":2}' 
-        data-col='{"tablet":1, "normal":3, "wide":3}'
-        data-hor-span='{"tablet":2, "normal":2, "wide":2}' 
-        data-vert-span='{"tablet":1, "normal":2, "wide":2}'
-        style="position:absolute; background-image:url('./Akra2_600x400.png'); 
-               background-size: cover;z-index:12;
-               padding-left:10px; padding-top:20px;
-               font-family:'Baloo Chettan 2'; " > 
-
-     </div>
-
-
+    
     <div class="visual-elt"
         data-include-in-viewport = 'wide,normal'
         data-row='{"tablet":1, "normal": 3, "wide":2}' 
@@ -255,6 +272,7 @@
                font-family:'Baloo Chettan 2'; " > 
 
      </div>
+
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="

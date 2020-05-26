@@ -1,5 +1,8 @@
 "use strict";
 
+//given a viewport and a frame description, return 
+//the coordinates and dimensions
+
 
 const sizeToViewport = function( elt, contentViewport, contentFrame, options ){
         let posDim = {}

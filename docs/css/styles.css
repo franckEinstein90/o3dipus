@@ -3,12 +3,23 @@
 @import 'captions.css';  
 @import 'extraSolar.css';
 
-#visual-elt{
+.visual-elt{
     position:absolute;
     background-image-position: center; 
     background-repeat: no-repeat; 
     background-size: cover;
+    animation: appear 4.5s steps(40, end)
 }
+
+.appear {
+    animation: appear 4.5s steps(40, end)
+}
+
+@keyframes appear {
+    from {opacity: 0}
+    to {opacity:1}
+}
+
 
 #images, #gutters{
     background-color:white;
