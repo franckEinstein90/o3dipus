@@ -13,6 +13,23 @@
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../css/styles.css"> 
+    <style>
+        .akraStatus{
+           -webkit-animation:spin 10s linear infinite;
+           -moz-animation:spin 10s linear infinite;
+           animation:spin 10s linear infinite;
+        }
+
+        @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+        @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+        @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+        .blinkBorder{
+            animation: blink-border .75s step-end infinite
+        }
+    </style>
+
+
 </head>
 
 <body>
@@ -54,65 +71,79 @@
 
 
 
-<!--
-<div id="map">
-        
-        <div id="apolloSystemMap" class="diagram" 
-            data-width = "600" data-height="900" 
-            data-row="A:1" data-col="A:3" data-vert-span="A:2"
-            data-diagram='{"nodes": [
-                    {"id":1, "label":"Akra", "font":"20px", "shape":"circle", "color":"orange"}, 
-                    {"id":2, "label":"constellate AP", "font":"15px", "shape":"dot", "color":"red"}, 
-                    {"id":6, "label":"constellate AP", "font":"15px", "shape":"dot", "color":"blue"}, 
-                    {"id":7, "label":"constellate AP", "font":"15px", "shape":"dot", "color":"blue"}, 
-                    {"id":3, "label":"AP refueling", "font":"15px", "shape":"dot", "color":"green"}, 
-                    {"id":4, "label":"Thebia", "font":"25px", "shape":"circle", "color":"orange"}, 
-                    {"id":5, "label":"Thebia", "font":"20px", "shape":"star", "color":"yellow"} ,
-                    {"id":8, "label":"Thebia", "font":"10px", "shape":"square", "color":"red"} 
-            ]}'
+    <!-- top left --> 
 
-            data-edges = '{"edges": [
-                {"from": 1, "to": 2 }, 
-                {"from": 2, "to": 3 }, 
-                {"from": 3, "to": 4 }, 
-                {"from": 5, "to": 4 }, 
-                {"from": 2, "to": 6 },
-                {"from": 6, "to": 7 }, 
-                {"from": 7, "to": 5 },
-                {"from": 1, "to": 8 },
-                {"from": 8, "to": 4 }
-            ]}'
+    <div class="visual-elt" id="akraWireframe"
+        data-include-in-viewport = 'normal,tablet,wide'
+        data-borders='{"normal":"none","wide":"none"}'
+        data-row='{"normal":2, "tablet":3, "wide":2}' 
+        data-col='{"normal":1, "tablet":1, "wide":1}'
+        style=" position:absolute;z-index:3;text-align:left;padding-left:10px">
+            <img    class ="akraStatus" src="./imgAkraHud/frameDecor.png" 
+                    style="position:absolute; width:65%;border:red solid 5px;border-radius:50%;">
 
+            <img    class ="akraStatus" src="./imgAkraHud/akraFrame_500x500.png" 
+                    style="position:absolute;width:65%;border-radius:50%;">
+            </div>
+    </div>
 
-            style="background-image: url('intro/space.jpg'); background-repeat:no-repeat;background-size:cover;
-                    position:absolute; left:0; top:0;width:600px; height:900px;">
-        </div>
-
-    </div>-->
-    <div class="visual-elt"
+    
+   <div class="visual-elt"
         data-include-in-viewport = 'normal,wide'
-        data-row='{"tablet":1, "normal": 3, "wide":2}' 
-        data-col='{"tablet":1, "normal":1, "wide":3}'
-        data-hor-span='{"tablet":2, "normal":2, "wide":2}' 
-        data-vert-span='{"tablet":1, "normal":2, "wide":2}'
-        style="position:absolute; background-image:url('./imgAkra/akra3_1200x800.png'); 
+        data-row='{"tablet":1, "normal": 3, "wide":1}' 
+        data-col='{"tablet":1, "normal":1, "wide":2}'
+        data-hor-span='{"tablet":2, "normal":2, "wide":1}' 
+        data-vert-span='{"tablet":1, "normal":2, "wide":1}'
+        style="position:absolute; background-image:url('../imgAkra/Akra6.png'); 
            background-size: cover;z-index:12;
            padding-left:10px; padding-top:20px;
            font-family:'Baloo Chettan 2'; " > 
 
     </div>
 
-        <div class="visual-elt"
-             data-include-in-viewport = 'normal,wide'
-             data-row='{"tablet":1, "normal": 3, "wide":1}' 
-             data-col='{"tablet":1, "normal":3, "wide":3}'
-             data-hor-span='{"tablet":2, "normal":2, "wide":2}' 
+   <div class="visual-elt"
+        data-include-in-viewport = 'normal,wide'
+        data-row='{"tablet":1, "normal": 3, "wide":2}' 
+        data-col='{"tablet":1, "normal":1, "wide":2}'
+        data-hor-span='{"tablet":2, "normal":2, "wide":1}' 
+        data-vert-span='{"tablet":1, "normal":2, "wide":1}'
+        style="position:absolute; background-image:url('../imgAkra/Akra8.png'); 
+           background-size: cover;z-index:12;
+           padding-left:10px; padding-top:20px;
+           font-family:'Baloo Chettan 2'; " > 
+
+    </div>
+
+
+   <div class="visual-elt"
+        data-include-in-viewport = 'normal,wide'
+        data-borders='{"wide":"none"}'
+        data-row='{"tablet":1, "normal": 3, "wide":3}' 
+        data-col='{"tablet":1, "normal":1, "wide":1}'
+        data-hor-span='{"tablet":2, "normal":2, "wide":2}' 
+        data-vert-span='{"tablet":1, "normal":2, "wide":2}'
+        style="position:absolute; background-image:url('../imgAkra/Akra7.png'); 
+           background-size: cover;z-index:12;
+           padding-left:10px; padding-top:20px;
+           font-family:'Baloo Chettan 2'; " > 
+
+    </div>
+
+
+
+
+    <div class="visual-elt"
+        data-include-in-viewport = 'normal,wide'
+        data-row='{"tablet":1, "normal": 3, "wide":1}' 
+        data-col='{"tablet":1, "normal":3, "wide":3}'
+        data-hor-span='{"tablet":2, "normal":2, "wide":2}' 
              data-vert-span='{"tablet":1, "normal":2, "wide":1}'
               style="position:absolute; background-image:url('./imgBackground/yellowPlanet.png'); 
                     background-size: cover;z-index:12;">
-            <img src="./imgAkra/Akra1.png" style="width:100%">
-     
-        </div>
+
+        <img src="../imgAkra/Akra9.png"/>     
+    </div>
+
 
         <div class="visual-elt"
              data-include-in-viewport = 'normal,wide'
