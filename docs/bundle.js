@@ -6,10 +6,6 @@
 /******************************************************************************/
 /******************************************************************************/
 
-
-
-
-
 const addSceneSystem = function( app ){
     app.scenes = {};
     
@@ -33,6 +29,9 @@ const setContentFormat = function( app ){
 
     }
 }
+
+
+
 $(document).ready(function() {
 
     const app = {};
@@ -42,12 +41,10 @@ $(document).ready(function() {
     app.contentFormats = setContentFormat( app ); 
     require('./ui/main.js').addUiFeature( app );
 
-
-
     let metadata = $("#page").data("meta");
     $("#pageTitle").text( `${metadata.book.title} - ${metadata.book.page}`);
 
-
+    require('./ui/jsEffects/main.js').addJsEffects(app); 
 })
 
 
@@ -55,7 +52,7 @@ $(document).ready(function() {
 
 
 
-},{"../common/features":9,"./ui/main.js":6}],2:[function(require,module,exports){
+},{"../common/features":10,"./ui/jsEffects/main.js":6,"./ui/main.js":7}],2:[function(require,module,exports){
 /*****************************************************************************/
 "use strict";
 
@@ -67,11 +64,10 @@ const sizeToViewport = require('./sizeToViewport').sizeToViewport;
 const _drawBorders =  function( elt, contentViewport, viewportTemplate, eltCss, rowColInfo ) {        
 
     let borderSpecs = elt.data('borders');
-
     let topBorder = rowColInfo.row > 0 ; 
-    let leftBorder = rowColInfo.col > 0 ;
+    let leftBorder = true;  
     let bottomBorder =  (rowColInfo.row + rowColInfo.vertSpan) < (viewportTemplate.format.rows);
-    let rightBorder = (rowColInfo.col + rowColInfo.horSpan) < (viewportTemplate.format.cols);
+    let rightBorder = true;  
 
     if(borderSpecs && viewportTemplate.name in borderSpecs){
         let borderInstructions = borderSpecs[viewportTemplate.name];
@@ -275,39 +271,7 @@ const _configureOuterLayout = function( app ){
 
     return contentViewport; 
 }
-const _layoutGraphs = function(contentViewport){
 
-    $(".diagram").each( function(){
-
-        sizeToViewport( $(this), contentViewport );
-        let diagramData = $(this).data("diagram");
-        let edgeData = $(this).data("edges"); 
-
-        let nodes = new vis.DataSet(diagramData.nodes); 
-        let edges = new vis.DataSet(edgeData.edges); 
-
-    let container = document.getElementById('apolloSystemMap')
-
-    let data = {
-        nodes, 
-        edges
-    }
-
-    let options = {
-        nodes   : {
-            shadow:true, 
-            font: '15px yellow'
-        }, 
-        edges   : {
-            arrows  : {
-                to:true 
-            }
-        }
-    }
-
-    let trip = new vis.Network(container, data, options)
-    })
-}
 
 const _configureMargins = function(contentViewport){
 
@@ -379,8 +343,6 @@ const _configureLayout = function( app ){
 
     _configureMargins(contentViewport);
     layoutImages(contentViewport, contentFrame, app.scenes); 
-//    sizeToViewport( $('#universe'), contentViewport, contentFrame);
-//    _layoutGraphs(contentViewport);
     layoutCaptions( contentViewport, contentFrame, app.scenes ); 
 }
 
@@ -401,7 +363,7 @@ module.exports = {
    uiFrameFeature
 }
 
-},{"../utils/cssDef":7,"../utils/divPerimeter":8,"./imgLayout":2,"./layoutCaptions":3,"./sizeToViewport":5}],5:[function(require,module,exports){
+},{"../utils/cssDef":8,"../utils/divPerimeter":9,"./imgLayout":2,"./layoutCaptions":3,"./sizeToViewport":5}],5:[function(require,module,exports){
 "use strict";
 
 //given a viewport and a frame description, return 
@@ -444,6 +406,94 @@ module.exports = {
 }
 
 },{}],6:[function(require,module,exports){
+"use strict"; 
+
+
+const numStars = 900; 
+
+const spaceAnimate = function(ctx, canvas, options){
+  
+   let stars = [];  
+
+   let movingToStaticRatio = 'movingToStaticRatio' in options 
+                             ? options.movingToStaticRatio
+                             : 0.5;
+
+   for(let i = 0; i < numStars; i++){
+        stars.push({
+              x: Math.random() * canvas.width,
+              y: Math.random() * canvas.height,
+              z: Math.random() * canvas.width,
+              o: '0.'+Math.floor(Math.random() * 99) + 1, 
+              moving: Math.random() > movingToStaticRatio ? true : false
+        });
+    }
+
+    let moveStars =()=>{
+         stars.forEach(star => {
+            if(star.moving) {
+                star.z--;
+                if(star.z <= 0) star.z = canvas.width;
+            }
+        })
+    }
+
+
+    let draw = function(){
+        let radius = '0.'+Math.floor(Math.random() * 9) + 1  ;
+        let focalLength = canvas.width *2;
+        let centerX = canvas.width / 2; 
+        let centerY = canvas.height / 2; 
+
+        ctx.fillStyle = "rgba(0,10,20,1)";
+        ctx.fillRect(0,0, canvas.width, canvas.height);
+        ctx.fillStyle = "rgba(209, 255, 255, "+radius+")";
+        stars.forEach(star => { 
+            let pixelX = (star.x - centerX) * (focalLength / star.z);
+            pixelX += centerX;
+            let pixelY = (star.y - centerY) * (focalLength / star.z);
+            pixelY += centerY;
+            let pixelRadius = 1 * (focalLength / star.z);
+            ctx.fillStyle = "rgba(233, 255, 200, "+star.o+")";
+            ctx.beginPath()
+            ctx.arc(pixelX, pixelY, pixelRadius, 0, Math.PI * 2, 0);
+            ctx.fill()
+            ctx.stroke()
+ 
+        })
+    }
+  
+    let animate = ()=>{
+        moveStars(); 
+        draw(); 
+        window.requestAnimationFrame(animate);  
+    } 
+    animate(); 
+}
+
+const addJsEffects = function( app ){
+
+    let animationMap = {
+        "stars 1" : (ctx, canvas) => spaceAnimate(ctx, canvas, {}), 
+        "stars 2" : (ctx, canvas) => spaceAnimate(ctx, canvas, {
+            movingToStaticRatio :  0
+         })
+    }
+    let spaceCanvases = document.getElementsByClassName("animated");
+    for (let canvas of spaceCanvases){
+        let animation = $('#' + canvas.id).data('animation-info');
+        if('type' in animation){
+            let ctx = canvas.getContext("2d");
+            (animationMap[animation.type])(ctx, canvas); 
+        }
+   }
+}
+
+module.exports = {
+    addJsEffects
+}
+
+},{}],7:[function(require,module,exports){
 /******************************************************************************
  * 
  ******************************************************************************/
@@ -475,7 +525,7 @@ module.exports = {
     addUiFeature
 }
 
-},{"./frame/main.js":4}],7:[function(require,module,exports){
+},{"./frame/main.js":4}],8:[function(require,module,exports){
 "use strict";
 
 const cssDef = options => screen => {
@@ -505,7 +555,7 @@ module.exports = {
     cssDef
 }
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 /*****************************************************************************/
 "use strict"
 /*****************************************************************************/
@@ -527,7 +577,7 @@ module.exports = {
     divPerimeter
 }
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 "use strict"
 
 const featureSystem = (function(){

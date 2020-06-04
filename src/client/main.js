@@ -5,10 +5,6 @@
 /******************************************************************************/
 /******************************************************************************/
 
-
-
-
-
 const addSceneSystem = function( app ){
     app.scenes = {};
     
@@ -32,6 +28,9 @@ const setContentFormat = function( app ){
 
     }
 }
+
+
+
 $(document).ready(function() {
 
     const app = {};
@@ -41,12 +40,10 @@ $(document).ready(function() {
     app.contentFormats = setContentFormat( app ); 
     require('./ui/main.js').addUiFeature( app );
 
-
-
     let metadata = $("#page").data("meta");
     $("#pageTitle").text( `${metadata.book.title} - ${metadata.book.page}`);
 
-
+    require('./ui/jsEffects/main.js').addJsEffects(app); 
 })
 
 

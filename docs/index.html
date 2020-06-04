@@ -16,7 +16,7 @@
 <body>
 
     <div id='topNav' style="z-index:30;text-align:center"> 
-        <a href="1_5/index.html" style="font-size:1.8em">How O3dipus became King of Thebes</a>
+        <a href="A_5/index.html" style="font-size:1.8em">How O3dipus became King of Thebes</a>
     </div>
     <div id="page" 
             data-meta= '{
@@ -39,10 +39,14 @@
             }'>
     </div>
 
-
-    <div id="marginLeft"  style="background-color:white;position:absolute;left:0;top:0"></div>
-    <div id="marginRight" style="background-color:white;position:absolute;left:0;top:0"></div>
-
+    <canvas class="visual-elt animated" id="spaceBackground"
+            data-include-in-viewport = 'wide,normal'
+            data-animation-info = '{"type":  "stars 1"}'
+            data-row='{"normal":1, "tablet":1,"wide":1}' 
+            data-col='{"normal":3, "tablet":1,"wide":3}'
+            data-hor-span='{"normal":2, "tablet":2,"wide":3}' 
+            data-vert-span='{"normal":2,"wide":3}'>
+    </canvas>
 
   
     <div class="visual-elt" id="apolloStarSystem"
@@ -61,8 +65,9 @@
                     margin-right:5%;  
                     font-size:1.1em; ">
                     
-        The Apollo Empire, an armada of worlds ruled from planet Apollo
-        relies on slave labor for all essential aspects of its vast economy.
+        The Apollo Empire has come to rely on 
+        slave labor for all essential aspects 
+        of its vast economy.
         </p>
      </div>
 
@@ -71,13 +76,12 @@
 
      <div class="visual-elt" id="delfiMoon"
         data-include-in-viewport = 'wide,normal'
-        data-row='{"tablet":1, "normal": 3, "wide":3}' 
-        data-col='{"tablet":1, "normal":4, "wide":3}'
+        data-row='{"tablet":1, "normal": 3, "wide":2}' 
+        data-col='{"tablet":1, "normal":4, "wide":2}'
         data-hor-span='{"tablet":2, "normal":1, "wide":1}' 
         data-vert-span='{"tablet":1, "normal":1, "wide":1}'
-        style="position:absolute; z-index:5; 
-               background-color:black;
-               background-size:cover;   
+        style="position:absolute; z-index:5;
+               background-color:black;  
                background-image:url('./imgApolloSystem/ApolloSun_1200x800.png'); 
                padding-left:10px; padding-top:20px;
                font-family:'Baloo Chettan 2'; " > 
@@ -88,93 +92,90 @@
      <div class="visual-elt"
         data-include-in-viewport = 'wide,normal'
         data-borders='{"normal":"none","wide":"none"}'
-        data-row='{"tablet":1, "normal": 3, "wide":4}' 
+        data-row='{"tablet":1, "normal": 3, "wide":3}' 
         data-col='{"tablet":1, "normal":2, "wide":2}'
-        data-hor-span='{"tablet":2, "normal":2, "wide":2}' 
+        data-hor-span='{"tablet":2, "normal":2, "wide":1}' 
         data-vert-span='{"tablet":1, "normal":2, "wide":2}'
         style=" position:absolute; color:white; z-index:5; 
-                font-family:'Baloo Chettan 2';
-                padding-top:20px; padding-left:10% " > 
-        <P style="width:90%; margin-right:10px; font-size:1.1em">
-        While <strong>Pythia</strong>, High Priestess of Apollo, and spiritual leader of the empire
-        hasn't left her moon temple in decades, her nets spread as wide as ever, and the schemes she 
-        devises from her sanctuary influence every destiny in the empire. 
+                font-family:'Baloo Chettan 2';">
+
+        <P style="width:90%; margin-top:5%; margin-right:10px; font-size:1.1em">
+        The High Priestess of Apollo hasn't left her moon temple in decades, 
+        and her influence is diminishing across the empire. 
      </div>
 
-
-
-    <div class="visual-elt" id="planetBackground"
-            data-include-in-viewport = 'wide,normal'
-            data-borders = '{"wide":"none"}'
-            data-row='{"normal":1, "tablet":1,"wide":1}' 
-            data-col='{"normal":3, "tablet":1,"wide":3}'
-            data-hor-span='{"normal":2, "tablet":2,"wide":3}' 
-            data-vert-span='{"normal":2,"wide":2}'
-            style=" position:absolute; 
-                background-image-position: z-index:5;center; background-repeat: no-repeat; background-size: cover;
-                color:white; font-size:1.0em; font-family:'Baloo Chettan 2';
-                background-image:url('./imgBacks/back1.png'); background-size: cover;">
-
-        </div>
 
 
 
        <div class="visual-elt" 
         data-include-in-viewport = 'wide,normal'
-        data-borders = '{"wide":"none"}'
-        data-row='{"normal":2, "tablet":1,"wide":1}' 
-        data-col='{"normal":1, "tablet":1,"wide":2}'
+        data-borders = '{"wide":"none","normal":"none"}'
+        data-row='{"normal":1, "tablet":1,"wide":1}' 
+        data-col='{"normal":3, "tablet":1,"wide":2}'
         data-hor-span='{"normal":2, "tablet":2,"wide":4}' 
         data-vert-span='{"normal":1,"wide":2}'
         style=" position:absolute;z-index:70; 
-                background-image-position: center; background-repeat: no-repeat; background-size: cover;
+                background-image-position: center; 
+                background-repeat: no-repeat; 
+                background-size: cover;
                 color:white; font-size:1.0em; font-family:'Baloo Chettan 2';
-                background-image:url('./imgAkra/akra4.png'); background-size: cover;">
+                background-image:url('./imgAkra/akra4.png'); 
+                background-size: cover;">
 
 
     </div>
 
-         <div class="visual-elt" 
-            data-include-in-viewport = 'wide,normal'
-            data-borders='{"normal":"none","wide":"none"}'
-            data-row='{"normal":2, "tablet":1,"wide":3}' 
-            data-col='{"normal":3, "tablet":1,"wide":5}'
-            data-hor-span='{"normal":1, "tablet":2,"wide":1}' 
-            data-vert-span='{"normal":1,"wide":1}'
-            style="padding-top:10px;color:white;padding-left:20px; font-size:1.0em; font-family:'Baloo Chettan 2';">
+    <div class="visual-elt" 
+
+        data-include-in-viewport = 'wide,normal'
+        data-borders='{"normal":"none","wide":"none"}'
+        data-row='{"normal":2, "tablet":1,"wide":3}' 
+        data-col='{"normal":1, "tablet":1,"wide":4}'
+        data-hor-span='{"normal":1, "tablet":2,"wide":2}' 
+        data-vert-span='{"normal":1,"wide":1}'
+        style=" padding-top:10px;color:white;
+                    padding-left:20px; 
+                    font-size:1.0em; 
+                    font-family:'Baloo Chettan 2';">
+
         <P style="margin-left:10px;padding-right:5%">
-       <strong>O3dipus</strong>, is an aspiring 27 year-old when this story begins. <br/>He's 
-        just secured a position as Envoy of the Empire, which opens
-        access to trading on empire controlled routes. 
-        ...and makes him officially a servant of the empire
-        </p>
- 
+        A young and ambitious <strong>O3dipus</strong>
+        has just been named Envoy of the Empire. 
+       
     </div>
 
-         <div class="visual-elt" 
+    <div class="visual-elt narration" 
             data-include-in-viewport = 'wide,normal'
             data-borders='{"normal":"none","wide":"none"}'
-            data-row='{"normal":1, "tablet":1,"wide":1}' 
+            data-inner-position='{"normal":"north"}'
+            data-row='{"normal":2, "tablet":1,"wide":1}' 
             data-col='{"normal":3, "tablet":1,"wide":4}'
             data-hor-span='{"normal":2, "tablet":2,"wide":2}' 
             data-vert-span='{"normal":1,"wide":1}'
-            style="padding-top:10px;color:white;font-size:1.0em; font-family:'Baloo Chettan 2';">
-        <P style="margin-left:10px; padding-left:10px">
-       <strong>Centaurs</strong>, a nomadic species of living spaceships, are
-        the only practical means of interstellar transport make for the most valuable
-        slaves...But their ownership is tighly controlled by Apollo law 
-        </p>
- 
+            style=  "color:white;font-size:1.0em; font-family:'Baloo Chettan 2';
+                    display:flex; flex-direction:column; align-item:center;
+                    justify-content:space-around; 
+                    padding-right:10px;">
+
+        <div style="margin-left:20px">
+        The <strong>Centaurs</strong>, a nomadic species of living spaceships, are
+        the only practical means of interstellar transport, and therefore
+        necessary for all trade across the empire. 
+        </div>
+       
+        <div style="margin-left:20px">
+        By law, all Centaurs are slaves, their ownership tighly controlled 
+        by the Apollo empire 
+        </div> 
     </div>
 
 
     <!--Pythia recs-->
     <div class="visual-elt"
         data-include-in-viewport = 'tablet,normal,wide'
-        data-borders='{"normal":"none","wide":"none"}'
         data-row='{"tablet":1, "normal":3, "wide":3}' 
         data-col='{"tablet":1, "normal":1, "wide":1}'
-        data-hor-span='{"normal":2,"wide":1}'
+        data-hor-span='{"normal":1,"wide":1}'
         data-vert-span='{"normal":2,"wide":2}'
         style="position:absolute;color:white;z-index:6;
             background-image-position: center; 
@@ -185,25 +186,27 @@
 
 
 
+
     <!--imOedipus recs-->
     <div class="visual-elt" id="o3dipusPic"
         data-include-in-viewport = 'wide,normal'
         data-row='{"normal":2, "tablet":1, "wide":3}' 
-        data-col='{"normal":4, "tablet":2, "wide":4}'
+        data-col='{"normal":2, "tablet":2, "wide":3}'
         data-hor-span='{"normal":1,"wide":1}'
         data-vert-span='{"normal":1,"wide":1}'
         style=" position:absolute; 
             background-image-position: center; 
             background-repeat: no-repeat; 
             background-size: cover;
-            background-image:url('./imgO3dipus/O3dipus_600x400.png'); background-size: cover; " > 
+            background-image:url('./imgO3dipus/O3dipus_600x400.png'); 
+            background-size: cover; " > 
     </div>
 
 
     <div class="visual-elt" id="frameNext"
         data-include-in-viewport = 'wide,normal,tablet'
         data-row='{"normal":4, "wide":4,"tablet":4}' 
-        data-col='{"normal":3, "wide":4,"tablet":1}'
+        data-col='{"normal":3, "wide":3,"tablet":1}'
         data-hor-span='{"normal":2, "wide":2, "tablet":2}' 
         data-vert-span='{"normal":1}'
         style="position:absolute;background-color:red;color:white;
@@ -213,15 +216,24 @@
 
 
        <p style="padding-left:4px;padding-top:4px;">
-        still, there are pockets of revolts across the empire. Some believe that slavery should be outlawed. Others
-        whisper that the Oracle only pretends to foretell destinies so as to control them better.
+        As pockets of rebellion spread across the empire, 
+        abolition, an idea that threatens Pythia and her 
+        view of the empire, is increasingly discussed. 
         </p>
  
- <h3>    
-            <a  href="./1_5/index.html" 
-                style="color:white;padding-top:10px;">
-            See how O3dipus became King of Thebia
-            </a></h3>
+    </div>
+
+    <div class="visual-elt" id="frameNext"
+        data-include-in-viewport = 'wide,normal,tablet'
+        data-row='{"normal":4, "wide":4,"tablet":4}' 
+        data-col='{"normal":3, "wide":5,"tablet":1}'
+        data-hor-span='{"normal":2, "wide":1, "tablet":2}' 
+        data-vert-span='{"normal":1}'
+        style="display:flex;align:center;">
+
+        <a  href="./1_5/index.html" style="color:white;padding-top:10px;">
+            <img src="./icons/rightArrow.png"/>
+        </a>
    </div>
 
 

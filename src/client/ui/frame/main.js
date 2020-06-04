@@ -42,39 +42,7 @@ const _configureOuterLayout = function( app ){
 
     return contentViewport; 
 }
-const _layoutGraphs = function(contentViewport){
 
-    $(".diagram").each( function(){
-
-        sizeToViewport( $(this), contentViewport );
-        let diagramData = $(this).data("diagram");
-        let edgeData = $(this).data("edges"); 
-
-        let nodes = new vis.DataSet(diagramData.nodes); 
-        let edges = new vis.DataSet(edgeData.edges); 
-
-    let container = document.getElementById('apolloSystemMap')
-
-    let data = {
-        nodes, 
-        edges
-    }
-
-    let options = {
-        nodes   : {
-            shadow:true, 
-            font: '15px yellow'
-        }, 
-        edges   : {
-            arrows  : {
-                to:true 
-            }
-        }
-    }
-
-    let trip = new vis.Network(container, data, options)
-    })
-}
 
 const _configureMargins = function(contentViewport){
 
@@ -146,8 +114,6 @@ const _configureLayout = function( app ){
 
     _configureMargins(contentViewport);
     layoutImages(contentViewport, contentFrame, app.scenes); 
-//    sizeToViewport( $('#universe'), contentViewport, contentFrame);
-//    _layoutGraphs(contentViewport);
     layoutCaptions( contentViewport, contentFrame, app.scenes ); 
 }
 

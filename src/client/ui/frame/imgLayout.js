@@ -9,11 +9,10 @@ const sizeToViewport = require('./sizeToViewport').sizeToViewport;
 const _drawBorders =  function( elt, contentViewport, viewportTemplate, eltCss, rowColInfo ) {        
 
     let borderSpecs = elt.data('borders');
-
     let topBorder = rowColInfo.row > 0 ; 
-    let leftBorder = rowColInfo.col > 0 ;
+    let leftBorder = true;  
     let bottomBorder =  (rowColInfo.row + rowColInfo.vertSpan) < (viewportTemplate.format.rows);
-    let rightBorder = (rowColInfo.col + rowColInfo.horSpan) < (viewportTemplate.format.cols);
+    let rightBorder = true;  
 
     if(borderSpecs && viewportTemplate.name in borderSpecs){
         let borderInstructions = borderSpecs[viewportTemplate.name];

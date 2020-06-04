@@ -4,7 +4,7 @@
 
     <meta charset = "utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>front</title>
+    <title>A-10</title>
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Yeon+Sung&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Frijole&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&family=Montserrat:wght@100;300&display=swap" rel="stylesheet">
@@ -105,26 +105,14 @@ dl.infos dd:after {
             }'   
 
  
-            data-formats='{
-                "A": {"width":1800, "height":1350, "cols":3, "rows":3}
+             data-formats='{
+                "wide": {"width": 3000, "height":1600, "cols":5, "rows":4}, 
+                "normal":   {"width": 2400, "height":1600, "cols":4, "rows":4}, 
+                "tablet": {"width":1200, "height":1600, "cols":2, "rows":4}
             }'>
-    </div>
+   </div>
 
-    <script>
-        const audio = new Audio('./connect.mp3');
-        const playRing = function(){
-            audio.play();
-        }
-        const acceptPythiaCall = function(){
-            playRing();
-            $('#cap1').css({'display':'none'});
- //           $('#mapCaption').css({'display':'none'}); 
-            $('.oracleCaption').show();
-        }
-    </script>
-
-
-<!-- "C": {"width":2400, "height":1400, "cols": 4, "rows":4}-->
+ 
 
 
     <div id='topNav' style="background-color:rgba(210, 220, 220, 0.5);color:white; font-weight:bold"> 
@@ -145,15 +133,34 @@ dl.infos dd:after {
 
 
 
-    <div id="marginLeft"  style="background-color:white;position:absolute;left:0;top:0"></div>
-    <div id="marginRight" style="background-color:white;position:absolute;left:0;top:0"></div>
+   <canvas class="visual-elt animated" id="spaceBackground"
+            data-include-in-viewport = 'wide,normal'
+            data-animation-info = '{"type":"stars 2"}'
+            data-row='{"normal":1, "tablet":1,"wide":1}' 
+            data-col='{"normal":1, "tablet":1,"wide":3}'
+            data-hor-span='{"normal":4, "tablet":2,"wide":3}' 
+            data-vert-span='{"normal":2,"wide":3}'>
+    </canvas>
+
+   <canvas class="visual-elt animated" id="glowingBall"
+            data-include-in-viewport = 'wide,normal'
+            data-animation-info = '{"type":"stars 1"}'
+            data-row='{"normal":3, "tablet":1,"wide":1}' 
+            data-col='{"normal":1, "tablet":1,"wide":3}'
+            data-hor-span='{"normal":4, "tablet":2,"wide":3}' 
+            data-vert-span='{"normal":2,"wide":3}'>
+    </canvas>
+
 
     <div class="visual-elt"
-        data-include-in-viewport = 'A'
-        data-row='{"A":1, "C":1}' 
-        data-col='{"A":1, "C":4}' 
-        data-hor-span='{"A":2}'
-        style="position:absolute; background-image:url('./akraDashboard_1200x450.png'); background-size: cover; " > 
+        data-include-in-viewport = 'wide,normal'
+        data-row='{"normal":1, "wide":1}' 
+        data-col='{"normal":1, "wide":4}' 
+        data-hor-span='{"normal":2,"wide":2}'
+        data-vert-span='{"normal":2,"wide":2}'
+        style=" 
+                background-image:url('./imgAkra/Akra1.png'); 
+                background-size: cover; " > 
     </div>
 
        
@@ -184,17 +191,7 @@ dl.infos dd:after {
 
        
 
-    <svg height="900" width="900" style="z-index:20;position:absolute;left:0; top:0">
-        <line x1="200" y1="600" x2="100" y2="400" style="stroke:rgb(255,255,255);stroke-width:3" />
-              Sorry, your browser does not support inline SVG.
-    </svg>
-
  <!-- 
-    <div class="oracleCaption" style="border: 5px white solid; 
-    left:1000px; top:480px; width:500px; z-index:25;font-size:1.5em;">
-        ...so says <span style='font-size:1.8em'>Apollo</span>, 
-    </div>
-
    
 
 
