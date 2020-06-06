@@ -83,8 +83,8 @@
             }'   
         data-scenes = '1,2'
         data-formats='{
+             "wide_a": {"width": 3000, "height":1600, "cols":5, "rows":4}, 
              "normal":   {"width": 2400, "height":1600, "cols":4, "rows":4},
-             "wide": {"width": 3000, "height":1600, "cols":5, "rows":4}, 
              "tablet": {"width":1200, "height":1600, "cols":2, "rows":4}
         }'>
     </div>
@@ -107,84 +107,79 @@
     </div>
 
 
+
+    <div class="visual-elt" id="spiralGalaxy"
+        data-include-in-viewport = 'wide_a'
+        data-borders = '{"tableta":"none","wide_a":"none"}'
+        data-row='{"tableta":1, "normala": 1, "wide_a":1}' 
+        data-col='{"tableta":1, "normala":3, "wide_a":2}'
+        data-hor-span='{"tableta":1, "normala":2, "wide_a":4}' 
+        data-vert-span='{"tableta":1, "normala":2, "wide_a":4}'>
+
+     <video style="height:100%;overflow:hidden" 
+                id="video" preload autoplay muted playsinline loop>
+            <source src="galaxie.mp4"></source>
+     </video>
+     </div>   
+
+     <div class="visual-elt" id="turningPlanet"
+        data-include-in-viewport = 'wide_a'
+        data-borders = '{"tableta":"none"}'
+        data-row='{"tableta":1, "normala": 1, "wide_a":1}' 
+        data-col='{"tableta":1, "normala":3, "wide_a":1}'
+        data-hor-span='{"tableta":1, "normala":2, "wide_a":2}' 
+        data-vert-span='{"tableta":1, "normala":2, "wide_a":2}'>
+
+     <video style="height:100%;overflow:hidden" 
+                id="video" preload autoplay muted playsinline loop>
+            <source src="imgBacks/turningPlanet.mp4"></source>
+     </video>
+     </div>   
+ 
+
    <canvas class="visual-elt animated" id="spaceBackground1"
-            data-include-in-viewport = 'wide,normal'
+            data-include-in-viewport = 'wide_a,normal'
             data-animation-info = '{"type":"stars 2"}'
-            data-row='{"normal":3, "tablet":1,"wide":1}' 
-            data-col='{"normal":4, "tablet":1,"wide":5}'
-            data-hor-span='{"normal":1, "tablet":2,"wide":1}' 
-            data-vert-span='{"normal":1,"wide":1}'>
+            data-row='{"normal":3, "tablet":1,"wide_a":1}' 
+            data-col='{"normal":4, "tablet":1,"wide_a":5}'
+            data-hor-span='{"normal":1, "tablet":2,"wide_a":1}' 
+            data-vert-span='{"normal":1,"wide_a":1}'>
     </canvas>
 
    <canvas class="visual-elt animated" id="spaceBackground2"
-            data-include-in-viewport = 'wide'
+            data-include-in-viewport = 'wide_a'
             data-animation-info = '{"type":"stars 2"}'
-            data-row='{"normal":3, "tablet":1,"wide":3}' 
-            data-col='{"normal":4, "tablet":1,"wide":5}'
-            data-hor-span='{"normal":1, "tablet":2,"wide":1}' 
-            data-vert-span='{"normal":1,"wide":1}'>
+            data-row='{"normal":3, "tablet":1,"wide_a":3}' 
+            data-col='{"normal":4, "tablet":1,"wide_a":5}'
+            data-hor-span='{"normal":1, "tablet":2,"wide_a":1}' 
+            data-vert-span='{"normal":1,"wide_a":1}'>
     </canvas>
 
 
  
-   <div class="visual-elt" id="background1"
-        style="position:absolute; background-image:url('./imgBacks/Back1_1200x400.png'); 
-            background-image-position: center; 
-            background-repeat: no-repeat; 
-            background-size: cover;
-            color:white; font-size:1.0em;
-            font-family:'Baloo Chettan 2';" 
-
-        data-include-in-viewport = 'normal,tablet,wide'
-        data-row='{"normal":1,"tablet":1,"wide":1}'
-        data-col='{"normal":1,"tablet":1,"wide":1}'
-        data-hor-span='{"normal":2, "tablet":2,"wide":2}'
-        data-vert-span='{"normal":1,"tablet":2,"wide":2}'>
-
-
-   </div>
-
-   <div class="visual-elt" id="background1"
-        style="position:absolute; background-image:url('./imgAkra/Akra_space_1200x400.png'); 
-            background-image-position: center; 
-            background-repeat: no-repeat; 
-            background-size: cover;
-            color:white; font-size:1.0em;
-            font-family:'Baloo Chettan 2';" 
-
-        data-include-in-viewport = 'normal,wide'
-        data-row='{"normal":2,"tablet":1,"wide":1}'
-        data-col='{"normal":1,"tablet":1,"wide":1}'
-        data-hor-span='{"normal":2, "tablet":2,"wide":2}'
-        data-vert-span='{"normal":1,"tablet":2,"wide":1}'>
-
-
+   <div class="visual-elt" id="AkraImage"
+        style="background-image:url('./imgAkra/akra1.png');"
+        data-include-in-viewport = 'normal,wide_a'
+        data-borders = '{"wide_a":"none"}';
+        data-row='{"normal":2,"tablet":1,"wide_a":2}'
+        data-col='{"normal":1,"tablet":1,"wide_a":1}'
+        data-hor-span='{"normal":2, "tablet":2,"wide_a":2}'
+        data-vert-span='{"normal":1,"tablet":2,"wide_a":1}'>
    </div>
 
 
-    <div class="visual-elt" id="spaceAkra"
-        style=" 
-            position:absolute; background-image:url('./imgAkra_space_1200x400.png'); 
-            background-image-position: center; 
-            background-repeat: no-repeat; 
-            background-size: cover;
-            padding-top:30px; padding-left:30px; padding-right:20px; 
-            color:white; font-size:1.3em;
-            font-family:'Baloo Chettan 2';" 
-
-        data-include-in-viewport = 'normal,tablet,wide'
-        data-row='{"normal":3,"tablet":1,"wide":1}'
-        data-col='{"normal":4,"tablet":1,"wide":3}'
-        data-hor-span='{"normal":1, "tablet":2,"wide":2}'
-        data-vert-span='{"normal":1,"tablet":2,"wide":2}'>
+    <div class="visual-elt" id="spaceAkra" 
+        style="background-image:url('./imgAkra/akra_space_1200x400.png');"
+        data-include-in-viewport = 'normal,tablet,wide_a'
+        data-borders='{"wide_a":"none"}'
+        data-row='{"normal":3,"tablet":1,"wide_a":1}'
+        data-col='{"normal":4,"tablet":1,"wide_a":2}'
+        data-hor-span='{"normal":1, "tablet":2,"wide_a":4}'
+        data-vert-span='{"normal":1,"tablet":2,"wide_a":2}'>
     </div>
 
  
-     <div class="visual-elt" id="text1"
-        style=" position:absolute; background:none; 
-                color:white; font-size:1.0em;
-                font-family:'Baloo Chettan 2';padding-left:15px;
-                z-index:3;" 
+     <div class="visual-elt narration" id="text1"
         data-include-in-viewport = 'tablet,wide'
         data-borders='{"wide":"none"}'
         data-row='{"normal":2,"tablet":4,"wide":1}'
@@ -208,14 +203,12 @@
 
 
 
-    <div   class="visual-elt" id="cap1" 
-           style="position:absolute;padding-right:20px;color:white;
-                  font-family:'courier';"
-         data-include-in-viewport = 'normal,wide'
-         data-row='{"normal":3,"wide":3}' 
-         data-col='{"normal":1,"wide":1}'
-         data-hor-span='{"normal":3,"wide":4}'
-         data-vert-span='{"normal":2,"wide":2}'>
+    <div   class="visual-elt" id="cap1" style="font-family:'courier';"
+            data-include-in-viewport = 'normal,wide_a'
+            data-row='{"normal":3,"wide_a":3}' 
+            data-col='{"normal":1,"wide_a":1}'
+            data-hor-span='{"normal":3,"wide_a":4}'
+            data-vert-span='{"normal":2,"wide_a":2}'>
 
         <div class="teletype" style="border:'2px orange solid';" >
             <br/>
@@ -237,23 +230,25 @@
          style="position:absolute; text-align:center; 
                 display:flex; align-items:center; text-align:center;justify-content: center;
                 font-size:2.0em; background:none;"
-         data-include-in-viewport = 'normal,wide'
-         data-borders='{"normal":"none","wide":"none"}'
-         data-row='{"normal":4,"wide":3}' 
-         data-col='{"normal":4,"wide":4}'
-         data-hor-span='{"normal":1,"wide":1}' data-vert-span='{"normal":1,"wide":1}'>
+         data-include-in-viewport = 'normal,wide_a'
+         data-borders='{"normal":"none","wide_a":"none"}'
+         data-row='{"normal":4,"wide_a":3}' 
+         data-col='{"normal":4,"wide_a":4}'
+         data-hor-span='{"normal":1,"wide_a":1}' 
+         data-vert-span='{"normal":1,"wide":1}'>
          <center> <button class="blinkBorder" 
                     style="padding-top:20%; padding-bottom:20%; 
                     background-color:red;color:white;
                     font-size:1.4em; border-radius:50%; border:blue 20px solid;" 
-                    onclick="acceptPythiaCall();">connect</button></center>
+                    onclick="acceptPythiaCall();">connect</button>
+        </center>
     </div>
 
       <div class="visual-elt" id="akraWireframe"
-        data-include-in-viewport = 'normal,tablet,wide'
-        data-borders='{"normal":"none","wide":"none"}'
-        data-row='{"normal":3, "tablet":3, "wide":2}' 
-        data-col='{"normal":4, "tablet":1, "wide":5}'
+        data-include-in-viewport = 'normal,tablet,wide_a'
+        data-borders='{"normal":"none","wide_a":"none"}'
+        data-row='{"normal":3, "tablet":3, "wide_a":1}' 
+        data-col='{"normal":4, "tablet":1, "wide_a":1}'
         style=" position:absolute;z-index:3;text-align:left;padding-left:10px">
             <img    class ="akraStatus" src="./imgAkraHud/frameDecor.png" 
                     style="position:absolute; width:55%;border:red solid 5px;border-radius:50%;">
@@ -263,18 +258,38 @@
             </div>
 
 
-      <div class="visual-elt"
-        data-include-in-viewport = 'normal,wide'
-        data-row='{"normal":1, "tablet":3, "wide":1}' 
-        data-col='{"normal":3, "tablet":1, "wide":3}'
-        data-hor-span='{"normal":2, "tablet":2, "wide":2}' 
-        data-vert-span='{"normal":2, "tablet":2, "wide":2}'
-        style=" position:absolute;
-                background-image-position: center; 
-                background-repeat: no-repeat; 
-                background-size: cover;
-                background-image:url('./imgOedipus/O3dipus2.png');" >  
+      <div class="visual-elt" id="O3dipusPic"
+        data-include-in-viewport = 'normal,wide_a'
+        data-row='{"normal":1, "tablet":3, "wide_a":1}' 
+        data-col='{"normal":3, "tablet":1, "wide_a":5}'
+        data-hor-span='{"normal":2, "tablet":2, "wide_a":1}' 
+        data-vert-span='{"normal":2, "tablet":2, "wide_a":1}'
+        style="background-image:url('./imgOedipus/O3dipus2.png');" >  
     </div>
+  <div class="visual-elt" id="O3dipusEyesPic"
+        data-include-in-viewport = 'normal,wide_a'
+        data-row='{"normal":1, "tablet":3, "wide_a":2}' 
+        data-col='{"normal":3, "tablet":1, "wide_a":5}'
+        data-hor-span='{"normal":2, "tablet":2, "wide_a":1}' 
+        data-vert-span='{"normal":2, "tablet":2, "wide_a":1}'
+        style="background-color:black;background-image:url('./imgOedipus/O3dipusEyes.png');" >  
+    </div>
+
+
+    <div class="visual-elt" id="frameNext"
+        data-include-in-viewport = 'wide_a,normala,tableta'
+        data-borders ='{"tableta":"none"}'
+        data-row='{"normala":4, "wide_a":4,"tableta":4}' 
+        data-col='{"normala":4, "wide_a":5,"tableta":2}'
+        data-hor-span='{"normal":2, "wide":1, "tableta":1}' 
+        data-vert-span='{"normal":1}'
+        style="display:flex;justify-content:center;align-items:center;">
+
+        <a  href="./A_5/index.html"> 
+            <img src="../icons/rightArrow.png"/>
+        </a>
+   </div>
+
 
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
