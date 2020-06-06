@@ -24,9 +24,6 @@ const rowColToTopLeft = function( rowColPos, contentViewport, contentFrame ){
         };  
 }
 
-
-
-
 const placeCaption = function ( jqueryElt, contentViewport, viewportTemplate ){
     let positionDescription = jqueryElt.data('position-description')[viewportTemplate.name];
     let pxOrigin = rowColToTopLeft(positionDescription.origin, contentViewport, viewportTemplate); 
@@ -40,7 +37,19 @@ const placeCaption = function ( jqueryElt, contentViewport, viewportTemplate ){
     debugger
 }
 
-const layoutCaptions = function( contentViewport , viewportTemplate, scenes){
+const layoutCaptions = function( app ) {
+    debugger
+    let viewportName = app.currentPage.viewport.name; 
+    //occupies text space in a visual element
+    $(".narration").each( function(){
+         let eltId = $(this).attr('id');
+         let scene = app.currentPage.getScene(eltId); 
+         $(this).find(".paragraph").each(function(){
+            
+        })
+    })
+
+    //captions are free floating divs
     $(".caption").each( function(){
         let eltId = $(this).attr('id');
         let showInScene = false; 

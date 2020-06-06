@@ -3,8 +3,8 @@
 /*****************************************************************************/
 const cssDef         = require('../utils/cssDef').cssDef ;
 const divPerimeter   = require('../utils/divPerimeter').divPerimeter ; 
-const layoutImages   = require('./imgLayout').layoutImages ;
-const layoutCaptions = require('./layoutCaptions').layoutCaptions ; 
+const layoutVisualElements = require('./imgLayout').layoutImages ;
+const layoutText = require('./layoutCaptions').layoutCaptions ; 
 const sizeToViewport = require('./sizeToViewport').sizeToViewport ; 
 /*****************************************************************************/
 
@@ -113,8 +113,12 @@ const _configureLayout = function( app ){
     contentViewport.height = contentFrame.dimensions.height; 
 
     _configureMargins(contentViewport);
-    layoutImages(contentViewport, contentFrame, app.scenes); 
-    layoutCaptions( contentViewport, contentFrame, app.scenes ); 
+    layoutVisualElements({
+            app, 
+            contentViewport, 
+            viewportTemplate: contentFrame
+    }); 
+    layoutText( app );
 }
 
 

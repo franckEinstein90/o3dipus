@@ -3,6 +3,7 @@
 
 /*****************************************************************************/
 const sizeToViewport = require('./sizeToViewport').sizeToViewport;
+const Frame = require('./Frame').Frame; 
 /*****************************************************************************/
 
 
@@ -76,8 +77,9 @@ let getRowColInfo  = function(elt, viewportTemplate){
     return rowColInfo
 }
 
-const layoutImages = function( contentViewport , viewportTemplate, scenes){
 
+const layoutImages = function({contentViewport , viewportTemplate, app}){
+    app.currentPage = new Frame(viewportTemplate);
     $('.visual-elt').each( function(){
         let eltId = $(this).attr('id');
         console.log(`placing element ${eltId}`);
@@ -89,6 +91,7 @@ const layoutImages = function( contentViewport , viewportTemplate, scenes){
             if(viewportClients.split(',').includes(viewportTemplate.name)){ //if this viewport includes this elt
                 let rowColInfo =  getRowColInfo( $(this), viewportTemplate) 
                 let eltCss = sizeToViewport( $(this), contentViewport, viewportTemplate ); 
+                app.currentPage.store(eltId, eltCss, rowColInfo);
                 _drawBorders($(this), contentViewport, viewportTemplate, eltCss, rowColInfo)
                 $( this ).show(); 
             }

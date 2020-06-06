@@ -52,17 +52,29 @@
 
     <div class="visual-elt" id="templeMoonVideo"
         data-include-in-viewport = 'normala,wide'
-        data-borders = '{"tableta":"none"}'
+        data-borders = '{"tableta":"none","wide":"none"}'
         data-row='{"tableta":1, "normala": 1, "wide":3}' 
-        data-col='{"tableta":1, "normala":3, "wide":2}'
-        data-hor-span='{"tableta":1, "normala":2, "wide":1}' 
-        data-vert-span='{"tableta":1, "normala":2, "wide":1}'>
+        data-col='{"tableta":1, "normala":3, "wide":1}'
+        data-hor-span='{"tableta":1, "normala":2, "wide":2}' 
+        data-vert-span='{"tableta":1, "normala":2, "wide":2}'>
 
      <video style="height:100%;overflow:hidden" 
                 id="video" preload autoplay muted playsinline loop>
         <source src="templeMoon.mp4"></source>
         </video>
      </div>   
+    <div class="visual-elt" id="vidBackground1"
+        data-include-in-viewport = 'normala,wide'
+        data-borders = '{"tableta":"none","wide":"none"}'
+        data-row='{"tableta":1, "normala": 1, "wide":4}' 
+        data-col='{"tableta":1, "normala":3, "wide":2}'
+        data-hor-span='{"tableta":1, "normala":2, "wide":2}' >
+
+     <video style="width:100%;overflow:hidden" id="video" preload autoplay muted playsinline loop>
+        <source src="imgBacks/background2.mp4"></source>
+        </video>
+     </div>   
+
 
      <div class="visual-elt" id="vidTest"
         data-include-in-viewport = 'normala,wide'
@@ -166,7 +178,7 @@
      <div class="visual-elt" id="rebelPic"
         data-include-in-viewport = 'wide'
         data-row='{"tablet":1, "normal": 3, "wide":4}' 
-        data-col='{"tablet":1, "normal":4, "wide":2}'
+        data-col='{"tablet":1, "normal":4, "wide":4}'
         data-hor-span='{"tablet":2, "normal":1, "wide":1}' 
         data-vert-span='{"tablet":1, "normal":1, "wide":1}'
         style="background-image:url('./imgRebels/rebel1.png');">
@@ -224,7 +236,10 @@
     <div class="visual-elt" id="artificialGutter"
         data-include-in-viewport='wide'
         data-row='{"normal":2, "tablet":1,"wide":3}' 
-        data-col='{"normal":3, "tablet":1,"wide":5}'>
+        data-col='{"normal":3, "tablet":1,"wide":1}'
+        data-hor-span='{"normal":2, "tablet":2,"wide":5}' 
+        data-vert-span='{"normal":1,"wide":2}'>
+
 
     </div>
         
@@ -254,12 +269,12 @@
     <!--Pythia recs-->
     <div class="visual-elt" id="PythiaPic"
         data-include-in-viewport = 'tabletb,normala,wide'
-        data-borders='{"tablet":"none"}'
+        data-borders='{"tablet":"none","normala":"none","wide":"none"}'
         data-row='{"tableta":1, "normala":1, "wide":3}' 
         data-col='{"tableta":1, "normala":3, "wide":1}'
         data-hor-span='{"normal":1,"wide":1}'
         data-vert-span='{"tableta":2,"normala":2,"wide":2}'
-        style="background-color:black;background-image:url('./imgPythia/Oracle4_600x800.png');" > 
+        style="background-image:url('./imgPythia/Oracle4_600x800.png');" > 
     </div>
 
      <div class="visual-elt" id="delfiMoon"
@@ -276,7 +291,7 @@
 
      <div class="visual-elt narration" id ="PythiaNarration"
         data-include-in-viewport = 'tablet,wide,normala'
-        data-borders='{"normala":"none"}'
+        data-borders='{"normala":"none","wide":"none"}'
         data-row='{"tablet":2, "normala": 2, "wide":3}' 
         data-col='{"tablet":1, "normala":4, "wide":2}'
         data-hor-span='{"tablet":1, "normala":1, "wide":1}' 
@@ -306,12 +321,12 @@
     <div class="visual-elt narration" id="narrativeSlaveryAbolition"
         data-include-in-viewport = 'wide,normal,tablet'
         data-row='{"normal":4, "wide":4,"tablet":4}' 
-        data-col='{"normal":3, "wide":3,"tablet":1}'
+        data-col='{"normal":3, "wide":2,"tablet":1}'
         data-hor-span='{"normal":2, "wide":2, "tablet":2}' 
         data-vert-span='{"normal":1}'>
 
 
-       <div>
+       <div class="paragraph shade">
         Pockets of rebellion are spreading across the empire.
         Abolition, an idea that threatens Pythia and her 
         traditional hold on the empire, is increasingly 
