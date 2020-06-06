@@ -8,7 +8,25 @@
     background-image-position: center; 
     background-repeat: no-repeat; 
     background-size: cover;
+    color:white; 
+    overflow:hidden;
+    font-family:'Baloo Chettan 2';
     animation: appear 4.5s steps(40, end)
+}
+
+.narration{
+    display:flex; 
+    flex-direction:column; 
+    align-item:center;
+    justify-content:space-around; 
+} 
+
+.narration > div {
+    margin-left:20px
+}
+
+.shade {
+    background-color:rgba(0,0,0,0.5);
 }
 
 .appear {

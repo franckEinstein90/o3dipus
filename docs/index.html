@@ -34,136 +34,217 @@
  
             data-formats='{
                 "wide": {"width": 3000, "height":1600, "cols":5, "rows":4}, 
-                "normal":   {"width": 2400, "height":1600, "cols":4, "rows":4}, 
-                "tablet": {"width":1200, "height":1600, "cols":2, "rows":4}
+                "normala":   {"width": 2400, "height":1600, "cols":4, "rows":4}, 
+                "tableta": {"width":1200, "height":1600, "cols":2, "rows":4}
             }'>
     </div>
 
-    <canvas class="visual-elt animated" id="spaceBackground"
-            data-include-in-viewport = 'wide,normal'
+   <!-- <canvas class="visual-elt animated" id="spaceBackground"
+            data-include-in-viewport = 'tablet,wide,normala'
+            data-borders='{"wide":"none"}'
             data-animation-info = '{"type":  "stars 1"}'
-            data-row='{"normal":1, "tablet":1,"wide":1}' 
-            data-col='{"normal":3, "tablet":1,"wide":3}'
-            data-hor-span='{"normal":2, "tablet":2,"wide":3}' 
-            data-vert-span='{"normal":2,"wide":3}'>
-    </canvas>
+            data-row='{"normala":1, "tablet":1,"wide":1}' 
+            data-col='{"normala":3, "tablet":1,"wide":4}'
+            data-hor-span='{"normala":2, "tablet":2,"wide":2}' 
+            data-vert-span='{"normala":2,"wide":2}'>
+    </canvas>-->
 
-  
+
+    <div class="visual-elt" id="templeMoonVideo"
+        data-include-in-viewport = 'normala,wide'
+        data-borders = '{"tableta":"none"}'
+        data-row='{"tableta":1, "normala": 1, "wide":3}' 
+        data-col='{"tableta":1, "normala":3, "wide":2}'
+        data-hor-span='{"tableta":1, "normala":2, "wide":1}' 
+        data-vert-span='{"tableta":1, "normala":2, "wide":1}'>
+
+     <video style="height:100%;overflow:hidden" 
+                id="video" preload autoplay muted playsinline loop>
+        <source src="templeMoon.mp4"></source>
+        </video>
+     </div>   
+
+     <div class="visual-elt" id="vidTest"
+        data-include-in-viewport = 'normala,wide'
+        data-borders = '{"tableta":"none"}'
+        data-row='{"tableta":1, "normala": 3, "wide":1}' 
+        data-col='{"tableta":1, "normala":3, "wide":3}'
+        data-hor-span='{"tableta":1, "normala":2, "wide":2}' 
+        data-vert-span='{"tableta":1, "normala":2, "wide":2}'>
+
+
+        <video style="height:100%;overflow:hidden" 
+                id="video" preload autoplay muted playsinline loop>
+        <source src="stars.mp4"></source>
+        </video>
+        
+        
+                  
+    </div>
+
+ 
     <div class="visual-elt" id="apolloStarSystem"
-        data-include-in-viewport = 'table,wide,normal'
-        data-borders = '{"normal":"none"}'
-        data-row='{"tablet":1, "normal": 1, "wide":1}' 
-        data-col='{"tablet":1, "normal":1, "wide":1}'
-        data-hor-span='{"tablet":2, "normal":2, "wide":2}' 
-        data-vert-span='{"tablet":1, "normal":2, "wide":2}'
-        style=" position:absolute; 
-                background-image:url('./apolloSystem_600x400.png'); 
-                background-size: cover; 
-                font-family:'Baloo Chettan 2';padding-left:5%" > 
+        data-include-in-viewport = 'tableta,wide,normala'
+        data-borders = '{"tableta":"none","normala":"none"}'
+        data-row='{"tableta":1, "normala": 1, "wide":1}' 
+        data-col='{"tableta":1, "normala":1, "wide":1}'
+        data-hor-span='{"tableta":1, "normala":2, "wide":2}' 
+        data-vert-span='{"tableta":1, "normala":2, "wide":2}'
+        style="background-image:url('./apolloSystem_600x400.png');">
+                  
+    </div>
 
-        <p style="  background-color:rgba(0,0,0,0.5); color:white; 
-                    margin-right:5%;  
-                    font-size:1.1em; ">
-                    
-        The Apollo Empire has come to rely on 
-        slave labor for all essential aspects 
-        of its vast economy.
-        </p>
-     </div>
+    <div class="visual-elt narration" id="apolloPoliticsNarration1"
+        data-include-in-viewport = 'tableta,normala,wide'
+        data-borders = '{"tableta":"none","normala":"none","wide":"none"}'
+        data-row='{"tableta":1, "normala": 1, "wide":1}' 
+        data-col='{"tableta":2, "normala":1, "wide":1}'
+        data-hor-span='{"tableta":1, "normala":2, "wide":1}'
+        style="z-index:5">
+
+                  
+        <div class="shade paragraph" 
+             style=""
+             data-include-in-viewport = "normal"> 
+        The Apollo Empire is in decline. Its
+        reliance on slavery for all aspects 
+        of its vast economy, has created a static 
+        and deeply corrupt state. 
+        </div>
+
+    </div>
+
+
+    <div class="visual-elt narration" id="apolloPoliticsNarration2a"
+        data-include-in-viewport = 'tableta,normala,wide'
+        data-borders = '{"tableta":"none","normala":"none","wide":"none"}'
+        data-row='{"tableta":2, "normala": 2, "wide":1}' 
+        data-col='{"tableta":1, "normala":1, "wide":2}'
+        data-hor-span='{"tableta":1, "normala":2, "wide":1}'
+        style="z-index:15">
+
+                 
+        <div class="paragraph shade">
+        While its nobility enjoys immense wealth,  
+        most of the empire's citizens battle
+        unemployement and poverty. 
+        </div>
+
+    </div>
+
+
+    <div class="visual-elt narration" id="apolloPoliticsNarration2b"
+        data-include-in-viewport = 'tableta,normala,wide'
+        data-borders = '{"tableta":"none","normala":"none","wide":"none"}'
+        data-row='{"tableta":3, "normala": 2, "wide":2}' 
+        data-col='{"tableta":2, "normala":1, "wide":1}'
+        data-hor-span='{"tableta":1, "normala":2 }'
+        style="z-index:15">
+
+                 
+        <div class="paragraph shade">
+        Soldiery is one of the few remaining available professions 
+        </div>
+
+    </div>
 
 
 
+    <div class="visual-elt narration" id="ApolloPolitical2"
+        data-include-in-viewport = 'normala,tableta,wide'
+        data-borders = '{"tableta":"none","normala":"none","wide":"none"}'
+        data-row='{"tableta":4, "normala": 3, "wide":2}' 
+        data-col='{"tableta":1, "normala":3, "wide":2}'
+        data-hor-span='{"tableta":1,"normala":1}'>
+ 
+        <div class="paragraph"> a unit of semi-independent mercenaries called <strong>Envoys</strong> 
+        support and protect the slave trade
+        </div>
+    </div>
 
-     <div class="visual-elt" id="delfiMoon"
-        data-include-in-viewport = 'wide,normal'
-        data-row='{"tablet":1, "normal": 3, "wide":2}' 
+
+     <div class="visual-elt" id="rebelPic"
+        data-include-in-viewport = 'wide'
+        data-row='{"tablet":1, "normal": 3, "wide":4}' 
         data-col='{"tablet":1, "normal":4, "wide":2}'
         data-hor-span='{"tablet":2, "normal":1, "wide":1}' 
         data-vert-span='{"tablet":1, "normal":1, "wide":1}'
-        style="position:absolute; z-index:5;
-               background-color:black;  
-               background-image:url('./imgApolloSystem/ApolloSun_1200x800.png'); 
-               padding-left:10px; padding-top:20px;
-               font-family:'Baloo Chettan 2'; " > 
-     </div>
-
-
-
-     <div class="visual-elt"
-        data-include-in-viewport = 'wide,normal'
-        data-borders='{"normal":"none","wide":"none"}'
-        data-row='{"tablet":1, "normal": 3, "wide":3}' 
-        data-col='{"tablet":1, "normal":2, "wide":2}'
-        data-hor-span='{"tablet":2, "normal":2, "wide":1}' 
-        data-vert-span='{"tablet":1, "normal":2, "wide":2}'
-        style=" position:absolute; color:white; z-index:5; 
-                font-family:'Baloo Chettan 2';">
-
-        <P style="width:90%; margin-top:5%; margin-right:10px; font-size:1.1em">
-        The High Priestess of Apollo hasn't left her moon temple in decades, 
-        and her influence is diminishing across the empire. 
+        style="background-image:url('./imgRebels/rebel1.png');">
+               
      </div>
 
 
 
 
-       <div class="visual-elt" 
+    <div class="visual-elt" id="akraImageLarge" 
         data-include-in-viewport = 'wide,normal'
         data-borders = '{"wide":"none","normal":"none"}'
         data-row='{"normal":1, "tablet":1,"wide":1}' 
         data-col='{"normal":3, "tablet":1,"wide":2}'
         data-hor-span='{"normal":2, "tablet":2,"wide":4}' 
         data-vert-span='{"normal":1,"wide":2}'
-        style=" position:absolute;z-index:70; 
-                background-image-position: center; 
-                background-repeat: no-repeat; 
-                background-size: cover;
-                color:white; font-size:1.0em; font-family:'Baloo Chettan 2';
-                background-image:url('./imgAkra/akra4.png'); 
-                background-size: cover;">
-
-
+        style="background-image:url('./imgAkra/akra4.png');">
     </div>
 
-    <div class="visual-elt" 
+    <iframe class="visual-elt" id="O3dipusEnvoy" src="./iframeTest.html" 
+        style="background-image:url('./imgO3dipus/O3dipusEnvoy.png');z-index:10;"
+        data-include-in-viewport="tableta,normala,wide"
+        data-row='{"tableta":2,"wide":3,"normala":3}'
+        data-col='{"tableta":1, "wide":3,"normala":1}'
+        data-hor-span='{"tableta":2,"normala":2}',
+        data-vert-span='{"tableta":2,"normala":2}'>
+    </iframe>
 
-        data-include-in-viewport = 'wide,normal'
-        data-borders='{"normal":"none","wide":"none"}'
-        data-row='{"normal":2, "tablet":1,"wide":3}' 
-        data-col='{"normal":1, "tablet":1,"wide":4}'
-        data-hor-span='{"normal":1, "tablet":2,"wide":2}' 
-        data-vert-span='{"normal":1,"wide":1}'
-        style=" padding-top:10px;color:white;
-                    padding-left:20px; 
-                    font-size:1.0em; 
-                    font-family:'Baloo Chettan 2';">
 
-        <P style="margin-left:10px;padding-right:5%">
-        A young and ambitious <strong>O3dipus</strong>
-        has just been named Envoy of the Empire. 
+
+    <div class="visual-elt narration" id="o3Narration"
+
+        data-include-in-viewport = 'tablet,wide,normal'
+        data-borders='{"normal":"none","wide":"none","tablet":"none"}'
+        data-row='{"normal":2, "tablet":3,"wide":3}' 
+        data-col='{"normal":1, "tablet":2,"wide":4}'
+        data-hor-span='{"normal":1, "tablet":1,"wide":1}' 
+        data-vert-span='{"tablet":2,"normal":1,"wide":1}'
+        style="z-index:15">
+                
+        <div class="paragraph shade"> 
+            A young and ambitious <strong>O3dipus</strong>
+            recently obtained a position as <i>Envoy of the Empire</i>
+        </div>
+
+        <div class="paragraph shade"> 
+            As part of his standard equipment kit, he's 
+            been assigned the empire centaur #12480:
+            <strong>Akra</strong>
+        </div>
        
     </div>
 
-    <div class="visual-elt narration" 
+
+    <div class="visual-elt" id="artificialGutter"
+        data-include-in-viewport='wide'
+        data-row='{"normal":2, "tablet":1,"wide":3}' 
+        data-col='{"normal":3, "tablet":1,"wide":5}'>
+
+    </div>
+        
+
+    <div class="visual-elt narration" id="centaurNarration"
             data-include-in-viewport = 'wide,normal'
             data-borders='{"normal":"none","wide":"none"}'
             data-inner-position='{"normal":"north"}'
             data-row='{"normal":2, "tablet":1,"wide":1}' 
-            data-col='{"normal":3, "tablet":1,"wide":4}'
-            data-hor-span='{"normal":2, "tablet":2,"wide":2}' 
-            data-vert-span='{"normal":1,"wide":1}'
-            style=  "color:white;font-size:1.0em; font-family:'Baloo Chettan 2';
-                    display:flex; flex-direction:column; align-item:center;
-                    justify-content:space-around; 
-                    padding-right:10px;">
+            data-col='{"normal":3, "tablet":1,"wide":5}'
+            data-hor-span='{"normal":2, "tablet":2,"wide":1}' 
+            data-vert-span='{"normal":1,"wide":1}'>
 
-        <div style="margin-left:20px">
+        <div class="shade"> 
         The <strong>Centaurs</strong>, a nomadic species of living spaceships, are
         the only practical means of interstellar transport, and therefore
         necessary for all trade across the empire. 
         </div>
        
-        <div style="margin-left:20px">
+        <div class="shade"> 
         By law, all Centaurs are slaves, their ownership tighly controlled 
         by the Apollo empire 
         </div> 
@@ -171,67 +252,90 @@
 
 
     <!--Pythia recs-->
-    <div class="visual-elt"
-        data-include-in-viewport = 'tablet,normal,wide'
-        data-row='{"tablet":1, "normal":3, "wide":3}' 
-        data-col='{"tablet":1, "normal":1, "wide":1}'
+    <div class="visual-elt" id="PythiaPic"
+        data-include-in-viewport = 'tabletb,normala,wide'
+        data-borders='{"tablet":"none"}'
+        data-row='{"tableta":1, "normala":1, "wide":3}' 
+        data-col='{"tableta":1, "normala":3, "wide":1}'
         data-hor-span='{"normal":1,"wide":1}'
-        data-vert-span='{"normal":2,"wide":2}'
-        style="position:absolute;color:white;z-index:6;
-            background-image-position: center; 
-            background-repeat: no-repeat; 
-            background-size: cover;
-            background-image:url('./imgPythia/Oracle4_600x800.png');" > 
+        data-vert-span='{"tableta":2,"normala":2,"wide":2}'
+        style="background-color:black;background-image:url('./imgPythia/Oracle4_600x800.png');" > 
     </div>
 
+     <div class="visual-elt" id="delfiMoon"
+        data-include-in-viewport = 'tablet,wide'
+        data-borders='{"wide":"none","tablet":"none"}'
+        data-row='{"tablet":2, "normala":2, "wide":2}' 
+        data-col='{"tablet":1, "normala":4, "wide":2}'
+        data-hor-span='{"tablet":2, "normal":1, "wide":1}' 
+        data-vert-span='{"tablet":1, "normal":1, "wide":1}'
+        style=" background-image:url('./imgApolloSystem/ApolloSun_1200x800.png');">
+     </div>
 
 
+
+     <div class="visual-elt narration" id ="PythiaNarration"
+        data-include-in-viewport = 'tablet,wide,normala'
+        data-borders='{"normala":"none"}'
+        data-row='{"tablet":2, "normala": 2, "wide":3}' 
+        data-col='{"tablet":1, "normala":4, "wide":2}'
+        data-hor-span='{"tablet":1, "normala":1, "wide":1}' 
+        data-vert-span='{"tablet":1, "normala":1, "wide":1}'>
+      
+        <div class="paragraph shade">
+        Pythia, the High Priestess of Apollo hasn't left her moon temple in decades.
+        </div>
+        <div class="paragraph shade">
+        her influence is slowly diminishing. 
+        </div>
+
+     </div>
 
     <!--imOedipus recs-->
     <div class="visual-elt" id="o3dipusPic"
-        data-include-in-viewport = 'wide,normal'
-        data-row='{"normal":2, "tablet":1, "wide":3}' 
-        data-col='{"normal":2, "tablet":2, "wide":3}'
+        data-include-in-viewport = 'tablet,wide,normala'
+        data-borders='{"wide":"none"}'
+        data-row='{"normala":3, "tablet":2, "wide":3}' 
+        data-col='{"normala":4, "tablet":2, "wide":5}'
         data-hor-span='{"normal":1,"wide":1}'
         data-vert-span='{"normal":1,"wide":1}'
-        style=" position:absolute; 
-            background-image-position: center; 
-            background-repeat: no-repeat; 
-            background-size: cover;
-            background-image:url('./imgO3dipus/O3dipus_600x400.png'); 
-            background-size: cover; " > 
+        style="background-image:url('./imgO3dipus/O3dipus_600x400.png'); ">
     </div>
 
 
-    <div class="visual-elt" id="frameNext"
+    <div class="visual-elt narration" id="narrativeSlaveryAbolition"
         data-include-in-viewport = 'wide,normal,tablet'
         data-row='{"normal":4, "wide":4,"tablet":4}' 
         data-col='{"normal":3, "wide":3,"tablet":1}'
         data-hor-span='{"normal":2, "wide":2, "tablet":2}' 
-        data-vert-span='{"normal":1}'
-        style="position:absolute;background-color:red;color:white;
-               padding-top:30px; padding-left:30px; padding-right:20px; 
-               color:white; font-size:1.3em;
-               font-family:'Baloo Chettan 2';">
+        data-vert-span='{"normal":1}'>
 
 
-       <p style="padding-left:4px;padding-top:4px;">
-        As pockets of rebellion spread across the empire, 
-        abolition, an idea that threatens Pythia and her 
-        view of the empire, is increasingly discussed. 
-        </p>
+       <div>
+        Pockets of rebellion are spreading across the empire.
+        Abolition, an idea that threatens Pythia and her 
+        traditional hold on the empire, is increasingly 
+        discussed. 
+       </div>
+
+        <div>
+        A group of renegade centaurs, let by the 
+        empire traitor <strong>Sphyncs</strong> has taken 
+        refuge in the Thebian system. 
+        There, they stand, a thorn in Pythia's side
+        </div>
  
     </div>
 
-    <div class="visual-elt" id="frameNext"
-        data-include-in-viewport = 'wide,normal,tablet'
-        data-row='{"normal":4, "wide":4,"tablet":4}' 
-        data-col='{"normal":3, "wide":5,"tablet":1}'
-        data-hor-span='{"normal":2, "wide":1, "tablet":2}' 
-        data-vert-span='{"normal":1}'
-        style="display:flex;align:center;">
+    <div class="visual-elt narration" id="frameNext"
+        data-include-in-viewport = 'wide,normal,tableta'
+        data-borders ='{"tableta":"none"}'
+        data-row='{"normal":4, "wide":4,"tableta":4}' 
+        data-col='{"normal":3, "wide":5,"tableta":2}'
+        data-hor-span='{"normal":2, "wide":1, "tableta":1}' 
+        data-vert-span='{"normal":1}'>
 
-        <a  href="./1_5/index.html" style="color:white;padding-top:10px;">
+        <a  href="./A_5/index.html"> 
             <img src="./icons/rightArrow.png"/>
         </a>
    </div>

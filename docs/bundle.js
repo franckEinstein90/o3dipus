@@ -52,12 +52,58 @@ $(document).ready(function() {
 
 
 
-},{"../common/features":10,"./ui/jsEffects/main.js":6,"./ui/main.js":7}],2:[function(require,module,exports){
+},{"../common/features":11,"./ui/jsEffects/main.js":7,"./ui/main.js":8}],2:[function(require,module,exports){
+/*****************************************************************************/
+"use strict";
+
+/*****************************************************************************/
+
+const Scene = function({htmlID, colBegin, colEnd, rowBegin, rowEnd}){
+    this.htmlID = htmlID
+    this.colBegin = colBegin
+    this.colEnd = colEnd
+    this.rowBegin = rowBegin
+    this.rowEnd = rowEnd
+}
+
+const Frame = function(viewport){
+    this.viewport = viewport
+    this.elements = new Map();
+}
+
+Frame.prototype.store = function(id, css, rowColInfo){
+    let row = rowColInfo.row;
+    let col = rowColInfo.col; 
+    let msg = `element id at row ${row + 1}, col ${col + 1 }`
+    if (id === undefined) throw `undefined visual ${msg}`
+    if(this.elements.has(id)) throw `duplicate frame id:${id}, ${msg}`
+    let scene = new Scene({
+        htmlId: id, 
+        colBegin: col, 
+        rowBegin: row, 
+        colEnd: col + rowColInfo.horSpan,
+        rowEnd: row + rowColInfo.vertSpan
+    }); 
+    this.elements.set(id, scene); 
+}
+
+Frame.prototype.getScene = function(htmlID){
+    return this.elements.get(htmlID); 
+}
+/*****************************************************************************/
+module.exports = {
+    Frame
+}
+
+
+
+},{}],3:[function(require,module,exports){
 /*****************************************************************************/
 "use strict";
 
 /*****************************************************************************/
 const sizeToViewport = require('./sizeToViewport').sizeToViewport;
+const Frame = require('./Frame').Frame; 
 /*****************************************************************************/
 
 
@@ -131,8 +177,9 @@ let getRowColInfo  = function(elt, viewportTemplate){
     return rowColInfo
 }
 
-const layoutImages = function( contentViewport , viewportTemplate, scenes){
 
+const layoutImages = function({contentViewport , viewportTemplate, app}){
+    app.currentPage = new Frame(viewportTemplate);
     $('.visual-elt').each( function(){
         let eltId = $(this).attr('id');
         console.log(`placing element ${eltId}`);
@@ -144,6 +191,7 @@ const layoutImages = function( contentViewport , viewportTemplate, scenes){
             if(viewportClients.split(',').includes(viewportTemplate.name)){ //if this viewport includes this elt
                 let rowColInfo =  getRowColInfo( $(this), viewportTemplate) 
                 let eltCss = sizeToViewport( $(this), contentViewport, viewportTemplate ); 
+                app.currentPage.store(eltId, eltCss, rowColInfo);
                 _drawBorders($(this), contentViewport, viewportTemplate, eltCss, rowColInfo)
                 $( this ).show(); 
             }
@@ -160,7 +208,7 @@ module.exports = {
 }
 
 
-},{"./sizeToViewport":5}],3:[function(require,module,exports){
+},{"./Frame":2,"./sizeToViewport":6}],4:[function(require,module,exports){
 "use strict"; 
 
 //return the left and top on the screen, 
@@ -187,9 +235,6 @@ const rowColToTopLeft = function( rowColPos, contentViewport, contentFrame ){
         };  
 }
 
-
-
-
 const placeCaption = function ( jqueryElt, contentViewport, viewportTemplate ){
     let positionDescription = jqueryElt.data('position-description')[viewportTemplate.name];
     let pxOrigin = rowColToTopLeft(positionDescription.origin, contentViewport, viewportTemplate); 
@@ -203,7 +248,19 @@ const placeCaption = function ( jqueryElt, contentViewport, viewportTemplate ){
     debugger
 }
 
-const layoutCaptions = function( contentViewport , viewportTemplate, scenes){
+const layoutCaptions = function( app ) {
+    debugger
+    let viewportName = app.currentPage.viewport.name; 
+    //occupies text space in a visual element
+    $(".narration").each( function(){
+         let eltId = $(this).attr('id');
+         let scene = app.currentPage.getScene(eltId); 
+         $(this).find(".paragraph").each(function(){
+            
+        })
+    })
+
+    //captions are free floating divs
     $(".caption").each( function(){
         let eltId = $(this).attr('id');
         let showInScene = false; 
@@ -226,14 +283,14 @@ module.exports = {
     layoutCaptions
 }
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 /*****************************************************************************/
 "use strict";
 /*****************************************************************************/
 const cssDef         = require('../utils/cssDef').cssDef ;
 const divPerimeter   = require('../utils/divPerimeter').divPerimeter ; 
-const layoutImages   = require('./imgLayout').layoutImages ;
-const layoutCaptions = require('./layoutCaptions').layoutCaptions ; 
+const layoutVisualElements = require('./imgLayout').layoutImages ;
+const layoutText = require('./layoutCaptions').layoutCaptions ; 
 const sizeToViewport = require('./sizeToViewport').sizeToViewport ; 
 /*****************************************************************************/
 
@@ -342,8 +399,12 @@ const _configureLayout = function( app ){
     contentViewport.height = contentFrame.dimensions.height; 
 
     _configureMargins(contentViewport);
-    layoutImages(contentViewport, contentFrame, app.scenes); 
-    layoutCaptions( contentViewport, contentFrame, app.scenes ); 
+    layoutVisualElements({
+            app, 
+            contentViewport, 
+            viewportTemplate: contentFrame
+    }); 
+    layoutText( app );
 }
 
 
@@ -363,7 +424,7 @@ module.exports = {
    uiFrameFeature
 }
 
-},{"../utils/cssDef":8,"../utils/divPerimeter":9,"./imgLayout":2,"./layoutCaptions":3,"./sizeToViewport":5}],5:[function(require,module,exports){
+},{"../utils/cssDef":9,"../utils/divPerimeter":10,"./imgLayout":3,"./layoutCaptions":4,"./sizeToViewport":6}],6:[function(require,module,exports){
 "use strict";
 
 //given a viewport and a frame description, return 
@@ -405,7 +466,7 @@ module.exports = {
     sizeToViewport
 }
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 "use strict"; 
 
 
@@ -493,7 +554,7 @@ module.exports = {
     addJsEffects
 }
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 /******************************************************************************
  * 
  ******************************************************************************/
@@ -525,7 +586,7 @@ module.exports = {
     addUiFeature
 }
 
-},{"./frame/main.js":4}],8:[function(require,module,exports){
+},{"./frame/main.js":5}],9:[function(require,module,exports){
 "use strict";
 
 const cssDef = options => screen => {
@@ -555,7 +616,7 @@ module.exports = {
     cssDef
 }
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 /*****************************************************************************/
 "use strict"
 /*****************************************************************************/
@@ -577,7 +638,7 @@ module.exports = {
     divPerimeter
 }
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 "use strict"
 
 const featureSystem = (function(){
