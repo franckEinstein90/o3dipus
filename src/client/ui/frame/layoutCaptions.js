@@ -38,7 +38,6 @@ const placeCaption = function ( jqueryElt, contentViewport, viewportTemplate ){
 }
 
 const layoutCaptions = function( app ) {
-    debugger
     let viewportName = app.currentPage.viewport.name; 
     //occupies text space in a visual element
     $(".narration").each( function(){

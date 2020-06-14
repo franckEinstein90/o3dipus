@@ -58,20 +58,81 @@ $(document).ready(function() {
 
 /*****************************************************************************/
 
-const Scene = function({htmlID, colBegin, colEnd, rowBegin, rowEnd}){
-    this.htmlID = htmlID
-    this.colBegin = colBegin
-    this.colEnd = colEnd
-    this.rowBegin = rowBegin
-    this.rowEnd = rowEnd
+const Scene = function({
+    htmlId, 
+    colBegin, colEnd, 
+    rowBegin, rowEnd, 
+    css }){
+    this.htmlId = htmlId;
+    this.css = css; 
+    this.colBegin = colBegin; 
+    this.colEnd = colEnd; 
+    this.rowBegin = rowBegin; 
+    this.rowEnd = rowEnd; 
 }
 
-const Frame = function(viewport){
-    this.viewport = viewport
+const Frame = function( viewport ){
+    this.currentIndex = 1; 
+    this.viewport = viewport; 
     this.elements = new Map();
+    this.scenes = new Map();
 }
 
-Frame.prototype.store = function(id, css, rowColInfo){
+Frame.prototype.next = function(){
+}
+
+const _drawBorders =  function( htmlId, elt, viewport ){
+
+    let borderSpecs = $(`#${htmlId}`).data('borders');
+    let topBorder = true;  
+    let leftBorder = true;  
+    let bottomBorder = true;  
+    let rightBorder = true;  
+
+    if(borderSpecs && viewport.name in borderSpecs){
+        let borderInstructions = borderSpecs[viewport.name];
+        if (borderInstructions === "none"){
+            leftBorder = false;
+            bottomBorder = false;  
+            topBorder = false; 
+            rightBorder = false; 
+        }
+    }       
+    let gutterWidth = viewport.dimensions.width / 100; 
+    if( rightBorder) {
+        let odv = $([       //right border
+            `<div class="gutter" style="left:${elt.css.left + elt.css.width}`,  
+            `width:${gutterWidth}; top:${elt.css.top}`, 
+            `height:${elt.css.height}"></div>`].join(';'));
+        $("body").append(odv);
+    }
+    if( leftBorder ) {
+        let odv = $([       //right border
+            `<div class="gutter" style="left:${elt.css.left}`,  
+            `width:${gutterWidth}; top:${elt.css.top}`, 
+            `height:${elt.css.height}"></div>`].join(';'));
+        $("body").append(odv);
+    }
+
+    if( topBorder ){
+        let odh =  $([
+            `<div class="gutter" style="top:${elt.css.top}`,  
+                `height:${viewport.dimensions.height/ 100}; left:${elt.css.left}`, 
+                `width:${elt.css.width}"></div>`].join(';'));
+            $("body").append(odh);
+    } 
+    
+    if( bottomBorder ){
+        let odh =  $([
+            `<div class="gutter" style="top:${elt.css.top + elt.css.height}`,  
+            `height:${viewport.dimensions.height/ 100}; left:${elt.css.left}`, 
+            `width:${elt.css.width + gutterWidth}"></div>`].join(';'));
+        $("body").append(odh);
+   }
+}
+
+
+Frame.prototype.store = function(id, css, rowColInfo, sceneInfo){
     let row = rowColInfo.row;
     let col = rowColInfo.col; 
     let msg = `element id at row ${row + 1}, col ${col + 1 }`
@@ -82,9 +143,29 @@ Frame.prototype.store = function(id, css, rowColInfo){
         colBegin: col, 
         rowBegin: row, 
         colEnd: col + rowColInfo.horSpan,
-        rowEnd: row + rowColInfo.vertSpan
+        rowEnd: row + rowColInfo.vertSpan, 
+        css
     }); 
     this.elements.set(id, scene); 
+    if(this.scenes.has(sceneInfo.index)){
+        this.scenes.get(sceneInfo.index).push(scene)
+    } else{
+        this.scenes.set(sceneInfo.index,[id])
+    }
+}
+
+Frame.prototype.draw = function(){
+    this.elements.forEach((elt, id)=> {
+       $(`#${id}`).css(elt.css); 
+       _drawBorders(id, elt, this.viewport); 
+    })
+    this.scenes.forEach( (index, id)  => {
+        if( index !== NaN && index !== this.currentIndex ){
+            $(`#${id}`).hide(); 
+        } else {
+            $(`#${id}`).show(); 
+        }
+    })
 }
 
 Frame.prototype.getScene = function(htmlID){
@@ -107,57 +188,6 @@ const Frame = require('./Frame').Frame;
 /*****************************************************************************/
 
 
-const _drawBorders =  function( elt, contentViewport, viewportTemplate, eltCss, rowColInfo ) {        
-
-    let borderSpecs = elt.data('borders');
-    let topBorder = rowColInfo.row > 0 ; 
-    let leftBorder = true;  
-    let bottomBorder =  (rowColInfo.row + rowColInfo.vertSpan) < (viewportTemplate.format.rows);
-    let rightBorder = true;  
-
-    if(borderSpecs && viewportTemplate.name in borderSpecs){
-        let borderInstructions = borderSpecs[viewportTemplate.name];
-        if (borderInstructions === "none"){
-            leftBorder = false;
-            bottomBorder = false;  
-            topBorder = false; 
-            rightBorder = false; 
-        }
-    }       
-    let gutterWidth = contentViewport.width / 100; 
-    if( rightBorder) {
-        let odv = $([       //right border
-            `<div class="gutter" style="left:${eltCss.left + eltCss.width}`,  
-            `width:${gutterWidth}; top:${eltCss.top}`, 
-            `height:${eltCss.height}"></div>`].join(';'));
-        $("body").append(odv);
-    }
-    if( leftBorder ) {
-        let odv = $([       //right border
-            `<div class="gutter" style="left:${eltCss.left}`,  
-            `width:${gutterWidth}; top:${eltCss.top}`, 
-            `height:${eltCss.height}"></div>`].join(';'));
-        $("body").append(odv);
-    }
-
-    if( topBorder ){
-        let odh =  $([
-            `<div class="gutter" style="top:${eltCss.top}`,  
-                `height:${contentViewport.height/ 100}; left:${eltCss.left}`, 
-                `width:${eltCss.width}"></div>`].join(';'));
-            $("body").append(odh);
-    } 
-    
-    if( bottomBorder ){
-        let odh =  $([
-            `<div class="gutter" style="top:${eltCss.top + eltCss.height}`,  
-            `height:${contentViewport.height/ 100}; left:${eltCss.left}`, 
-            `width:${eltCss.width + gutterWidth}"></div>`].join(';'));
-        $("body").append(odh);
-   }
-}
-
-
 let getRowColInfo  = function(elt, viewportTemplate){
     let pageLayoutName = viewportTemplate.name; 
     let rowColInfo = {};  
@@ -177,6 +207,23 @@ let getRowColInfo  = function(elt, viewportTemplate){
     return rowColInfo
 }
 
+const matchFrameScene = function(viewportName, csvViewportClientNames){
+    let frames = csvViewportClientNames.split(/\s*,\s*/); 
+    let sceneDesc = frames.find( frameDesc => {
+        let s = frameDesc.split('_'); 
+        return s[0] === viewportName;
+    })
+    let scene = {
+        frameName: null, 
+        index: NaN 
+    }
+    if(sceneDesc === undefined) return scene; 
+    let splitDesc = sceneDesc.split('_');
+    scene.frameName = splitDesc[0];
+    if(splitDesc.length === 1) return scene;  
+    scene.index = parseInt(splitDesc[1])
+    return scene; 
+}
 
 const layoutImages = function({contentViewport , viewportTemplate, app}){
     app.currentPage = new Frame(viewportTemplate);
@@ -184,23 +231,19 @@ const layoutImages = function({contentViewport , viewportTemplate, app}){
         let eltId = $(this).attr('id');
         console.log(`placing element ${eltId}`);
         let viewportClients = $(this).data('include-in-viewport');
-        let sceneInclude = $(this).data('scenes');
-        let showInScene = false; 
-        if( sceneInclude === undefined ) showInScene = true; 
-        if( viewportClients && showInScene ){ 
-            if(viewportClients.split(',').includes(viewportTemplate.name)){ //if this viewport includes this elt
+        if( viewportClients ){ 
+            let scene = matchFrameScene(viewportTemplate.name, viewportClients)
+            if( scene.frameName ){ //if this viewport includes this elt
                 let rowColInfo =  getRowColInfo( $(this), viewportTemplate) 
                 let eltCss = sizeToViewport( $(this), contentViewport, viewportTemplate ); 
-                app.currentPage.store(eltId, eltCss, rowColInfo);
-                _drawBorders($(this), contentViewport, viewportTemplate, eltCss, rowColInfo)
-                $( this ).show(); 
+                app.currentPage.store(eltId, eltCss, rowColInfo, scene);
             }
             else{
                 $( this ).hide();
             }
         }
     })
-    
+    app.currentPage.draw();
 }
 
 module.exports = {
@@ -249,7 +292,6 @@ const placeCaption = function ( jqueryElt, contentViewport, viewportTemplate ){
 }
 
 const layoutCaptions = function( app ) {
-    debugger
     let viewportName = app.currentPage.viewport.name; 
     //occupies text space in a visual element
     $(".narration").each( function(){
@@ -457,7 +499,6 @@ const sizeToViewport = function( elt, contentViewport, contentFrame, options ){
             height: contentViewport.height / contentFrame.format.rows * posDim.vertSpan, 
             top : contentViewport.top + (contentViewport.height / contentFrame.format.rows ) * posDim.row
         };  
-        elt.css(eltCss);
         return eltCss; 
 }
 
@@ -578,7 +619,9 @@ const addUiFeature = app => {
     $(window).resize(()=>{
         resizeUI( app ); 
     })
-
+    $('#frameNext').click(function(){
+        console.log(app)
+    })
     return app; 
 }
 

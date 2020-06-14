@@ -21,7 +21,9 @@ const addUiFeature = app => {
     $(window).resize(()=>{
         resizeUI( app ); 
     })
-
+    $('#frameNext').click(function(){
+        console.log(app)
+    })
     return app; 
 }
 

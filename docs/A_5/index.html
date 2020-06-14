@@ -84,7 +84,7 @@
         data-scenes = '1,2'
         data-formats='{
              "wide_a": {"width": 3000, "height":1600, "cols":5, "rows":4}, 
-             "normal":   {"width": 2400, "height":1600, "cols":4, "rows":4},
+             "normal": {"width": 2400, "height":1600, "cols":4, "rows":4},
              "tablet": {"width":1200, "height":1600, "cols":2, "rows":4}
         }'>
     </div>
@@ -123,12 +123,12 @@
      </div>   
 
      <div class="visual-elt" id="turningPlanet"
-        data-include-in-viewport = 'wide_a'
+        data-include-in-viewport = 'wide_a,normal_1'
         data-borders = '{"tableta":"none"}'
-        data-row='{"tableta":1, "normala": 1, "wide_a":1}' 
-        data-col='{"tableta":1, "normala":3, "wide_a":1}'
-        data-hor-span='{"tableta":1, "normala":2, "wide_a":2}' 
-        data-vert-span='{"tableta":1, "normala":2, "wide_a":2}'>
+        data-row='{"tableta":1, "normal_1": 1, "wide_a":1}' 
+        data-col='{"tableta":1, "normal_1":3, "wide_a":1}'
+        data-hor-span='{"tableta":1, "normal_1":2, "wide_a":2}' 
+        data-vert-span='{"tableta":1, "normal_1":2, "wide_a":2}'>
 
      <video style="height:100%;overflow:hidden" 
                 id="video" preload autoplay muted playsinline loop>
@@ -266,8 +266,10 @@
         data-vert-span='{"normal":2, "tablet":2, "wide_a":1}'
         style="background-image:url('./imgOedipus/O3dipus2.png');" >  
     </div>
+
+
   <div class="visual-elt" id="O3dipusEyesPic"
-        data-include-in-viewport = 'normal,wide_a'
+        data-include-in-viewport = 'normal_2,wide_a'
         data-row='{"normal":1, "tablet":3, "wide_a":2}' 
         data-col='{"normal":3, "tablet":1, "wide_a":5}'
         data-hor-span='{"normal":2, "tablet":2, "wide_a":1}' 

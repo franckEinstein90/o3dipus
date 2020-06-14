@@ -30,7 +30,6 @@ const sizeToViewport = function( elt, contentViewport, contentFrame, options ){
             height: contentViewport.height / contentFrame.format.rows * posDim.vertSpan, 
             top : contentViewport.top + (contentViewport.height / contentFrame.format.rows ) * posDim.row
         };  
-        elt.css(eltCss);
         return eltCss; 
 }
 
