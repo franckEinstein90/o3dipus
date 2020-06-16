@@ -1,5 +1,3 @@
-# matrix-ui
+This is a web comic book. It tells the story of O3dipus, who becomes King of Thebes after killing the Sphyncs. Retells the story in a science-fiction format. 
 
-A simple ui flex system based on JQuery  
 
-demo version : https://franckeinstein90.github.io/matrix-ui-js/
